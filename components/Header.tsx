@@ -95,7 +95,7 @@ export default function Header() {
 
         {/* 2. Browser Address Bar Style (White) - 블랙 바 바로 아래 위치 */}
         <div className="w-full h-[51px] bg-white border-b border-[#E6E6E6] flex items-center px-4 gap-4">
-          <div className="flex-none bg-[#F8F8F8] px-6 py-1.5 rounded-full border border-gray-100">
+          <div className="flex-1 bg-[#F8F8F8] px-6 py-1.5 rounded-full border border-gray-100">
             <span className="text-[12px] text-[#7F7F7F]">{siteConfig.domain}</span>
           </div>
           <div className="flex-grow flex items-center bg-[#ECECEC] rounded-full p-[2px] gap-[2px]">
