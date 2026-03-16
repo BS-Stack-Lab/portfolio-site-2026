@@ -107,18 +107,18 @@ export default function Header() {
               <span className="text-[12px] font-medium text-[#171717]">BeomSeo’s Portfolio</span>
             </button>
             <button 
-              onClick={() => handleNavigation("#hero")}
-              className="flex-1 flex items-center justify-center gap-2 h-8 bg-white rounded-full shadow-sm hover:bg-[#F8F8F8] cursor-default"
+              onClick={() => handleNavigation(siteConfig.links.github, true)}
+              className="flex-1 flex items-center justify-center gap-2 h-8 hover:bg-white/50 rounded-full transition-all cursor-default"
             >
               <img src="/asset/pavicon/github.png" alt="" className="w-4 h-4" />
-              <span className="text-[12px] font-medium text-[#171717]">BeomSeo’s Portfolio</span>
+              <span className="text-[12px] font-medium text-[#171717]">GitHub 바로가기</span>
             </button>
             <button 
-              onClick={() => handleNavigation("#hero")}
-              className="flex-1 flex items-center justify-center gap-2 h-8 bg-white rounded-full shadow-sm hover:bg-[#F8F8F8] cursor-default"
+              onClick={() => handleNavigation(siteConfig.links.blog, true)}
+              className="flex-1 flex items-center justify-center gap-2 h-8 hover:bg-white/50 rounded-full transition-all cursor-default border-l border-gray-300"
             >
               <img src="/asset/pavicon/blog.png" alt="" className="w-4 h-4" />
-              <span className="text-[12px] font-medium text-[#171717]">BeomSeo’s Portfolio</span>
+              <span className="text-[12px] font-medium text-[#171717]">블로그 바로가기</span>
             </button>
           </div>
         </div>
