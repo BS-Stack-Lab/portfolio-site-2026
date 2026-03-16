@@ -71,16 +71,16 @@ export default function Header() {
             {/* Status Icons */}
             <div className="flex flex-row items-center">
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/kor.svg" alt="KOR" className="h-[14px] w-auto" />
+                <img src="/asset/header/kor.svg" alt="KOR" className="h-[16px] w-auto" />
               </div>
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/wifi.svg" alt="Wi-Fi" className="h-[12px] w-auto" />
+                <img src="/asset/header/wifi.svg" alt="Wi-Fi" className="h-[16px] w-auto" />
               </div>
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/search.svg" alt="Search" className="h-[14px] w-auto" />
+                <img src="/asset/header/search.svg" alt="Search" className="h-[16px] w-auto" />
               </div>
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/control.svg" alt="Control" className="h-[14px] w-auto" />
+                <img src="/asset/header/control.svg" alt="Control" className="h-[16px] w-auto" />
               </div>
             </div>
 
