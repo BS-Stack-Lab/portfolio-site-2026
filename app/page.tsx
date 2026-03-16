@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
@@ -7,7 +8,8 @@ export default function Home() {
       {/* 87px 마진으로 블랙 바 영역 확보 */}
       <main className="xl:mt-[87px] min-h-[calc(100vh-87px)]">
         <section className="flex items-center justify-center min-h-[calc(100vh-87px)]">
-           {/* 콘텐츠 */}
+          {/* 콘텐츠 */}
+          <Hero />
         </section>
       </main>
     </div>
