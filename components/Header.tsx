@@ -1,6 +1,34 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { siteConfig } from "@/constants/data";
 
 export default function Header() {
+  // 실시간 시간 상태 관리
+  const [currentTime, setCurrentTime] = useState<string>("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const dayList = ["일", "월", "화", "수", "목", "금", "토"];
+      const day = dayList[now.getDay()];
+      
+      let hours = now.getHours();
+      const ampm = hours >= 12 ? "오후" : "오전";
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 0시를 12시로 표시
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+
+      setCurrentTime(`${month}월 ${date}일 (${day}) ${ampm} ${hours}:${minutes}`);
+    };
+
+    updateTime(); // 초기 실행
+    const timer = setInterval(updateTime, 1000 * 60); // 1분마다 업데이트
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       {/* --- 1. 데스크톱 헤더 (1280px 이상) --- */}
@@ -22,40 +50,47 @@ export default function Header() {
               </span>
             </div>
           </div>
+        </div>
 
-          {/* Frame - Trailing (Status Items) */}
+          {/* {/* Frame - Trailing (Status Items) */}
           <div className="flex flex-row items-center justify-end gap-[0px]">
             {/* 배터리 */}
             <div className="flex flex-row items-center px-[11px] py-[5px] gap-[4px]">
               <span className="text-[11px] font-semibold leading-[14px] tracking-[0.311px] text-[#FAFAFA]">100%</span>
               <div className="relative w-[28px] h-[12px]">
-                {/* Rectangle 17 (Border) */}
                 <div className="absolute w-[24px] h-[12px] border border-white/40 rounded-[4px]" />
-                {/* Rectangle 18 (Fill) */}
                 <div className="absolute w-[20px] h-[8px] left-[3px] top-[2px] bg-white rounded-[2.5px]" />
-                {/* Rectangle 19 (Tip) */}
                 <div className="absolute w-[1.5px] h-[4px] left-[26px] top-[4px] bg-white/40 rounded-r-[10px]" />
               </div>
             </div>
 
-            {/* Icons (Wi-Fi, Search, etc. - Icons from image) */}
+            {/* Icons (이미지 파일 반영) */}
             <div className="flex flex-row items-center">
-              <div className="px-[11px] py-[4px] flex items-center"><span className="text-[#FAFAFA] text-[13px]">한</span></div>
-              <div className="px-[11px] py-[4px] flex items-center text-[#FAFAFA] text-[14px]">
-                <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M9 12L0 3.5C2.5 1 5.5 0 9 0C12.5 0 15.5 1 18 3.5L9 12Z" fill="white"/></svg>
+              {/* 한글 입력 상태 아이콘 */}
+              <div className="px-[11px] py-[4px] flex items-center">
+                <img src="/asset/header/kor.png" alt="KOR" className="h-[14px] w-auto" />
               </div>
-              <div className="px-[11px] py-[4px] flex items-center text-[#FAFAFA] text-[14px]">🔍</div>
-              <div className="px-[11px] py-[4px] flex items-center text-[#FAFAFA] text-[14px]">⊚</div>
+              {/* 와이파이 아이콘 */}
+              <div className="px-[11px] py-[4px] flex items-center">
+                <img src="/asset/header/wifi.png" alt="Wi-Fi" className="h-[12px] w-auto" />
+              </div>
+              {/* 검색 아이콘 */}
+              <div className="px-[11px] py-[4px] flex items-center">
+                <img src="/asset/header/search.png" alt="Search" className="h-[14px] w-auto" />
+              </div>
+              {/* 제어 센터 아이콘 */}
+              <div className="px-[11px] py-[4px] flex items-center">
+                <img src="/asset/header/control.png" alt="Control" className="h-[14px] w-auto" />
+              </div>
             </div>
 
-            {/* Date & Time */}
-            <div className="px-[11px] py-[4px] min-w-[149px]">
+            {/* Date & Time (실시간 반영) */}
+            <div className="px-[11px] py-[4px] min-w-[140px] text-right">
               <span className="text-[13px] font-semibold leading-[18px] tracking-[0.252px] text-[#FAFAFA] whitespace-nowrap">
-                3월 4일 (수) 오후 9:09
+                {currentTime || "3월 4일 (수) 오후 9:09"}
               </span>
             </div>
           </div>
-        </div>
 
         {/* 2. Browser Address Bar Style (White) */}
         <div className="w-full h-[51px] bg-white border-b border-[#E6E6E6] flex items-center px-4 gap-4 pointer-events-auto">
