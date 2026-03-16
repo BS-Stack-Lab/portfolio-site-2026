@@ -1,10 +1,20 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/constants/data";
 
 export default function Header() {
+  const router = useRouter();
   const [currentTime, setCurrentTime] = useState<string>("");
+
+  const handleNavigation = (href: string, isExternal = false) => {
+    if (isExternal) {
+      window.open(href, "_blank", "noopener,noreferrer");
+    } else {
+      router.push(href);
+    }
+  };
 
   useEffect(() => {
     const updateTime = () => {
@@ -89,18 +99,27 @@ export default function Header() {
             <span className="text-[12px] text-[#7F7F7F]">{siteConfig.domain}</span>
           </div>
           <div className="flex-grow flex items-center bg-[#ECECEC] rounded-full p-[2px] gap-[2px]">
-            <a href={siteConfig.links.portfolio} className="flex-1 flex items-center justify-center gap-2 h-8 bg-white rounded-full shadow-sm hover:bg-[#F8F8F8]">
+            <button 
+              onClick={() => handleNavigation("#hero")}
+              className="flex-1 flex items-center justify-center gap-2 h-8 bg-white rounded-full shadow-sm hover:bg-[#F8F8F8] cursor-default"
+            >
               <img src="/asset/pavicon/portfolio.png" alt="" className="w-4 h-4" />
               <span className="text-[12px] font-medium text-[#171717]">BeomSeo’s Portfolio</span>
-            </a>
-            <a href={siteConfig.links.github} target="_blank" className="flex-1 flex items-center justify-center gap-2 h-8 hover:bg-white/50 rounded-full transition-all">
+            </button>
+            <button 
+              onClick={() => handleNavigation("#hero")}
+              className="flex-1 flex items-center justify-center gap-2 h-8 bg-white rounded-full shadow-sm hover:bg-[#F8F8F8] cursor-default"
+            >
               <img src="/asset/pavicon/github.png" alt="" className="w-4 h-4" />
-              <span className="text-[12px] font-medium text-[#171717]">GitHub 바로가기</span>
-            </a>
-            <a href={siteConfig.links.blog} target="_blank" className="flex-1 flex items-center justify-center gap-2 h-8 hover:bg-white/50 rounded-full transition-all border-l border-gray-300">
+              <span className="text-[12px] font-medium text-[#171717]">BeomSeo’s Portfolio</span>
+            </button>
+            <button 
+              onClick={() => handleNavigation("#hero")}
+              className="flex-1 flex items-center justify-center gap-2 h-8 bg-white rounded-full shadow-sm hover:bg-[#F8F8F8] cursor-default"
+            >
               <img src="/asset/pavicon/blog.png" alt="" className="w-4 h-4" />
-              <span className="text-[12px] font-medium text-[#171717]">블로그 바로가기</span>
-            </a>
+              <span className="text-[12px] font-medium text-[#171717]">BeomSeo’s Portfolio</span>
+            </button>
           </div>
         </div>
       </header>
