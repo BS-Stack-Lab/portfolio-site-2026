@@ -1,8 +1,18 @@
 // src/constants/data.ts (예시 구조)
 export const siteConfig = {
-  name: "박범서",
-  role: "풀스택 빌더",
-  description: "완전함의 재정의. 기획부터 개발까지.",
+  name: "beomSeoPortfolio",
+  domain: "beomseo.portfolio.kr",
+  links: {
+    portfolio: "#hero", // 포트폴리오(내부 섹션 이동)
+    github: "https://github.com/BS-Stack-Lab",
+    blog: "https://your-blog-link.com", // 블로그 주소
+  },
+  nav: [
+    { name: "About", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "mailto:your-email@example.com" },
+  ],
+  
   projects: [
     {
       title: "감각적인 브랜딩",
