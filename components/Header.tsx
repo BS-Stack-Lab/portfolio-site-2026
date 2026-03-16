@@ -4,10 +4,10 @@ export default function Header() {
   return (
     <>
       {/* --- 1. 데스크톱 헤더 (1280px 이상) --- */}
-      <header className="fixed top-0 left-0 right-0 z-50 hidden xl:flex flex-col w-full pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-[100] hidden xl:flex flex-col w-full">
         
         {/* macOS Menu Bar (Black) */}
-        <div className="w-full h-[36px] bg-black flex flex-row justify-between items-center px-[10px] py-[5px] pointer-events-auto">
+        <div className="w-full h-[36px] bg-[#000000] flex flex-row justify-between items-center px-[10px] py-[5px] relative">
           
           {/* Group - Leading (Apple Logo + App Name) */}
           <div className="flex flex-row items-center gap-[0px]">
@@ -42,7 +42,7 @@ export default function Header() {
             <div className="flex flex-row items-center">
               <div className="px-[11px] py-[4px] flex items-center"><span className="text-[#FAFAFA] text-[13px]">한</span></div>
               <div className="px-[11px] py-[4px] flex items-center text-[#FAFAFA] text-[14px]">
-                 <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M9 12L0 3.5C2.5 1 5.5 0 9 0C12.5 0 15.5 1 18 3.5L9 12Z" fill="white"/></svg>
+                <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M9 12L0 3.5C2.5 1 5.5 0 9 0C12.5 0 15.5 1 18 3.5L9 12Z" fill="white"/></svg>
               </div>
               <div className="px-[11px] py-[4px] flex items-center text-[#FAFAFA] text-[14px]">🔍</div>
               <div className="px-[11px] py-[4px] flex items-center text-[#FAFAFA] text-[14px]">⊚</div>
@@ -81,15 +81,15 @@ export default function Header() {
       </header>
 
       {/* --- 2. 모바일/태블릿 하단 탭바 (1280px 미만) --- */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 xl:hidden flex justify-center pb-[24px] pointer-events-none">
+      <div className="fixed bottom-0 left-0 right-0 z-[100] xl:hidden flex justify-center items-end pb-[24px] pointer-events-none">
         <nav 
-          className="flex flex-row items-center h-[52px] px-[24px] gap-[12px] bg-white/20 backdrop-blur-[4px] rounded-[100px] border border-white/30 shadow-lg pointer-events-auto"
+          className="flex flex-row items-center h-[52px] px-[24px] gap-[12px] bg-white/20 backdrop-blur-[10px] rounded-[100px] border border-white/30 shadow-lg pointer-events-auto"
           style={{ width: 'fit-content' }}
         >
           {/* 포트폴리오 탭 */}
           <a href={siteConfig.links.portfolio} className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
             <div className="w-[24px] h-[24px] rounded-[6.24px] overflow-hidden flex items-center justify-center bg-white">
-              <img src="public/asset/pavicon/portfolio.png" alt="Portfolio" className="w-full h-full object-cover transition-transform group-active:scale-90" />
+              <img src="/asset/pavicon/portfolio.png" alt="Portfolio" className="w-full h-full object-cover transition-transform group-active:scale-90" />
             </div>
             <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#171717]">포트폴리오</span>
           </a>
@@ -97,7 +97,7 @@ export default function Header() {
           {/* GitHub 탭 */}
           <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
             <div className="w-[24px] h-[24px] rounded-[6px] overflow-hidden flex items-center justify-center bg-white shadow-[inset_0px_-0.33px_1.33px_rgba(255,255,255,0.5)]">
-              <img src="public/asset/pavicon/github.png" alt="GitHub" className="w-full h-full object-cover transition-transform group-active:scale-90" />
+              <img src="/asset/pavicon/github.png" alt="GitHub" className="w-full h-full object-cover transition-transform group-active:scale-90" />
             </div>
             <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">GitHub</span>
           </a>
@@ -105,7 +105,7 @@ export default function Header() {
           {/* 블로그 탭 */}
           <a href={siteConfig.links.blog} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
             <div className="w-[24px] h-[24px] rounded-[6.24px] overflow-hidden flex items-center justify-center bg-white">
-              <img src="public/asset/pavicon/blog.png" alt="Blog" className="w-full h-full object-cover transition-transform group-active:scale-90" />
+              <img src="/asset/pavicon/blog.png" alt="Blog" className="w-full h-full object-cover transition-transform group-active:scale-90" />
             </div>
             <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">블로그</span>
           </a>
