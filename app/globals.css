@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* --- 원티드 산스 웹폰트 불러오기 --- */
+@import url('https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
