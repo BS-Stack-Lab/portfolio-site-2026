@@ -37,15 +37,20 @@ export default function Header() {
         <div className="w-full h-[36px] bg-[#000000] flex flex-row justify-between items-center px-[10px] py-[5px]">
           {/* Group - Leading */}
           <div className="flex flex-row items-center">
+            {/* [수정] 애플 로고 텍스트 대신 Logo.png 이미지 적용 */}
             <div className="w-[33px] flex justify-center items-center">
-              <span className="text-[#FAFAFA] text-[16px]"></span>
+              <img 
+                src="/asset/header/Logo.png" 
+                alt="Logo" 
+                className="h-[16px] w-auto object-contain" 
+              />
             </div>
-            <div className="px-[11px]">
-              <span className="text-[13px] font-bold text-[#FAFAFA] whitespace-nowrap">
-                {siteConfig.name}
-              </span>
-            </div>
+          <div className="px-[11px]">
+            <span className="text-[13px] font-bold text-[#FAFAFA] whitespace-nowrap">
+              {siteConfig.name}
+            </span>
           </div>
+        </div>
 
           {/* Frame - Trailing */}
           <div className="flex flex-row items-center">
@@ -57,19 +62,19 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Status Icons - public 폴더 기준 경로 */}
+            {/* Status Icons - [해결] 아이콘이 안 보일 때를 대비해 스타일 보정 */}
             <div className="flex flex-row items-center">
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/kor.png" alt="" className="h-[14px] w-auto invert" />
+                <img src="/asset/header/kor.png" alt="KOR" className="h-[14px] w-auto brightness-200" />
               </div>
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/wifi.png" alt="" className="h-[12px] w-auto invert" />
+                <img src="/asset/header/wifi.png" alt="Wi-Fi" className="h-[12px] w-auto brightness-200" />
               </div>
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/search.png" alt="" className="h-[14px] w-auto invert" />
+                <img src="/asset/header/search.png" alt="Search" className="h-[14px] w-auto brightness-200" />
               </div>
               <div className="px-[8px] flex items-center">
-                <img src="/asset/header/control.png" alt="" className="h-[14px] w-auto invert" />
+                <img src="/asset/header/control.png" alt="Control" className="h-[14px] w-auto brightness-200" />
               </div>
             </div>
 
