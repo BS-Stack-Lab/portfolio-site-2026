@@ -81,36 +81,49 @@ export default function Header() {
       </header>
 
       {/* --- 2. 모바일/태블릿 하단 탭바 (1280px 미만) --- */}
-      <div className="fixed bottom-0 left-0 right-0 z-[100] xl:hidden flex justify-center items-end pb-[24px] pointer-events-none">
-        <nav 
-          className="flex flex-row items-center h-[52px] px-[24px] gap-[12px] bg-white/20 backdrop-blur-[10px] rounded-[100px] border border-white/30 shadow-lg pointer-events-auto"
-          style={{ width: 'fit-content' }}
-        >
-          {/* 포트폴리오 탭 */}
-          <a href={siteConfig.links.portfolio} className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
-            <div className="w-[24px] h-[24px] rounded-[6.24px] overflow-hidden flex items-center justify-center bg-white">
-              <img src="/asset/pavicon/portfolio.png" alt="Portfolio" className="w-full h-full object-cover transition-transform group-active:scale-90" />
-            </div>
-            <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#171717]">포트폴리오</span>
-          </a>
-
-          {/* GitHub 탭 */}
-          <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
-            <div className="w-[24px] h-[24px] rounded-[6px] overflow-hidden flex items-center justify-center bg-white shadow-[inset_0px_-0.33px_1.33px_rgba(255,255,255,0.5)]">
-              <img src="/asset/pavicon/github.png" alt="GitHub" className="w-full h-full object-cover transition-transform group-active:scale-90" />
-            </div>
-            <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">GitHub</span>
-          </a>
-
-          {/* 블로그 탭 */}
-          <a href={siteConfig.links.blog} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
-            <div className="w-[24px] h-[24px] rounded-[6.24px] overflow-hidden flex items-center justify-center bg-white">
-              <img src="/asset/pavicon/blog.png" alt="Blog" className="w-full h-full object-cover transition-transform group-active:scale-90" />
-            </div>
-            <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">블로그</span>
-          </a>
-        </nav>
+<div className="fixed bottom-0 left-0 right-0 z-[100] xl:hidden flex justify-center items-end pb-[24px] pointer-events-none">
+  <nav 
+    className="flex flex-row items-center h-[52px] px-[24px] gap-[12px] bg-white/40 backdrop-blur-[10px] rounded-[100px] border border-white/30 shadow-lg pointer-events-auto"
+    style={{ width: 'fit-content' }}
+  >
+    {/* 포트폴리오 탭 */}
+    <a href={siteConfig.links.portfolio} className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
+      <div className="w-[24px] h-[24px] rounded-[6.24px] overflow-hidden flex items-center justify-center bg-white">
+        {/* 수정 포인트: 경로 맨 앞의 / 확인 및 'pavicon' 폴더명 실제와 대조 필수 */}
+        <img 
+          src="/asset/pavicon/portfolio.png" 
+          alt="Portfolio" 
+          className="w-full h-full object-contain transition-transform group-active:scale-90" 
+        />
       </div>
+      <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#171717]">포트폴리오</span>
+    </a>
+
+    {/* GitHub 탭 */}
+    <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
+      <div className="w-[24px] h-[24px] rounded-[6px] overflow-hidden flex items-center justify-center bg-white">
+        <img 
+          src="/asset/pavicon/github.png" 
+          alt="GitHub" 
+          className="w-full h-full object-contain transition-transform group-active:scale-90" 
+        />
+      </div>
+      <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">GitHub</span>
+    </a>
+
+    {/* 블로그 탭 */}
+    <a href={siteConfig.links.blog} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-[56px] h-full gap-[2px] group">
+      <div className="w-[24px] h-[24px] rounded-[6.24px] overflow-hidden flex items-center justify-center bg-white">
+        <img 
+          src="/asset/pavicon/blog.png" 
+          alt="Blog" 
+          className="w-full h-full object-contain transition-transform group-active:scale-90" 
+        />
+      </div>
+      <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">블로그</span>
+    </a>
+  </nav>
+</div>
     </>
   );
 }
