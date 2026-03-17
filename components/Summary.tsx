@@ -49,7 +49,36 @@ export default function Summary() {
     },
     { 
       title: "일단 시작, 결과로 증명하는 가치.\n아이디어를 서비스로 빌딩하는 몰입.\n상상을 현실로 만드는 경험은 더욱 압도적.",
-      images: [{ src: `${assetPath}tri.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[540px] md:w-[100%] xl:w-[100%] object-contain object-bottom" }]
+      images: [
+        // 1. 모바일 전용 이미지 (768px 미만에서만 출력)
+        { 
+          src: `${assetPath}triMo.png`, 
+          style: `
+            bottom-0 left-1/2 -translate-x-1/2 
+            w-[100%] md:hidden 
+            object-contain object-bottom scale-[1.02]
+          ` 
+        },
+        // 2. 태블릿 전용 이미지 (768px 이상 ~ 1280px 미만에서만 출력)
+        { 
+          src: `${assetPath}triTe.png`, 
+          style: `
+            bottom-0 left-1/2 -translate-x-1/2 
+            hidden md:block xl:hidden 
+            md:w-full md:max-w-none
+            object-contain object-bottom scale-[1.05]
+          ` 
+        },
+        // 3. 데스크톱 전용 이미지 (1280px 이상에서만 출력)
+        { 
+          src: `${assetPath}tri.png`, 
+          style: `
+            bottom-0 left-1/2 -translate-x-1/2 
+            hidden xl:block xl:w-full 
+            object-contain object-bottom scale-[1.02]
+          ` 
+        }
+      ]
     }
   ];
 
