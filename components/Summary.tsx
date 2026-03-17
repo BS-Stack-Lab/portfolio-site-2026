@@ -1,53 +1,50 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function Summary() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // 카드/인디케이터 클릭 시 스크롤 및 상태 변경 함수
   const handleCardClick = (index: number) => {
     setActiveIndex(index);
     if (scrollRef.current) {
-      const cardWidth = window.innerWidth < 768 ? 360 : window.innerWidth < 1280 ? 509 : 1080;
-      scrollRef.current.scrollTo({ left: index * (cardWidth + 20), behavior: "smooth" });
+      const container = scrollRef.current;
+      const cards = container.getElementsByClassName("summary-card");
+      const targetCard = cards[index] as HTMLElement;
+
+      if (targetCard) {
+        // 카드가 컨테이너(화면)의 중앙에 오도록 스크롤 위치 계산
+        const containerWidth = container.offsetWidth;
+        const cardWidth = targetCard.offsetWidth;
+        const cardLeft = targetCard.offsetLeft;
+
+        // 중앙 정렬 공식: 카드의 왼쪽 위치 - (화면 너비/2 - 카드 너비/2)
+        const scrollTo = cardLeft - (containerWidth / 2 - cardWidth / 2);
+
+        container.scrollTo({
+          left: scrollTo,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
-  // 이미지 경로 변수 설정 (중복 방지 및 유지보수 용이)
+  // 이미지 경로 변수 설정
   const assetPath = "/asset/summary/";
 
   const cardData = [
     { 
       title: "일단 도전, 시도로 풀어낸 한계.\n디자인을 넘어 실제 구현까지.\n멈추지 않고 나아가는 성장은 더욱 열정적.",
-      // 카드 1의 이미지: 아이폰 16 목업 (자유 배치)
-      images: [
-        { 
-          src: `${assetPath}first.png`,
-          style: "bottom-[-120px] xl:bottom-[-200px] right-[-50px] xl:right-[-100px] w-[90%] xl:w-[680px] rotate-[10deg]"
-        },
-      ]
+      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[100%] md:w-[120%] xl:w-[800px] object-contain object-bottom scale-[1.02]" }]
     },
     { 
       title: "기획부터 디자인. 개발까지.\n폭넓은 경험은 더욱 환상적.",
-      // 카드 2의 이미지: 카메라 목업 (중앙 배치)
-      images: [
-        { 
-          src: `${assetPath}secend.png`,
-          style: "top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-[60%] xl:w-[450px]" 
-        },
-      ]
+      images: [{ src: `${assetPath}secend.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[90%] md:w-[100%] xl:w-[700px] object-contain object-bottom" }]
     },
     { 
       title: "일단 시작, 결과로 증명하는 가치.\n아이디어를 서비스로 빌딩하는 몰입.\n상상을 현실로 만드는 경험은 더욱 압도적.",
-      // 카드 3의 이미지: 푸른색 그래디언트 (배경 꽉 채움)
-      images: [
-        { 
-          src: `${assetPath}tri.png`,
-          style: "inset-0 w-full h-full object-cover scale-[1.02] blur-[0.1px]" 
-        },
-      ]
+      images: [{ src: `${assetPath}tri.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[100%] md:w-[120%] xl:w-[800px] object-contain object-bottom scale-[1.02]" }]
     }
   ];
 
