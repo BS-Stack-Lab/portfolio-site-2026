@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 export default function Summary() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // 핵심 로직: 인디케이터 클릭 및 카드 클릭 시 중앙 정렬 스크롤
   const handleCardClick = (index: number) => {
     setActiveIndex(index);
+    
     if (scrollRef.current) {
       const container = scrollRef.current;
       const cards = container.getElementsByClassName("summary-card");
       const targetCard = cards[index] as HTMLElement;
 
       if (targetCard) {
-        // 카드가 컨테이너(화면)의 중앙에 오도록 스크롤 위치 계산
         const containerWidth = container.offsetWidth;
         const cardWidth = targetCard.offsetWidth;
         const cardLeft = targetCard.offsetLeft;
@@ -30,7 +31,6 @@ export default function Summary() {
     }
   };
 
-  // 이미지 경로 변수 설정
   const assetPath = "/asset/summary/";
 
   const cardData = [
@@ -49,15 +49,16 @@ export default function Summary() {
   ];
 
   return (
-    <section className="w-full bg-[#F5F5F7] flex flex-col items-center overflow-hidden transition-all duration-300 xl:py-[154px] md:py-[100px] py-[60px]">
+    /* 영역 밖 카드가 보이도록 overflow-hidden 제거, 대신 가로 스크롤 방지를 위해 overflow-x-hidden만 부모에 적용 가능 */
+    <section className="w-full bg-[#F5F5F7] flex flex-col items-center transition-all duration-300 xl:py-[154px] md:py-[100px] py-[60px] overflow-visible">
       
-      {/* 글로벌 CSS: 스크롤바 숨김 */}
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
-      <div className="w-full max-w-[1600px] flex flex-col gap-[56px] xl:gap-[64px]">
+      {/* 컨테이너 자체도 overflow-visible로 설정하여 카드가 잘리지 않게 함 */}
+      <div className="w-full max-w-[1600px] flex flex-col gap-[56px] xl:gap-[64px] overflow-visible">
         
         {/* 헤더 */}
         <div className="w-full px-[20px] md:px-[32px] xl:px-[80px]">
@@ -66,24 +67,26 @@ export default function Summary() {
           </h2>
         </div>
 
-        {/* 카드 스크롤 영역 */}
-        <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide scroll-smooth">
-          {/* 3번째 카드 패딩 적용을 위한 컨테이너 px 설정 */}
-          <div className="flex flex-row gap-[20px] px-[20px] md:px-[32px] xl:px-[80px] pb-10">
+        {/* 카드 스크롤 영역: overflow-x-auto는 유지하되 컨테이너 밖으로 내용이 보이게 함 */}
+        <div 
+          ref={scrollRef} 
+          className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible"
+        >
+          <div className="flex flex-row gap-[20px] px-[20px] md:px-[32px] xl:px-[80px] pb-10 min-w-max">
             {cardData.map((card, index) => (
               <div 
                 key={index}
                 onClick={() => handleCardClick(index)}
-                // summary-card 클래스로 요소를 찾아 스크롤 위치 계산에 활용
-                className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] shadow-sm cursor-pointer transition-all duration-500 overflow-hidden
+                className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] shadow-sm cursor-pointer transition-all duration-500
                   xl:w-[1080px] xl:h-[508px] 
                   md:w-[509px] md:h-[640px] 
                   w-[360px] h-[280px]
-                  ${activeIndex === index ? "ring-2 ring-blue-500/10" : "opacity-90"}
-                  ${index === 2 ? "mr-[16px] md:mr-[40px] xl:mr-[80px]" : ""} 
+                  ${activeIndex === index ? "ring-2 ring-blue-500/10 opacity-100" : "opacity-40 scale-[0.98]"}
+                  /* 마지막 카드 오른쪽 여백 가이드 적용 */
+                  ${index === 2 ? "mr-[20px] md:mr-[40px] xl:mr-[80px]" : ""}
                 `}
               >
-                {/* 텍스트 영역 (Z-index 조정) */}
+                {/* 텍스트 영역 */}
                 <div className={`absolute top-[30px] left-0 right-0 z-20 px-[30px] 
                   ${index === 1 ? "text-center" : index === 2 ? "text-right" : "text-left"}`}>
                   <p className="font-wanted font-bold text-[#171717] xl:text-[18px] text-[16px] leading-[1.4] whitespace-pre-wrap">
@@ -91,13 +94,12 @@ export default function Summary() {
                   </p>
                 </div>
 
-                {/* 이미지 맵핑 및 자유 배치 */}
+                {/* 이미지 */}
                 {card.images.map((img, imgIdx) => (
                   <img
                     key={imgIdx}
                     src={img.src}
-                    alt={`decoration-${imgIdx}`}
-                    // 각 이미지의 style 속성(가이드 수치)을 Tailwind 클래스로 적용
+                    alt=""
                     className={`absolute pointer-events-none ${img.style}`}
                   />
                 ))}
@@ -112,6 +114,7 @@ export default function Summary() {
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
+                // 인디케이터 클릭 시 카드 클릭과 동일한 핸들러 호출
                 onClick={() => handleCardClick(i)}
                 className={`cursor-pointer rounded-full transition-all duration-500 ease-in-out
                   ${activeIndex === i 
