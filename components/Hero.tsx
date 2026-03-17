@@ -28,7 +28,7 @@ export default function Hero() {
             <span className="text-[16px] md:text-[20px] font-semibold leading-[28px] tracking-[-0.12px] text-[#A1A1A1] font-wanted">
               BEOMSEO’S PORTFOLIO
             </span>
-            <h1 className="text-[32px] md:text-[48px] font-bold leading-[1.1] md:leading-[52px] tracking-[0.23px] font-wanted bg-[linear-gradient(94.77deg,#449EFF_0%,#449EFF_40%,#449EFF_65%,#A4D0FF_85%,#BDDDFF_100%)] bg-clip-text text-transparent bg-[length:300%_auto] bg-[position:100%_50%] animate-rainbow-flow">
+            <h1 className="text-[32px] md:text-[48px] font-bold leading-[1.1] md:leading-[52px] tracking-[0.23px] font-wanted bg-[linear-gradient(94.77deg,#BDDDFF_0%,#449EFF_80%,#449EFF_65%,#A4D0FF_85%,#BDDDFF_100%)] bg-clip-text text-transparent bg-[length:300%_auto] bg-[position:100%_50%] animate-rainbow-flow">
               완전함의 재정의.<br />
               기획부터 개발까지.
             </h1>
