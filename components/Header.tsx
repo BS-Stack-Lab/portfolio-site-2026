@@ -127,7 +127,7 @@ export default function Header() {
         {/* --- 2. 모바일/태블릿 하단 탭바 (1280px 미만) --- */}
         <div className="fixed bottom-0 left-0 right-0 z-[100] xl:hidden flex justify-center items-end pb-[24px] pointer-events-none">
           <nav 
-            className="flex flex-row items-center h-[52px] px-[24px] gap-[12px] bg-white/20 backdrop-blur-[4px] rounded-[100px] border border-white/30 shadow-lg pointer-events-auto"
+            className="flex flex-row items-center h-[52px] px-[24px] gap-[12px] bg-white/20 backdrop-blur-[4px] rounded-[100px] border border-white/30 shadow shadow-black/20 pointer-events-auto"
             style={{ width: 'fit-content' }}
           >
           {/* 포트폴리오 탭 */}
