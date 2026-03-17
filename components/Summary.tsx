@@ -41,7 +41,7 @@ export default function Summary() {
   const cardData = [
     { 
       title: "일단 도전, 시도로 풀어낸 한계.\n디자인을 넘어 실제 구현까지.\n멈추지 않고 나아가는 성장은 더욱 열정적.",
-      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[80%] md:w-[100%] xl:w-[500px] object-contain object-bottom scale-[1.02]" }]
+      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/3 -translate-x-1/2 w-[80%] md:w-[100%] xl:w-[500px] object-contain object-bottom scale-[1.02]" }]
     },
     { 
       title: "기획부터 디자인. 개발까지.\n폭넓은 경험은 더욱 환상적.",
@@ -84,8 +84,8 @@ export default function Summary() {
                 onClick={() => handleCardClick(index)}
                 className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500
                   xl:w-[1080px] xl:h-[508px] 
-                  md:w-[509px] md:h-[640px] 
-                  w-[360px] h-[280px]
+                  md:w-[640px] md:h-[509px] 
+                  w-[280px] h-[360px]
                   ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}
                   /* 마지막 카드 오른쪽 여백 가이드 적용 */
                   ${index === 2 ? "mr-[20px] md:mr-[40px] xl:mr-[80px]" : ""}
