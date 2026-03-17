@@ -1,13 +1,6 @@
 "use client";
 
-// Hero.tsx 상단 수정
-import dynamic from "next/dynamic";
-// 상대 경로를 사용하여 직접 불러옵니다. (현재 위치에 맞춰 경로 조절)
-import heroArrowData from "../public/asset/hero/hero_arrow.json";
-
-// Next.js SSR 환경에서 발생할 수 있는 충돌을 방지하기 위해 dynamic import 권장
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-
+import React from "react";
 
 export default function Hero() {
   return (
@@ -50,14 +43,11 @@ export default function Hero() {
               성장 가능성을 먼저 만나보세요
             </span>
             <div className="w-[36px] h-[36px] bg-[#007AFF] rounded-full flex items-center justify-center overflow-hidden transition-transform group-hover:translate-y-1">
-              <div className="w-10 h-10 flex-shrink-0">
-                {/* 데이터 변수명을 heroArrowData로 변경하여 적용 */}
-                <Lottie 
-                  animationData={heroArrowData} 
-                  loop={true} 
-                  className="w-20 h-20 scale-20" 
-                />
-              </div>
+              <img 
+                src="/asset/hero/hero_arrow.gif" 
+                alt="arrow icon" 
+                className="w-10 h-10 object-contain scale-150" 
+              />
             </div>
           </button>
         </div>
