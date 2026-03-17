@@ -126,7 +126,7 @@ export default function Summary() {
                 */}
                 <div className={`absolute top-[30px] z-20 px-[30px] w-full
                   /* 모바일 중앙 정렬 설정 */
-                  left-1/2 -translate-x-1/2 text-center px-[16px]
+                  left-1/2 -translate-x-1/2 text-center px-[14px]
                   /* 태블릿 이상에서는 다시 원래 위치와 정렬로 복구 */
                   md:left-0 md:translate-x-0 
                   ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
