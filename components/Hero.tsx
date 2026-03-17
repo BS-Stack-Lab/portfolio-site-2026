@@ -16,7 +16,7 @@ export default function Hero() {
         flex flex-col items-center pt-[48px] md:pt-[24px] pb-[32px] md:pb-[60px] relative">
         
         {/* 상단: 휴대폰 목업 영역 */}
-        <div className="w-full flex flex-col justify-center items-center h-[258px] md:h-[574px] xl:h-[500px] overflow-hidden mb-[44px] md:mb-0">
+        <div className="w-full flex flex-col justify-center items-center pt-[30px] h-[258px] md:h-[574px] xl:h-[600px] overflow-hidden mb-[44px] md:mb-0">
           <div className="relative w-full max-w-[308px] md:max-w-[680px] xl:max-w-[788px] aspect-[788/666] flex justify-center items-center">
             <video 
               autoPlay 
