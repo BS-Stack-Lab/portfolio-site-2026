@@ -1,11 +1,10 @@
-// src/constants/data.ts (예시 구조)
 export const siteConfig = {
   name: "beomSeoPortfolio",
   domain: "beomseo.portfolio.kr",
   links: {
     portfolio: "#hero", // 포트폴리오(내부 섹션 이동)
     github: "https://github.com/BS-Stack-Lab",
-    blog: "https://your-blog-link.com", // 블로그 주소
+    blog: "https://beom-seo.tistory.com", // 티스토리 블로그 주소
   },
   nav: [
     { name: "About", href: "#about" },

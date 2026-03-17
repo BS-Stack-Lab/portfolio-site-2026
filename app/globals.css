@@ -32,7 +32,7 @@
     100% { background-position: 0% 50%; }
   }
 
-  --animate-rainbow-shift: rainbow-shift 5s linear infinite;
+  --animate-rainbow-shift: rainbow-shift 8s linear infinite;
 }
 
 /* 커스텀 유틸리티 클래스 추가 */
