@@ -49,7 +49,7 @@ export default function Summary() {
     },
     { 
       title: "일단 시작, 결과로 증명하는 가치.\n아이디어를 서비스로 빌딩하는 몰입.\n상상을 현실로 만드는 경험은 더욱 압도적.",
-      images: [{ src: `${assetPath}tri.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[540px] md:w-[100%] xl:w-[100%] object-contain object-bottom scale-[1.02]" }]
+      images: [{ src: `${assetPath}tri.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[540px] md:w-[100%] xl:w-[100%] object-contain object-bottom" }]
     }
   ];
 
