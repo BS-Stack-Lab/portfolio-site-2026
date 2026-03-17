@@ -17,22 +17,21 @@ export default function Hero() {
         {/* 상단: 휴대폰 목업 영역 */}
         <div className="w-full flex flex-col justify-center items-center h-[258px] md:h-[574px] xl:h-[500px] overflow-hidden mb-[44px] md:mb-0">
           <div className="relative w-[308px] md:max-w-[680px] xl:max-w-[788px] aspect-[308/258] md:aspect-[788/666] flex justify-center items-center">
-            <video
+            <video 
               autoPlay 
               loop 
               muted 
               playsInline 
-              className="w-full h-full object-contain scale-110" 
+              className="w-full h-full object-contain scale-110"
             >
-              {/* scale-110 등 수치를 조정하여 영상이 잘리는 정도를 조절할 수 있습니다. */}
               <source src="/asset/hero/phone_mockup.webm" type="video/webm" />
-              Your browser does not support the video tag.
             </video>
           </div>
         </div>
 
         {/* 하단: 텍스트 및 버튼 영역 */}
         <div className="w-[308px] md:max-w-[680px] xl:max-w-none flex flex-col xl:flex-row justify-between items-start xl:items-end gap-[32px] md:gap-[48px] xl:gap-0">
+          
           {/* 텍스트 그룹 */}
           <div className="flex flex-col items-start gap-[6px] w-full md:max-w-[360px]">
             <span className="text-[14px] md:text-[20px] font-semibold leading-[20px] md:leading-[28px] tracking-[0.145px] md:tracking-[-0.12px] text-[#A1A1A1] font-wanted">
@@ -44,7 +43,7 @@ export default function Hero() {
             </h1>
           </div>
 
-          {/* CTA 버튼 (Lottie 아이콘 적용) */}
+          {/* CTA 버튼 */}
           <button 
             onClick={() => window.scrollTo({ top: 930, behavior: 'smooth' })}
             className="flex flex-row items-center p-[10px] pl-[16px] md:pl-[26px] gap-[16px] bg-[#EEEEF2] rounded-[100px] h-[48px] md:h-[56px] w-[273px] md:w-[281px] group cursor-default transition-all"
@@ -53,6 +52,7 @@ export default function Hero() {
               성장 가능성을 먼저 만나보세요
             </span>
             <div className="w-[28px] md:w-[36px] h-[28px] md:h-[36px] bg-[#007AFF] rounded-full flex items-center justify-center overflow-hidden transition-transform group-hover:translate-y-1">
+              {/* Lottie 대신 GIF 이미지로 대체 적용 */}
               <img 
                 src="/asset/hero/hero_arrow.gif" 
                 alt="arrow icon" 
