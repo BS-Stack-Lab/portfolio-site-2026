@@ -16,12 +16,17 @@ export default function Summary() {
       const targetCard = cards[index] as HTMLElement;
 
       if (targetCard) {
-        const containerWidth = container.offsetWidth;
-        const cardWidth = targetCard.offsetWidth;
-        const cardLeft = targetCard.offsetLeft;
+        // 1. 컨테이너의 현재 스크롤 위치와 화면상의 위치 정보 획득
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = targetCard.getBoundingClientRect();
 
-        // 중앙 정렬 공식: 카드의 왼쪽 위치 - (화면 너비/2 - 카드 너비/2)
-        const scrollTo = cardLeft - (containerWidth / 2 - cardWidth / 2);
+        // 2. 중앙 정렬 계산 (화면 1800px 이상에서도 정확함)
+        // (현재 스크롤 위치) + (카드의 화면상 왼쪽 위치) - (컨테이너 왼쪽 위치) - (컨테이너 절반) + (카드 절반)
+        const scrollTo = 
+          container.scrollLeft + 
+          (targetRect.left - containerRect.left) - 
+          (containerRect.width / 2) + 
+          (targetRect.width / 2);
 
         container.scrollTo({
           left: scrollTo,
@@ -36,15 +41,15 @@ export default function Summary() {
   const cardData = [
     { 
       title: "일단 도전, 시도로 풀어낸 한계.\n디자인을 넘어 실제 구현까지.\n멈추지 않고 나아가는 성장은 더욱 열정적.",
-      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[100%] md:w-[120%] xl:w-[800px] object-contain object-bottom scale-[1.02]" }]
+      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[80%] md:w-[100%] xl:w-[500px] object-contain object-bottom scale-[1.02]" }]
     },
     { 
       title: "기획부터 디자인. 개발까지.\n폭넓은 경험은 더욱 환상적.",
-      images: [{ src: `${assetPath}secend.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[90%] md:w-[100%] xl:w-[700px] object-contain object-bottom" }]
+      images: [{ src: `${assetPath}secend.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[90%] md:w-[200%] xl:w-[560px] object-contain object-bottom" }]
     },
     { 
       title: "일단 시작, 결과로 증명하는 가치.\n아이디어를 서비스로 빌딩하는 몰입.\n상상을 현실로 만드는 경험은 더욱 압도적.",
-      images: [{ src: `${assetPath}tri.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[100%] md:w-[120%] xl:w-[800px] object-contain object-bottom scale-[1.02]" }]
+      images: [{ src: `${assetPath}tri.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[200%] md:w-[200%] xl:w-[100%] object-contain object-bottom scale-[1.02]" }]
     }
   ];
 
@@ -62,7 +67,7 @@ export default function Summary() {
         
         {/* 헤더 */}
         <div className="w-full px-[20px] md:px-[32px] xl:px-[80px]">
-          <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[32px] tracking-[0.23px]">
+          <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">
             일단 핵심부터.
           </h2>
         </div>
@@ -77,11 +82,11 @@ export default function Summary() {
               <div 
                 key={index}
                 onClick={() => handleCardClick(index)}
-                className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] shadow-sm cursor-pointer transition-all duration-500
+                className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500
                   xl:w-[1080px] xl:h-[508px] 
                   md:w-[509px] md:h-[640px] 
                   w-[360px] h-[280px]
-                  ${activeIndex === index ? "ring-2 ring-blue-500/10 opacity-100" : "opacity-40 scale-[0.98]"}
+                  ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}
                   /* 마지막 카드 오른쪽 여백 가이드 적용 */
                   ${index === 2 ? "mr-[20px] md:mr-[40px] xl:mr-[80px]" : ""}
                 `}
