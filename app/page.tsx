@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Summary from "@/components/Summary";
+import InfoBanner from "@/components/InfoBanner";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
           {/* 콘텐츠 */}
           <Hero />
           <Summary />
+          <InfoBanner />
         </section>
       </main>
     </div>
