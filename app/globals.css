@@ -36,7 +36,7 @@
   }
 
   /* 변수명이 Hero.tsx에서 쓰는 animate-rainbow-flow와 일치해야 합니다. */
-  --animate-rainbow-flow: title-reveal 3s ease-out forwards, rainbow-shift 8s linear 3s infinite;
+  --animate-rainbow-flow: title-reveal 3s ease-out forwards, rainbow-shift 5s linear 3s infinite;
 }
 
 @media (prefers-color-scheme: dark) {
