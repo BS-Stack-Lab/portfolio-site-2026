@@ -24,17 +24,14 @@
   --font-mono: var(--font-geist-mono);
 
   /* --- 그라데이션 애니메이션 정의 --- */
-  @keyframes title-reveal {
-    0% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  @keyframes rainbow-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  /* 애니메이션 변수 등록 */
-  --animate-title-flow: title-reveal 3s ease-out forwards;
+  /* title-reveal로 등장(3초)한 후, rainbow-shift로 무한 반복(8초) */
+  --animate-rainbow-flow: title-reveal 3s ease-out forwards, rainbow-shift 8s linear 3s infinite;
 }
 
 @media (prefers-color-scheme: dark) {
