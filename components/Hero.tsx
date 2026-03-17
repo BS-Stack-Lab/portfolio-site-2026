@@ -29,7 +29,16 @@ export default function Hero() {
             <span className="text-[16px] md:text-[20px] font-semibold leading-[28px] tracking-[-0.12px] text-[#A1A1A1] font-['Wanted_Sans']">
               BEOMSEO’S PORTFOLIO
             </span>
-            <h1 className="text-[32px] md:text-[48px] font-bold leading-[1.1] md:leading-[52px] tracking-[0.23px] bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-fade">
+            <h1 className="
+              text-[32px] md:text-[48px] font-bold leading-[1.1] md:leading-[52px] tracking-[0.23px]
+              font-wanted
+              /* 배경: 초기 검정(#171717) 영역을 넓게 잡고 뒤에 블루 그라데이션 배치 */
+              bg-[linear-gradient(94.77deg,#171717_0%,#171717_45%,#449EFF_65%,#A4D0FF_85%,#BDDDFF_100%)]
+              bg-clip-text text-transparent
+              bg-[length:300%_auto]
+              /* 이제 무한 반복 없이 한 번만 스르륵 변합니다 */
+              animate-title-flow
+            ">
               완전함의 재정의.<br />
               기획부터 개발까지.
             </h1>
