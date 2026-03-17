@@ -41,7 +41,7 @@ export default function Summary() {
   const cardData = [
     { 
       title: "일단 도전, 시도로 풀어낸 한계.\n디자인을 넘어 실제 구현까지.\n멈추지 않고 나아가는 성장은 더욱 열정적.",
-      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[80%] md:w-[60%] md:right-1/4 md:translate-x-1/2 xl:w-[500px] xl:right-1/4 xl:translate-x-1/2 object-contain object-bottom scale-[1.02]" }]
+      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[80%] md:w-[60%] md:right-1/3 md:translate-x-1/2 xl:w-[500px] xl:right-1/3 xl:translate-x-1/2 object-contain object-bottom scale-[1.02]" }]
     },
     { 
       title: "기획부터 디자인. 개발까지.\n폭넓은 경험은 더욱 환상적.",
