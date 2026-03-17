@@ -13,9 +13,16 @@ export default function Hero() {
         flex flex-col items-center px-[20px] md:px-[80px] pb-[80px] relative">
         
         {/* 상단: 휴대폰 목업 (WebM 영상 적용) */}
-        <div className="flex-1 w-full flex flex-col justify-end items-center pt-[40px]">
-          <div className="relative w-full max-w-[788px] aspect-[788/666]">
-            <video autoPlay loop muted playsInline className="w-full h-full object-contain">
+        <div className="w-full flex flex-col justify-center items-center h-[400px] xl:h-[500px]">
+          <div className="relative w-full max-w-[788px] aspect-[788/666] flex justify-center items-center">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="w-full h-full object-contain scale-110" 
+            >
+              {/* scale-110 등 수치를 조정하여 영상이 잘리는 정도를 조절할 수 있습니다. */}
               <source src="/asset/hero/phone_mockup.webm" type="video/webm" />
               Your browser does not support the video tag.
             </video>

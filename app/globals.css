@@ -24,7 +24,7 @@
   --font-mono: var(--font-geist-mono);
 
   /* 1. 복잡한 그라데이션을 변수로 분리 (VS Code 에러 해결책) */
-  --bg-hero-gradient: linear-gradient(94.77deg, #171717 0%, #449EFF 50%, #A4D0FF 75%, #BDDDFF 100%);
+  --bg-hero-gradient: linear-gradient(94.77deg, #449EFF 0%, #449EFF 50%, #A4D0FF 75%, #BDDDFF 100%);
 
   @keyframes rainbow-shift {
     0% { background-position: 0% 50%; }
