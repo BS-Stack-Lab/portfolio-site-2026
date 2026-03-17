@@ -1,32 +1,37 @@
 "use client";
 
-import React from "react";
+// Hero.tsx 상단 수정
+import dynamic from "next/dynamic";
+// 상대 경로를 사용하여 직접 불러옵니다. (현재 위치에 맞춰 경로 조절)
+import graphic_blue from "../public/asset/hero/graphic_blue.json";
+
+// Next.js SSR 환경에서 발생할 수 있는 충돌을 방지하기 위해 dynamic import 권장
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function Hero() {
   return (
     <section className="relative w-full bg-white flex justify-center overflow-hidden">
-      {/* 1. 데스크톱(xl): 100vh에서 헤더 높이 87px을 뺍니다.
-          2. 태블릿/모바일: 헤더가 플로팅(영역 없음)이므로 100vh 전체를 사용합니다.
+      {/* 1. xl(1280px 이상): 높이를 930px로 고정합니다.
+        2. 그 미만: h-screen 또는 min-h-[700px]로 유동적으로 조절합니다.
       */}
       <div className="w-full max-w-[1600px] 
-        h-[100vh] xl:h-[calc(100vh-87px)] 
-        min-h-[600px] flex flex-col items-center px-[20px] md:px-[80px] pb-[80px] relative">
+        xl:h-[930px] h-screen min-h-[700px]
+        flex flex-col items-center px-[20px] md:px-[80px] pb-[80px] relative">
         
-        {/* 상단: 휴대폰 목업 영역 */}
+        {/* 상단: 휴대폰 목업 (WebM 영상 적용) */}
         <div className="flex-1 w-full flex flex-col justify-end items-center pt-[40px]">
           <div className="relative w-full max-w-[788px] aspect-[788/666]">
-            <img 
-              src="/asset/hero/phone_mockup.png" 
-              alt="Phone Mockup" 
-              className="w-full h-full object-contain"
-            />
+            <video autoPlay loop muted playsInline className="w-full h-full object-contain">
+              <source src="/asset/hero/phone_mockup.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
 
-        {/* 하단: 텍스트 및 버튼 영역 */}
+        {/* 하단: 텍스트 및 버튼 영역 - 고정 높이 안에서 위치를 잡습니다. */}
         <div className="w-full flex flex-col md:flex-row justify-between items-end gap-10 md:gap-0 mt-[40px] xl:mt-[70px]">
           <div className="flex flex-col items-start gap-[6px]">
-            <span className="text-[16px] md:text-[20px] font-semibold leading-[28px] tracking-[-0.12px] text-[#A1A1A1] font-['Wanted_Sans']">
+            <span className="text-[16px] md:text-[20px] font-semibold leading-[28px] tracking-[-0.12px] text-[#A1A1A1] font-wanted">
               BEOMSEO’S PORTFOLIO
             </span>
             <h1 className="text-[32px] md:text-[48px] font-bold leading-[1.1] md:leading-[52px] tracking-[0.23px] font-wanted bg-[linear-gradient(94.77deg,#171717_0%,#171717_40%,#449EFF_65%,#A4D0FF_85%,#BDDDFF_100%)] bg-clip-text text-transparent bg-[length:300%_auto] bg-[position:100%_50%] animate-rainbow-flow">
@@ -35,18 +40,23 @@ export default function Hero() {
             </h1>
           </div>
 
-          {/* CTA 버튼 */}
+          {/* CTA 버튼 (Lottie 아이콘 적용) */}
           <button 
-            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 930, behavior: 'smooth' })}
             className="flex flex-row items-center p-[10px] pl-[26px] gap-[16px] bg-[#EEEEF2] rounded-[100px] h-[56px] group cursor-default transition-all"
           >
-            <span className="text-[14px] md:text-[16px] font-bold text-[#171717] font-['Wanted_Sans']">
+            <span className="text-[14px] md:text-[16px] font-bold text-[#171717] font-wanted">
               성장 가능성을 먼저 만나보세요
             </span>
-            <div className="w-[36px] h-[36px] bg-[#007AFF] rounded-full flex items-center justify-center transition-transform group-hover:translate-y-1">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <div className="w-[36px] h-[36px] bg-[#007AFF] rounded-full flex items-center justify-center overflow-hidden transition-transform group-hover:translate-y-1">
+              {/* Lottie 애니메이션 적용 */}
+              <div className="w-10 h-10 flex-shrink-0">
+                <Lottie 
+                  animationData={graphic_blue} 
+                  loop={true} 
+                  className="w-full h-full scale-150" 
+                />
+              </div>
             </div>
           </button>
         </div>
