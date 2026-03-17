@@ -56,7 +56,7 @@ export default function Hero() {
             <span className="text-[16px] font-semibold md:font-bold text-[#171717] font-wanted flex-1">
               성장 가능성을 먼저 만나보세요
             </span>
-            <div className="w-[28px] md:w-[36px] h-[28px] md:h-[36px] bg-[#007AFF] rounded-full flex items-center justify-center overflow-hidden transition-transform group-hover:translate-y-1 flex-shrink-0">
+            <div className="w-[28px] md:w-[36px] h-[28px] md:h-[36px] bg-[#007AFF] rounded-full flex items-center justify-center overflow-hidden transition-transform flex-shrink-0">
               <img 
                 src="/asset/hero/hero_arrow.gif" 
                 alt="arrow icon" 
