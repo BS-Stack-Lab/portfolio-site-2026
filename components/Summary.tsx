@@ -68,17 +68,20 @@ export default function Summary() {
 
         {/* 카드 스크롤 영역 */}
         <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide scroll-smooth">
+          {/* 3번째 카드 패딩 적용을 위한 컨테이너 px 설정 */}
           <div className="flex flex-row gap-[20px] px-[20px] md:px-[32px] xl:px-[80px] pb-10">
             {cardData.map((card, index) => (
               <div 
                 key={index}
                 onClick={() => handleCardClick(index)}
-                // 카드 사이즈 정의 (PC, Tablet, Mobile 분리)
-                className={`relative flex-shrink-0 bg-white rounded-[18px] shadow-sm cursor-pointer transition-all duration-500 overflow-hidden
+                // summary-card 클래스로 요소를 찾아 스크롤 위치 계산에 활용
+                className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] shadow-sm cursor-pointer transition-all duration-500 overflow-hidden
                   xl:w-[1080px] xl:h-[508px] 
                   md:w-[509px] md:h-[640px] 
                   w-[360px] h-[280px]
-                  ${activeIndex === index ? "ring-2 ring-blue-500/10" : "opacity-90"}`}
+                  ${activeIndex === index ? "ring-2 ring-blue-500/10" : "opacity-90"}
+                  ${index === 2 ? "mr-[16px] md:mr-[40px] xl:mr-[80px]" : ""} 
+                `}
               >
                 {/* 텍스트 영역 (Z-index 조정) */}
                 <div className={`absolute top-[30px] left-0 right-0 z-20 px-[30px] 
@@ -118,7 +121,6 @@ export default function Summary() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
