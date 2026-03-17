@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Summary from "@/components/Summary";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <section className="flex items-center justify-center min-h-[calc(100vh-87px)]">
           {/* 콘텐츠 */}
           <Hero />
+          <Summary />
         </section>
       </main>
     </div>
