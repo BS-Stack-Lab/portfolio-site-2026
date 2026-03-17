@@ -41,11 +41,11 @@ export default function Summary() {
   const cardData = [
     { 
       title: "일단 도전, 시도로 풀어낸 한계.\n디자인을 넘어 실제 구현까지.\n멈추지 않고 나아가는 성장은 더욱 열정적.",
-      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/3 -translate-x-1/2 w-[80%] md:w-[100%] xl:w-[500px] object-contain object-bottom scale-[1.02]" }]
+      images: [{ src: `${assetPath}first.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[80%] md:w-[100%] md:light-1/4 xl:w-[500px] xl:light-1/4 object-contain object-bottom scale-[1.02]" }]
     },
     { 
       title: "기획부터 디자인. 개발까지.\n폭넓은 경험은 더욱 환상적.",
-      images: [{ src: `${assetPath}secend.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[90%] md:w-[200%] xl:w-[560px] object-contain object-bottom" }]
+      images: [{ src: `${assetPath}secend.png`, style: "bottom-0 left-1/2 -translate-x-1/2 w-[90%] md:w-[60%] xl:w-[560px] object-contain object-bottom" }]
     },
     { 
       title: "일단 시작, 결과로 증명하는 가치.\n아이디어를 서비스로 빌딩하는 몰입.\n상상을 현실로 만드는 경험은 더욱 압도적.",
@@ -82,7 +82,7 @@ export default function Summary() {
               <div 
                 key={index}
                 onClick={() => handleCardClick(index)}
-                className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500
+                className={`summary-card relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden
                   xl:w-[1080px] xl:h-[508px] 
                   md:w-[640px] md:h-[509px] 
                   w-[280px] h-[360px]
