@@ -17,13 +17,13 @@ export default function Hero() {
       ">
         
         {/* 상단: 휴대폰 목업 영역 - 모바일, 태블릿, 데스크톱 패딩 및 높이 분리 */}
-        <div className="w-full flex flex-col justify-center items-center pt-[30px] overflow-hidden 
+        <div className="w-full flex flex-col justify-center items-center overflow-hidden 
           /* 모바일 (기본): 패딩 40px, 높이 258px */
           pb-[40px] h-[258px] mb-[44px]
           /* 태블릿 (md: 768px 이상): 패딩 40px(유지 또는 변경 가능), 높이 574px */
-          md:pb-[40px] md:h-[574px] md:mb-0
+          md:pb-[40px] md:pt-[30px] md:h-[574px] md:mb-0
           /* 데스크톱 (xl: 1280px 이상): 패딩 제거, 높이 600px */
-          xl:pb-0 xl:h-[600px]">
+          xl:pb-0 xl:pt-[30px] xl:h-[600px]">
           
           <div className="relative w-full max-w-[308px] md:max-w-[680px] xl:max-w-[788px] aspect-[788/666] flex justify-center items-center">
             <video autoPlay loop muted playsInline className="w-full h-full object-contain scale-110">
