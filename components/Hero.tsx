@@ -60,7 +60,7 @@ export default function Hero() {
               <img 
                 src="/asset/hero/hero_arrow.gif" 
                 alt="arrow icon" 
-                className="w-20 h-20 object-contain scale-50" 
+                className="w-20 h-20 object-contain scale-60" 
               />
             </div>
           </button>
