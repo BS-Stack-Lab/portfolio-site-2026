@@ -16,7 +16,7 @@ export default function InfoBanner() {
       <div className="relative w-full max-w-[1280px] mx-auto flex flex-col items-center pt-[140px] px-[20px]">
         
         {/* 요소들 사이의 간격을 일괄 32px로 고정 (a, b, c 사이) */}
-        <div className="flex flex-col items-center gap-[32px] w-full text-center">
+        <div className="flex flex-col items-center xl:gap-[32px] mb:gap-[32px] gap-[24px] w-full text-center">
           
           {/* a. 소제목: 내 정보. */}
           <span className="font-wanted font-bold xl:text-[24px] xl:leading-[32px] md:text-[24px] md:leading-[32px] text-[16px] leading-[24px] tracking-[-0.23px] text-[#171717]">
@@ -28,13 +28,13 @@ export default function InfoBanner() {
             xl:text-[80px] xl:leading-[94px] md:text-[72px] md:leading-[84px] text-[40px] leading-[48px]
             tracking-[0.23px]
             bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent">
-            더욱더 과감하게.<br className="md:hidden" /> 더욱더 세밀하게.
+            더욱더 과감하게.<br /> 더욱더 세밀하게.
           </h2>
 
           {/* c. 설명 문구 */}
           {/* c. 설명 문구: 강조 부분 색상 및 굵기 적용 */}
           <p className="w-full max-w-[700px] font-wanted font-semibold 
-            xl:text-[20px] xl:leading-[28px] md:text-[20px] md:leading-[28px] text-[16px] leading-[24px]
+            xl:text-[20px] xl:leading-[28px] xl:pt-[0px] md:text-[20px] md:leading-[28px] md:pt-[0px] text-[16px] leading-[24px] pt-[8px]
             text-[#737373] tracking-[-0.12px] break-keep">
             새로운 가능성을 빌딩합니다.{" "}
             <span className="text-[#171717] font-bold">비전공자의 시선으로 발견한 아이디어</span>
