@@ -152,7 +152,7 @@ export default function Header() {
                 className="w-full h-full object-contain transition-transform group-active:scale-90" 
               />
             </div>
-            <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">GitHub</span>
+            <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#171717]">GitHub</span>
           </a>
 
           {/* 블로그 탭 */}
@@ -164,7 +164,7 @@ export default function Header() {
                 className="w-full h-full object-contain transition-transform group-active:scale-90" 
               />
             </div>
-            <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#A1A1A1]">블로그</span>
+            <span className="text-[11px] font-medium leading-[14px] tracking-[0.311px] text-[#171717]">블로그</span>
           </a>
         </nav>
       </div>
