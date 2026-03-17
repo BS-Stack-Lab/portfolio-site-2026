@@ -91,9 +91,17 @@ export default function Summary() {
                   ${index === 2 ? "mr-[20px] md:mr-[40px] xl:mr-[80px]" : ""}
                 `}
               >
-                {/* 텍스트 영역 */}
-                <div className={`absolute top-[30px] left-0 right-0 z-20 px-[30px] 
-                  ${index === 1 ? "text-center" : index === 2 ? "text-right" : "text-left"}`}>
+                {/* 텍스트 영역: 
+                    1. md 이상(태블릿/데스크톱): 기존 정렬 유지
+                    2. 모바일(기본): left-1/2, -translate-x-1/2, text-center로 중앙 정렬
+                */}
+                <div className={`absolute top-[30px] z-20 px-[30px] w-full
+                  /* 모바일 중앙 정렬 설정 */
+                  left-1/2 -translate-x-1/2 text-center 
+                  /* 태블릿 이상에서는 다시 원래 위치와 정렬로 복구 */
+                  md:left-0 md:translate-x-0 
+                  ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
+                  
                   <p className="font-wanted font-bold text-[#171717] xl:text-[18px] text-[16px] leading-[1.4] whitespace-pre-wrap">
                     {card.title}
                   </p>
