@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
 /* --- 원티드 산스 웹폰트 불러오기 --- */
-@import url('https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css');
+@font-face {
+  font-family: "Wanted Sans Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 1000;
+  src: url("/woff2/WantedSansVariable.woff2") format("woff2-variations");
+}
 
 :root {
   --background: #ffffff;
@@ -10,7 +16,7 @@
 
 @theme inline {
   /* 폰트 변수 등록 */
-  --font-wanted: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-wanted: "Wanted Sans Variable", "Wanted Sans", -apple-system, sans-serif;
   
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -39,9 +45,8 @@
 }
 
 body {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-  background: var(--background);
-  color: var(--foreground);
+  font-family: var(--font-wanted);
+  -webkit-font-smoothing: antialiased;
 }
 
 /* 스무스 스크롤 */
