@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Summary from "@/components/Summary";
 import InfoBanner from "@/components/InfoBanner";
 import AboutMe from "@/components/AboutMe";
+import TechStack from "@/components/TechStack";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
           <Summary />
           <InfoBanner />
           <AboutMe />
+          <TechStack />
         </section>
       </main>
     </div>
