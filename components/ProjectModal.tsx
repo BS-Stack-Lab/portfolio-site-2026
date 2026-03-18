@@ -144,7 +144,7 @@ function ProjectDetailCard({ project }: { project: any }) {
         
         <div className="flex flex-col gap-[12px] w-full h-full">
           <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717] tracking-[-0.12px] mb-[4px]">
-            상세 내용.
+            {project.title}
           </h3>
           <ul className="flex flex-col gap-[8px]">
             {project.details?.map((detail: string, index: number) => (
