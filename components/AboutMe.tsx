@@ -5,7 +5,6 @@ import React, { useRef } from "react";
 export default function AboutMe() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // 버튼 클릭 시 한 칸씩 이동하는 로직
   const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const container = scrollRef.current;
@@ -36,67 +35,66 @@ export default function AboutMe() {
         .snap-container { scroll-snap-type: x mandatory; }
         .snap-item { scroll-snap-align: center; }
         @media (min-width: 1280px) {
-          /* 첫 카드가 타이틀 시작 라인에 맞게 왼쪽 정렬 스냅 */
           .snap-item:first-child { scroll-snap-align: start; }
           .snap-item:last-child { scroll-snap-align: end; }
         }
       `}</style>
 
-      {/* 🛠 1. 메인 가이드 컨테이너 (1600px 제한 및 중앙 정렬) */}
-      <div className="w-full max-w-[1600px] mx-auto flex flex-col gap-[64px] px-[20px] md:px-[40px] xl:px-[80px] overflow-visible">
-        
-        {/* 타이틀 영역 */}
-        <div className="w-full flex justify-start">
-          <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
-            배우고 또 배우고. 만들고 또 만들고.
-          </h2>
-        </div>
+      {/* 1. 타이틀 영역: 1600px 중앙 정렬 및 패딩 80px */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px]">
+        <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
+          배우고 또 배우고. 만들고 또 만들고.
+        </h2>
+      </div>
 
-        {/* 🛠 2. 스크롤 컨테이너 (부모의 px-80 여백을 유지하면서 가로로 확장) */}
-        <div className="w-full overflow-visible">
-          <div 
-            ref={scrollRef} 
-            className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible"
-          >
-            {/* 카드 트랙: min-w-max로 자식 너비 보존 */}
-            <div className="flex flex-row gap-[20px] pb-10 min-w-max">
-              {cardData.map((card) => (
-                <div 
-                  key={card.id}
-                  className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[20px] cursor-pointer xl:w-[640px] md:w-[500px] w-[300px]"
-                >
-                  {/* 이미지 영역 (PNG 적용) */}
-                  <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
-                    <img src={card.src} alt="" className="w-full h-full object-cover" />
-                  </div>
-                  
-                  {/* 설명 문구 */}
-                  <div className="w-full flex flex-col items-start xl:pl-[16px] xl:pr-[128px] gap-[4px]">
-                    <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep xl:text-[16px] xl:leading-[24px] text-[14px]">
-                      <span className="text-[#171717] font-bold">{card.highlight}</span> {card.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-              {/* 오른쪽 여백 확보용 더미 div (선택 사항) */}
-              <div className="w-[1px] h-full flex-shrink-0" />
+      {/* 2. 스크롤 영역: 1600px 제한을 풀고 브라우저 끝까지(w-full) 보이게 함 */}
+      <div 
+        ref={scrollRef} 
+        className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible"
+      >
+        {/* 🛠 핵심 로직: 
+            컨테이너에 mx-auto와 max-w-none을 사용하여 타이틀과 왼쪽 라인을 맞춤.
+            오른쪽은 패딩을 충분히 주어 잘리지 않고 넘어가게 처리.
+        */}
+        <div className="flex flex-row gap-[20px] pb-10 min-w-max 
+          px-[20px] md:px-[40px] 
+          /* 1600px 기준 왼쪽 80px 정렬을 맞추기 위한 수식 */
+          xl:pl-[calc((100vw-1600px)/2+80px)] 
+          xl:pr-[80px]">
+          
+          {/* 브라우저가 1600px 이하일 때는 왼쪽 패딩 80px 고정 */}
+          <style jsx>{`
+            @media (max-width: 1600px) and (min-width: 1280px) {
+              .flex { padding-left: 80px !important; }
+            }
+          `}</style>
+
+          {cardData.map((card) => (
+            <div 
+              key={card.id}
+              className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[20px] cursor-pointer xl:w-[640px] md:w-[500px] w-[300px]"
+            >
+              <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
+                <img src={card.src} alt="" className="w-full h-full object-cover" />
+              </div>
+              <div className="w-full flex flex-col items-start xl:pl-[16px] xl:pr-[128px] gap-[4px]">
+                <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep xl:text-[16px] xl:leading-[24px] text-[14px]">
+                  <span className="text-[#171717] font-bold">{card.highlight}</span> {card.desc}
+                </p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
+      </div>
 
-        {/* 버튼 영역 */}
+      {/* 3. 버튼 영역: 다시 1600px 중앙 정렬 안으로 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
         <div className="w-full flex justify-end">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
-            <button 
-              onClick={() => handleScroll("left")}
-              className="w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all"
-            >
+            <button onClick={() => handleScroll("left")} className="w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all">
               <img src="/asset/aboutMe/leftArrow.svg" alt="prev" className="w-[28px] h-[28px]" />
             </button>
-            <button 
-              onClick={() => handleScroll("right")}
-              className="w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all"
-            >
+            <button onClick={() => handleScroll("right")} className="w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all">
               <img src="/asset/aboutMe/rightArrow.svg" alt="next" className="w-[28px] h-[28px]" />
             </button>
           </div>
