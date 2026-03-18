@@ -11,6 +11,7 @@ export default function AboutMe() {
       const cards = container.getElementsByClassName("snap-item");
       if (cards.length === 0) return;
       
+      // 카드 너비(이미 pr-20이 포함됨)만큼 이동
       const moveDistance = (cards[0] as HTMLElement).offsetWidth;
       container.scrollBy({
         left: direction === "left" ? -moveDistance : moveDistance,
@@ -40,46 +41,48 @@ export default function AboutMe() {
         }
       `}</style>
 
-      {/* 1. 타이틀 영역: 1600px 중앙 정렬 유지 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px]">
-        <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
-          배우고 또 배우고. 만들고 또 만들고.
-        </h2>
-      </div>
+      {/* 🛠 1. 상위 컨테이너: 패딩 80px과 1600px 제한을 여기서 한 번에 관리 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col gap-[64px] overflow-visible">
+        
+        {/* 타이틀 영역: 상위 컨테이너의 패딩을 따라 자동으로 왼쪽 정렬 */}
+        <div className="w-full flex justify-start">
+          <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
+            배우고 또 배우고. 만들고 또 만들고.
+          </h2>
+        </div>
 
-      {/* 2. 🛠 스크롤 영역: 부모의 1600px 제한을 벗어나기 위해 분리 🛠 */}
-      <div className="w-full overflow-visible">
-        <div 
-          ref={scrollRef} 
-          className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible"
-        >
-          {/* 🛠 핵심 정렬 로직 🛠
-            - px-[20px] md:px-[40px]는 1600px 이하일 때 적용
-            - xl:pl-[calc((100vw-1440px)/2)]는 브라우저가 1600px보다 커질 때 타이틀(1600px-여백80px*2=1440px)의 시작점과 맞추는 수식입니다.
-          */}
-          <div className="flex flex-row pb-10 min-w-max px-[20px] md:px-[40px] xl:pl-[calc((100vw-1440px)/2)] xl:pr-[80px]">
-            {cardData.map((card) => (
-              <div 
-                key={card.id}
-                className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start cursor-pointer xl:w-[660px] md:w-[520px] w-[320px] pr-[20px]"
-              >
-                <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
-                  <img src={card.src} alt="" className="w-full h-full object-cover" />
+        {/* 🛠 2. 카드 영역: 상위 컨테이너의 너비 안에서 작동하되 오른쪽은 overflow-visible로 노출 */}
+        <div className="w-full overflow-visible">
+          <div 
+            ref={scrollRef} 
+            className="w-full overflow-x-auto  scrollbar-hide scroll-smooth snap-container"
+          >
+            {/* gap을 제거하고 min-w-max 설정 */}
+            <div className="flex flex-row pb-10 min-w-max overflow-visible">
+              {cardData.map((card) => (
+                <div 
+                  key={card.id}
+                  /* 🛠 3. 카드 자체에 오른쪽 패딩 20px 부여 (gap 대용) */
+                  className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start cursor-pointer xl:w-[660px] md:w-[520px] w-[320px] pr-[20px]"
+                >
+                  {/* 이미지 영역 (PNG) */}
+                  <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
+                    <img src={card.src} alt="" className="w-full h-full object-cover" />
+                  </div>
+                  
+                  {/* 설명 문구: 이미지 너비에 맞춰 정렬 */}
+                  <div className="w-full flex flex-col items-start mt-[20px] xl:pl-[16px] xl:pr-[128px] gap-[4px]">
+                    <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep xl:text-[16px] xl:leading-[24px] text-[14px]">
+                      <span className="text-[#171717] font-bold">{card.highlight}</span> {card.desc}
+                    </p>
+                  </div>
                 </div>
-                
-                <div className="w-full flex flex-col items-start mt-[20px] xl:pl-[16px] xl:pr-[128px] gap-[4px]">
-                  <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep xl:text-[16px] xl:leading-[24px] text-[14px]">
-                    <span className="text-[#171717] font-bold">{card.highlight}</span> {card.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* 3. 버튼 영역: 다시 1600px 중앙 정렬 안으로 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
+        {/* 버튼 영역: 상위 컨테이너의 패딩 안에서 오른쪽 정렬 */}
         <div className="w-full flex justify-end">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button 
