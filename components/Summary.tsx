@@ -10,6 +10,7 @@ export default function Summary() {
   // 설정값: 전체 이동을 완료할 목표 시간 (ms)
   const TOTAL_ANIMATION_TIME = 600; 
 
+  // Intersection Observer: 모바일 스크롤 시 인디케이터 연동
   useEffect(() => {
     if (isAnimating.current) return;
 
@@ -24,7 +25,7 @@ export default function Summary() {
       },
       {
         root: scrollRef.current,
-        threshold: 0.6, // 카드가 60% 이상 보일 때 활성화
+        threshold: 0.6,
       }
     );
 
@@ -47,7 +48,7 @@ export default function Summary() {
       return;
     }
 
-    // 1. 물리적 스크롤: 최종 목적지까지 한 번에 부드럽게 이동
+    // 물리적 스크롤: 최종 목적지까지 한 번에 부드럽게 이동
     const containerRect = container.getBoundingClientRect();
     const targetRect = targetCard.getBoundingClientRect();
 
@@ -62,7 +63,7 @@ export default function Summary() {
       behavior: "smooth",
     });
 
-    // 2. 인디케이터 애니메이션: 논리적으로 중간 단계를 거쳐가도록 함
+    // 인디케이터 애니메이션: 논리적으로 중간 단계를 거쳐가도록 함
     const distance = Math.abs(targetIndex - activeIndex);
     const stepDuration = TOTAL_ANIMATION_TIME / distance;
     const direction = targetIndex > activeIndex ? 1 : -1;
@@ -87,7 +88,6 @@ export default function Summary() {
   ];
 
   return (
-    // 🛠 1. 최외곽 섹션: w-full 유지 🛠
     <section className="relative w-full bg-[#F5F5F7] flex flex-col items-center xl:h-[782px] xl:py-[154px] md:h-auto h-auto md:py-[100px] py-[60px] overflow-hidden">
       
       <style jsx global>{`
@@ -100,24 +100,22 @@ export default function Summary() {
         }
       `}</style>
 
-      {/* 🛠 2. 메인 가이드 컨테이너: 타이틀 정렬을 위한 1600px 중앙 고정 및 패딩 80px 🛠 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px] overflow-visible flex flex-col xl:items-end items-center gap-[64px]">
-        
-        {/* 타이틀 영역 */}
-        <div className="w-full flex justify-start">
-          <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">
-            일단 핵심부터.
-          </h2>
-        </div>
+      {/* 1. 타이틀 영역: 1600px 중앙 정렬 가이드 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px] overflow-visible">
+        <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">
+          일단 핵심부터.
+        </h2>
       </div>
 
-      {/* 🛠 3. 스크롤 영역: 부모의 1600px 제한을 무시하고 전체 너비(w-full) 사용 🛠 */}
+      {/* 🛠 2. 핵심 수정: 스크롤 영역을 max-w 제한 밖으로 꺼내서 전체 너비(w-full) 사용 🛠 */}
       <div 
         ref={scrollRef} 
         className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible no-scroll-pc"
       >
-        {/* 🛠 핵심 수정: 카드 트랙의 우측 패딩을 우측 마진으로 변경 🛠 */}
-        <div className="flex flex-row gap-[20px] pb-10 min-w-max px-[20px] md:px-[40px] xl:pl-[80px] xl:pr-0 xl:mr-[80px]">
+        {/* 🛠 트랙 내부의 왼쪽 패딩을 통해 타이틀과 왼쪽 라인을 맞춤 (xl:pl-[80px]) 🛠
+           마지막 카드 오른쪽 정렬을 위해 pr-0과 mr-[80px] 조합 사용
+        */}
+        <div className="flex flex-row gap-[20px] pb-10 min-w-max px-[20px] md:px-[40px] xl:pl-[80px] xl:pr-0 xl:mr-[80px] overflow-visible">
           {cardData.map((card, index) => (
             <div 
               key={index}
@@ -142,12 +140,12 @@ export default function Summary() {
               ))}
             </div>
           ))}
-          {/* 🛠 마지막 여백용 div: snap-align end 효과를 위해 사용 🛠 */}
+          {/* 마지막 여백 div: snap end 효과 확보 */}
           <div className="w-[1px] md:w-[20px] xl:w-[80px] flex-shrink-0" />
         </div>
       </div>
 
-      {/* 🛠 4. 인디케이터 영역: 다시 중앙 가이드 안으로 배치 🛠 */}
+      {/* 3. 인디케이터 영역: 다시 중앙 가이드 안으로 배치 */}
       <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
         <div className="flex justify-center items-center">
           <div className="bg-[#EBEBF0] px-[26px] py-[10px] rounded-full flex items-center gap-[16px] h-[56px]">
