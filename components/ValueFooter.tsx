@@ -29,14 +29,14 @@ const VALUE_CARDS = [
 export default function ValueFooter() {
   return (
     <footer className="w-full bg-[#F5F5F7] flex flex-col items-center pt-[140px] pb-[80px] px-[20px] md:px-[40px] xl:px-[80px]">
-      <div className="w-full max-w-[1280px] flex flex-col gap-[100px] md:gap-[140px] xl:gap-[280px]">
+      <div className="w-full max-w-[1280px] flex flex-col xl:gap-[80px] md:gap-[80px] gap-[40px]">
         
         {/* 상단 타이틀 섹션 */}
-        <div className="flex flex-col items-start gap-[24px] md:gap-[32px] w-full">
-          <span className="font-wanted font-bold text-[20px] md:text-[24px] leading-tight text-[#171717] tracking-[-0.23px]">
+        <div className="flex flex-col items-start xl:gap-[32px] md:gap-[20px] gap-[12px] w-full">
+          <span className="font-wanted font-bold xl:text-[20px] md:text-[24px] text-[14px] leading-tight text-[#171717] tracking-[-0.23px]">
             핵심 가치.
           </span>
-          <h2 className="font-wanted font-bold text-[36px] md:text-[56px] xl:text-[80px] leading-[1.1] tracking-[0.23px] bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent break-keep">
+          <h2 className="font-wanted font-bold xl:text-[80px] md:text-[64px] text-[36px] leading-[1.1] tracking-[0.23px] bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent break-keep">
             기준을 세우고.<br />내일을 빌딩하다.
           </h2>
         </div>
@@ -44,14 +44,16 @@ export default function ValueFooter() {
         {/* 🛠 중앙 카드 섹션: 반응형 정렬 수정 🛠 */}
         {/* 모바일/태블릿(xl 미만): flex-col (세로 나열) */}
         {/* 데스크톱(xl 이상): grid-cols-3 (가로 3열) */}
-        <div className="flex flex-col xl:grid xl:grid-cols-3 gap-[20px] w-full">
+        <div className="flex flex-col xl:grid xl:grid-cols-3 gap-[20px] w-full items-stretch">
           {VALUE_CARDS.map((card) => (
             <div 
               key={card.id}
-              className="flex flex-col items-start p-[32px] md:p-[40px] xl:p-[32px] gap-[16px] w-full min-h-[346px] bg-white rounded-[24px] shadow-sm hover:shadow-md transition-shadow duration-300"
+              // h-[346px] 대신 h-auto를 사용해 내용물에 따라 늘어나게 합니다.
+              // items-stretch 덕분에 같은 줄의 카드는 가장 긴 카드 높이에 맞춰집니다.
+              className="flex flex-col items-start p-[32px] md:p-[40px] xl:p-[40px] gap-[24px] w-full h-auto bg-white rounded-[24px] shadow-sm hover:shadow-md transition-all duration-300"
             >
               {/* 아이콘 이미지 */}
-              <div className="w-[56px] h-[56px] flex items-center justify-center overflow-hidden">
+              <div className="w-[56px] h-[56px] flex items-center justify-center shrink-0">
                 <img 
                   src={`${ICON_BASE_PATH}${card.iconName}`} 
                   alt={card.title} 
@@ -59,10 +61,12 @@ export default function ValueFooter() {
                 />
               </div>
 
-              <div className="flex flex-col gap-[20px] md:gap-[24px] w-full">
+              {/* 텍스트 영역 */}
+              <div className="flex flex-col gap-[16px] md:gap-[20px] w-full">
                 <h3 className="font-wanted font-bold text-[24px] md:text-[28px] leading-tight text-[#171717] tracking-[0.23px] break-keep">
                   {card.title}
                 </h3>
+                {/* desc의 높이가 변하면 부모 div와 카드 전체 높이가 함께 변합니다. */}
                 <p className="font-wanted font-semibold text-[15px] md:text-[16px] leading-[1.6] text-[#737373] tracking-[0.057px] break-keep">
                   {card.desc}
                 </p>
