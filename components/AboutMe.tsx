@@ -52,13 +52,13 @@ export default function AboutMe() {
         ref={scrollRef} 
         className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible"
       >
-        <div className="flex flex-row gap-[20px] pb-10 min-w-max">
+        <div className="flex flex-row gap-[20px] gap-0:[0px] gap-3:[0px] pb-10 min-w-max">
           
           {/* 🛠 왼쪽 정렬 가이드용 여백 DIV (calc 대신 사용) 🛠
               - 1600px 초과 시 자동으로 늘어나며 타이틀 시작점과 카드를 정렬해줍니다.
           */}
           <div className="flex-shrink-0 hidden xl:block w-[calc(50vw-720px)]" 
-               style={{ width: "calc(50vw - 720px)" }} />
+            style={{ width: "calc(50vw - 720px)" }} />
           
           {/* 모바일/태블릿용 기본 왼쪽 패딩 */}
           <div className="flex-shrink-0 xl:hidden w-[20px] md:w-[40px]" />
