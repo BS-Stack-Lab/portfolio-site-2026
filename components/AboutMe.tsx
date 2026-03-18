@@ -31,19 +31,19 @@ export default function AboutMe() {
 
   const cardData = [
     { 
-      title: "비전공자의 시선. 일상의 불편함을 그냥 지나치지 않고 서비스의 기회로 포착하여 사소한 문제들이 창의적인 기획의 시작이 되는 유연함을 보여줍니다.",
-      src: `${assetPath}aboutMe1.png`,
-      highlight: "비전공자의 시선."
+      highlight: "비전공자의 시선.",
+      desc: "일상의 불편함을 그냥 지나치지 않고 서비스의 기회로 포착하여 사소한 문제들이 창의적인 기획의 시작이 되는 유연함을 보여줍니다.",
+      src: `${assetPath}aboutMe1.jpg`
     },
     { 
-      title: "디자인과 개발의 융합. 상상을 현실로 만들기 위해 AI를 파트너로 활용하며 학습의 곡선을 넓히고, 아이디어를 실체화하는 속도를 혁신적으로 높입니다.",
-      src: `${assetPath}aboutMe2.png`,
-      highlight: "디자인과 개발의 융합."
+      highlight: "디자인과 개발의 융합.",
+      desc: "상상을 현실로 만들기 위해 AI를 파트너로 활용하며 학습의 곡선을 넓히고, 아이디어를 실체화하는 속도를 혁신적으로 높입니다.",
+      src: `${assetPath}aboutMe2.jpg`
     },
     { 
-      title: "풀스택 빌더를 향한 몰입. 기초를 단단히 다져내며 더 큰 가치를 꿈꾸고 사용자에게 완벽한 경험을 선사하기 위해 멈추지 않고 내일로 나아갑니다.",
-      src: `${assetPath}aboutMe3.png`,
-      highlight: "풀스택 빌더를 향한 몰입."
+      highlight: "풀스택 빌더를 향한 몰입.",
+      desc: "기초를 단단히 다져내며 더 큰 가치를 꿈꾸고 사용자에게 완벽한 경험을 선사하기 위해 멈추지 않고 내일로 나아갑니다.",
+      src: `${assetPath}aboutMe3.jpg`
     }
   ];
 
@@ -56,13 +56,12 @@ export default function AboutMe() {
         .snap-container { scroll-snap-type: x mandatory; }
         .snap-item { scroll-snap-align: center; }
         @media (min-width: 1280px) {
-          /* 첫 번째 카드가 컨테이너의 시작점(패딩 고려)에 맞게 스냅되도록 조정 */
           .snap-item:first-child { scroll-snap-align: start; }
           .snap-item:last-child { scroll-snap-align: end; }
         }
       `}</style>
-  
-      {/* 1. 타이틀 영역: 1600px 제한 + 중앙 정렬 + 패딩 */}
+
+      {/* 타이틀 영역 */}
       <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px]">
         <div className="w-full flex justify-start">
           <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
@@ -70,22 +69,18 @@ export default function AboutMe() {
           </h2>
         </div>
       </div>
-  
-      {/* 2. 스크롤 영역: 부모의 1600px 제한을 벗어나 브라우저 끝까지 확장(w-full) */}
+
+      {/* 스크롤 영역 (영역 밖 노출 설정) */}
       <div 
         ref={scrollRef} 
         className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container"
       >
-        {/* 카드들을 감싸는 wrapper에 패딩을 주어 
-          첫 번째 카드가 1600px 라인에 맞춰 시작되게 함 (xl:pl-[80px]) 
-        */}
         <div className="flex flex-row gap-[20px] pb-10 min-w-max px-[20px] md:px-[40px] xl:px-[80px]">
           {cardData.map((card, index) => (
             <div 
               key={index}
               onClick={() => scrollToCard(index)}
-              className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[10px] md:gap-[20px] cursor-pointer 
-                xl:w-[640px] xl:h-[436px] md:w-[500px] w-[calc(100vw-40px)]"
+              className={`summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[10px] md:gap-[20px] cursor-pointer xl:w-[640px] xl:h-[436px] md:w-[500px] w-[calc(100vw-40px)]`}
             >
               <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
                 <img src={card.src} alt="" className="w-full h-full object-cover" />
@@ -94,15 +89,15 @@ export default function AboutMe() {
               <div className="w-full flex items-start xl:pl-[16px] xl:pr-[128px] xl:py-[4px] md:px-[12px] px-0 h-auto min-h-[56px] md:h-[56px]">
                 <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep md:text-[16px] md:leading-[24px] text-[14px] leading-[20px]">
                   <span className="text-[#171717] font-bold">{card.highlight}</span>{" "}
-                  {card.title.replace(card.highlight, "").trim()}
+                  {card.desc}
                 </p>
               </div>
             </div>
           ))}
         </div>
       </div>
-  
-      {/* 3. 버튼 영역: 다시 1600px 제한 안으로 배치 */}
+
+      {/* 버튼 영역 */}
       <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
         <div className="w-full flex justify-end xl:justify-end md:justify-center justify-center">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
