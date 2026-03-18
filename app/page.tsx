@@ -4,6 +4,7 @@ import Summary from "@/components/Summary";
 import InfoBanner from "@/components/InfoBanner";
 import AboutMe from "@/components/AboutMe";
 import TechStack from "@/components/TechStack";
+import ProjectBanner from "@/components/ProjectBanner";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           <InfoBanner />
           <AboutMe />
           <TechStack />
+          <ProjectBanner />
         </section>
       </main>
     </div>

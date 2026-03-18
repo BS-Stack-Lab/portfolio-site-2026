@@ -37,7 +37,7 @@ function StackCard({ stack }: { stack: typeof MAIN_STACKS_DATA[0] }) {
   const imageUrl = `${ICON_BASE_PATH}${stack.fileName}${FILE_EXT}`;
 
   return (
-    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] xl:h-[240px] md:h-[240px] h-[230px] w-full transition-all hover:shadow-[0px_0px_20px_0px_rgba(0,0,0,0.10)] hover:-translate-y-1 cursor-pointer group/card">
+    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] xl:h-[240px] md:h-[240px] h-[230px] w-full transition-all hover:-translate-y-1 cursor-pointer group/card">
       <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB]  flex items-center justify-center overflow-hidden shrink-0">
         <img 
           src={imageUrl} 
@@ -102,7 +102,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
         <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-20">
           <button 
             onClick={onClose}
-            className="group/close w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-[0px_0px_20px_0px_rgba(0,0,0,0.5)] hover:shadow-[0px_0px_20px_0px_rgba(0,0,0,0.5)] hover:scale-110 transition-all duration-300 active:scale-95"
+            className="group/close w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 hover:scale-110 transition-all duration-300 active:scale-95"
           >
             <img 
               src="/asset/icons/operation.svg" 
