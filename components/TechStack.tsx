@@ -9,32 +9,33 @@ export default function TechStack() {
   return (
     <section className="relative w-full bg-white flex flex-col items-center xl:py-[140px] md:py-[100px] py-[80px] overflow-hidden">
       
-      {/* 최상위 가이드 컨테이너 (px-80 가이드) */}
+      {/* 최상위 가이드 컨테이너 (전체 패딩 관리) */}
       <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col items-center xl:gap-[100px] md:gap-[80px] gap-[60px]">
         
-        {/* 1. 상단 타이틀 */}
-        <div className="w-full flex justify-start">
+        {/* 🛠 1. 상단 타이틀: 하단과 동일하게 md:w-[80%]를 주어 왼쪽 라인을 맞춤 🛠 */}
+        <div className="md:w-[80%] w-full flex justify-start">
           <h2 className="font-wanted font-bold tracking-[0.23px] xl:text-[64px] xl:leading-[78px] md:text-[48px] md:leading-[60px] text-[32px] leading-[42px] max-w-[603px]
             bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent">
-            디자인과 로직의 조화. <br className="hidden md:block" />
-            감각적인 기획에 개발의 정교함을 더하다.
+            디자인과 로직의 조화. <br />
+            감각적인 기획에 개발의 <br />
+            정교함을 더하다.
           </h2>
         </div>
 
-        {/* 2. 메인 이미지 (너비 80%) */}
+        {/* 2. 메인 이미지 (중앙 정렬 유지) */}
         <div className="w-full flex justify-center">
           <div className="w-[80%] max-w-[1124px]">
             <img src={`${assetPath}techStack.png`} alt="Tech Stack" className="w-full h-auto object-contain" />
           </div>
         </div>
 
-        {/* 🛠 3. 하단 콘텐츠 영역 (너비 80% + 좌우 배치) 🛠 */}
+        {/* 3. 하단 콘텐츠 영역 */}
         <div className="w-full flex flex-col items-center gap-[60px] md:gap-[80px]">
           
-          {/* 텍스트 컨테이너: 모바일 제외(md 이상)에서 좌우 배치, 너비는 80% */}
+          {/* 🛠 하단 텍스트 컨테이너: 타이틀과 동일한 md:w-[80%] 🛠 */}
           <div className="md:w-[80%] w-full flex flex-col md:flex-row justify-between items-start gap-[40px] md:gap-[60px] xl:gap-[88px]">
             
-            {/* 왼쪽 본문 (태블릿 이미지 기준 레이아웃) */}
+            {/* 왼쪽 본문 */}
             <p className="font-wanted font-semibold text-[#737373] tracking-[-0.12px] xl:text-[20px] xl:leading-[28px] md:text-[18px] md:leading-[26px] text-[15px] leading-[1.6] md:flex-1 break-keep">
               내가 상상하는 모든 것을 실체로 만드는 원동력, 저의 풀스택 툴킷입니다. 
               AI를 효율적인 파트너로 삼아 작업의 효율을 극대화하는 것은 물론, 
@@ -57,7 +58,7 @@ export default function TechStack() {
             </div>
           </div>
 
-          {/* 🛠 4. 버튼: 하단 중앙 배치 (이미지 2 참고) */}
+          {/* 4. 버튼: 하단 중앙 배치 */}
           <button className="group flex flex-row items-center justify-between pl-[24px] pr-[10px] w-[194px] h-[56px] bg-[#EEEEF2] rounded-full transition-all duration-300 hover:bg-[#E5E5E5] active:scale-95">
             <span className="font-wanted font-bold text-[#171717] text-[16px] leading-[24px] tracking-[0.057px]">
               기술 스택 더보기
