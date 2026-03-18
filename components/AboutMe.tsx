@@ -40,35 +40,28 @@ export default function AboutMe() {
         }
       `}</style>
 
-      {/* 1. 타이틀 영역: 1600px 중앙 정렬 및 패딩 80px */}
+      {/* 1. 타이틀 영역: 1600px 중앙 정렬 가이드 */}
       <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px]">
         <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
           배우고 또 배우고. 만들고 또 만들고.
         </h2>
       </div>
 
-      {/* 2. 스크롤 영역: 1600px 제한을 풀고 브라우저 끝까지(w-full) 보이게 함 */}
+      {/* 2. 스크롤 영역: 잘림 방지를 위해 w-full 사용 */}
       <div 
         ref={scrollRef} 
         className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible"
       >
-        {/* 🛠 핵심 로직: 
-            컨테이너에 mx-auto와 max-w-none을 사용하여 타이틀과 왼쪽 라인을 맞춤.
-            오른쪽은 패딩을 충분히 주어 잘리지 않고 넘어가게 처리.
+        {/* 핵심 정렬 로직:
+           - 1600px 이하: xl:pl-[80px]로 타이틀과 라인을 맞춤.
+           - 1600px 초과: xl:pl-[calc(50vw-720px)] 수식을 사용하여 브라우저가 넓어져도 타이틀 시작점(800px 지점)에 카드를 고정.
+           (1600px의 절반인 800px에서 패딩 80px을 뺀 720px을 기준점으로 삼음)
         */}
         <div className="flex flex-row gap-[20px] pb-10 min-w-max 
-          px-[20px] md:px-[40px] 
-          /* 1600px 기준 왼쪽 80px 정렬을 맞추기 위한 수식 */
-          xl:pl-[calc((100vw-1600px)/2+80px)] 
-          xl:pr-[80px]">
-          
-          {/* 브라우저가 1600px 이하일 때는 왼쪽 패딩 80px 고정 */}
-          <style jsx>{`
-            @media (max-width: 1600px) and (min-width: 1280px) {
-              .flex { padding-left: 80px !important; }
-            }
-          `}</style>
-
+          px-[20px] md:px-[40px]
+          xl:pl-[calc(50vw-720px)]
+          xl:pr-[80px]"
+        >
           {cardData.map((card) => (
             <div 
               key={card.id}
@@ -87,7 +80,7 @@ export default function AboutMe() {
         </div>
       </div>
 
-      {/* 3. 버튼 영역: 다시 1600px 중앙 정렬 안으로 */}
+      {/* 3. 버튼 영역: 1600px 중앙 정렬 가이드 안으로 */}
       <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
         <div className="w-full flex justify-end">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
