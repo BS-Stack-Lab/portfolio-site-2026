@@ -49,26 +49,38 @@ export default function AboutMe() {
 
   return (
     <section className="relative w-full bg-white flex flex-col items-center transition-all duration-300 xl:h-[782px] xl:py-[80px] md:h-auto h-auto md:py-[60px] py-[40px] overflow-visible">
+      
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* 스크롤 스냅 스타일 추가 */
+        .snap-container {
+          scroll-snap-type: x mandatory; /* 가로 방향으로 강제 스냅 */
+        }
+        .snap-item {
+          scroll-snap-align: center; /* 카드가 컨테이너의 중앙에 스냅됨 */
+        }
+        
+        /* 1600px 이상에서 중앙 정렬 시 첫/마지막 카드 스냅 보정 */
+        @media (min-width: 1280px) {
+          .snap-item:first-child { scroll-snap-align: start; }
+          .snap-item:last-child { scroll-snap-align: end; }
+        }
       `}</style>
 
-      <div className="relative w-full max-w-[1600px] h-full mx-auto flex flex-col xl:items-end items-center px-[20px] md:px-[40px] gap-[64px] overflow-visible">
-        <div className="w-full xl:max-w-[1200px] flex flex-col gap-[40px] overflow-visible">
-          <div className="w-full flex justify-start">
-            <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
-              배우고 또 배우고. 만들고 또 만들고.
-            </h2>
-          </div>
-
-          <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible">
-            <div className="flex flex-row gap-[20px] xl:w-[1960px] md:w-max w-max pb-10">
+          {/* 카드 스크롤 영역 */}
+          <div 
+            ref={scrollRef} 
+            className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container"
+          >
+            <div className="flex flex-row gap-[20px] pb-10 min-w-max">
               {cardData.map((card, index) => (
                 <div 
                   key={index}
                   onClick={() => scrollToCard(index)}
-                  className={`summary-card relative flex-shrink-0 flex flex-col items-start gap-[10px] md:gap-[20px] cursor-pointer 
+                  /* 2. 각 카드에 snap-item 추가 */
+                  className={`summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[10px] md:gap-[20px] cursor-pointer 
                     xl:w-[640px] xl:h-[436px] md:w-[500px] w-[calc(100vw-40px)]`}
                 >
                   <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
@@ -87,7 +99,8 @@ export default function AboutMe() {
           </div>
         </div>
 
-        <div className="w-full max-w-[1200px] flex justify-end xl:justify-end md:justify-center justify-center">
+        {/* 네비게이션 버튼 영역: 위쪽 콘텐츠와 정렬을 맞추기 위해 상위 div와 동일한 너비 유지 */}
+        <div className="w-full flex justify-end xl:justify-end md:justify-center justify-center">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button onClick={() => scrollToCard(0)} className="relative w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all">
               <img src="/asset/aboutMe/leftArrow.svg" alt="prev" className="w-[28px] h-[28px]" />
