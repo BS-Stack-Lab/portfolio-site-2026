@@ -71,7 +71,7 @@ export default function AboutMe() {
                   </div>
                   
                   {/* 설명 문구: 이미지 너비에 맞춰 정렬 */}
-                  <div className="w-full flex flex-col items-start mt-[20px] xl:pl-[16px] xl:pr-[128px] gap-[4px]">
+                  <div className="w-full flex flex-col items-start mt-[20px] xl:pl-[16px] gap-[4px]">
                     <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep xl:text-[16px] xl:leading-[24px] text-[14px]">
                       <span className="text-[#171717] font-bold">{card.highlight}</span> {card.desc}
                     </p>
