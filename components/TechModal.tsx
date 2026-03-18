@@ -10,10 +10,8 @@ interface TechModalProps {
 export default function TechModal({ isOpen, onClose }: TechModalProps) {
   if (!isOpen) return null;
 
-  const iconPath = "/asset/icons/";
-
-  // 🛠 경로 해석 오류를 막기 위해 전체 경로(Full Path)를 직접 작성했습니다.
-  // ⚠️ 파일명이 소문자로 시작한다면 아래 적힌 이름과 실제 파일명이 완전히 같은지만 확인해 주세요.
+  // 🛠 데이터 설계 변경: 모든 경로는 public 폴더를 기준으로 '/'부터 시작하는 절대 경로로 작성합니다.
+  // 사용님이 확인하신 파일명(소문자 등)을 그대로 유지했습니다.
   const mainStacks = [
     { id: "java", name: "Java", desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.", icon: "/asset/techModal/java.png" },
     { id: "intellij", name: "Intelije IDE", desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.", icon: "/asset/techModal/intelije.png" },
@@ -48,26 +46,23 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex-1 overflow-y-auto scrollbar-hide px-[20px] md:px-[60px] xl:px-[80px] py-[64px]">
-          
+          {/* 상단 섹션 */}
           <div className="flex flex-col items-center gap-[48px] mb-[120px]">
             <h2 className="font-wanted font-bold text-[24px] text-[#171717] text-center">
               상상을 실체로.<br />아이디어를 실체로 만드는 기술적 역량.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] w-full">
-              {mainStacks.map((s) => (
-                <StackCard key={s.id} stack={s} />
-              ))}
+              {mainStacks.map((s) => <StackCard key={s.id} stack={s} />)}
             </div>
           </div>
 
+          {/* 하단 섹션 */}
           <div className="flex flex-col items-center gap-[48px] pb-[100px]">
             <h2 className="font-wanted font-bold text-[24px] text-[#171717] text-center">
               멈추지 않는 배움.<br />더 많은 상상을 빌딩하기 위해 배울 리스트입니다.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] w-full">
-              {learningStacks.map((s) => (
-                <StackCard key={s.id} stack={s} />
-              ))}
+              {learningStacks.map((s) => <StackCard key={s.id} stack={s} />)}
             </div>
           </div>
         </div>
@@ -79,9 +74,9 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
             className="group w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
           >
             <img 
-              src={`${iconPath}operation.svg`} 
+              src="/asset/icons/operation.svg" 
               alt="close" 
-              className="w-[32px] h-[32px] transition-transform duration-500 ease-in-out group-hover:rotate-90" 
+              className="w-[32px] h-[32px] transition-transform duration-500 group-hover:rotate-90" 
             />
           </button>
         </div>
@@ -92,12 +87,16 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
 
 function StackCard({ stack }: { stack: any }) {
   return (
-    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full hover:shadow-md transition-shadow duration-300">
+    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full transition-all">
+      {/* 아이콘 컨테이너 */}
       <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB] shadow-sm flex items-center justify-center overflow-hidden mx-auto md:mx-0">
         <img 
           src={stack.icon} 
           alt={stack.name} 
-          className="w-full h-full object-contain p-2" 
+          // 🛠 안정성 강화 클래스: object-contain과 고정 너비 강제
+          className="block w-full h-full object-contain p-2"
+          // 디버깅용: 로드 실패 시 콘솔에 에러 출력
+          onError={(e) => console.error(`Image load failed: ${stack.icon}`)}
         />
       </div>
       <div className="flex flex-col gap-[12px] w-full">
