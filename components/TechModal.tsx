@@ -11,7 +11,6 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
   if (!isOpen) return null;
 
   const assetPath = "/asset/techModal/";
-  // 🛠 아이콘 파일 경로 설정
   const iconPath = "/asset/icons/";
 
   const mainStacks = [
@@ -72,14 +71,12 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
           </div>
         </div>
 
-        {/* 🛠 수정된 닫기 버튼 🛠 */}
+        {/* 닫기 버튼 */}
         <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-20">
           <button 
             onClick={onClose}
-            // 💡 group 클래스를 버튼에 추가하여 호버 상태를 하위 요소에 전달합니다.
             className="group w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
           >
-            {/* 💡 제공된 SVG 파일로 이미지 변경 및 호버 시 회전 애니메이션 적용 */}
             <img 
               src={`${iconPath}operation.svg`} 
               alt="close" 
@@ -92,16 +89,21 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
   );
 }
 
+// 🛠 아이콘 노출을 위한 핵심 수정 사항 적용 🛠
 function StackCard({ stack, assetPath }: { stack: any, assetPath: string }) {
   return (
     <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full hover:shadow-md transition-shadow duration-300 cursor-pointer">
+      
+      {/* 1. 아이콘 컨테이너 수정: object-contain 적용 */}
       <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB] shadow-sm flex items-center justify-center overflow-hidden mx-auto md:mx-0">
         <img 
           src={`${assetPath}${stack.icon}`} 
           alt={stack.name} 
-          className="w-full h-full object-cover"
+          // 2. 이미지가 부모 컨테이너를 가득 채우되 비율을 유지하도록 object-contain 적용
+          className="w-full h-full object-contain p-1" // 로고 여백을 위해 p-1 추가
         />
       </div>
+
       <div className="flex flex-col gap-[12px] w-full">
         <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717] tracking-[-0.12px]">
           {stack.name}
