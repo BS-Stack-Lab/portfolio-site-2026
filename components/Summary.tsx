@@ -107,7 +107,7 @@ export default function Summary() {
         </div>
 
         <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container no-scroll-pc">
-          <div className="flex flex-row gap-[20px] px-[16px] md:px-[32px] xl:px-[80px] pb-10 min-w-max">
+          <div className="flex flex-row gap-[20px] px-[16px] md:px-[32px] xl:px-[80px] xl:pb-10 md:pb-4 pb-2 min-w-max">
             {cardData.map((card, index) => (
               <div 
                 key={index}
