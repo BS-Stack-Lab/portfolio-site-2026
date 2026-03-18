@@ -81,7 +81,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
           >
             {/* 💡 제공된 SVG 파일로 이미지 변경 및 호버 시 회전 애니메이션 적용 */}
             <img 
-              src={`${iconPath}close.svg`} 
+              src={`${iconPath}operation.svg`} 
               alt="close" 
               className="w-[32px] h-[32px] transition-transform duration-500 ease-in-out group-hover:rotate-90" 
             />
