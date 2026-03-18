@@ -24,7 +24,7 @@ export default function Projects() {
       <div className="w-full max-w-[1600px] flex flex-col px-[20px] md:px-[40px] xl:px-[80px]">
         
         {/* 섹션 타이틀 */}
-        <div className="md:w-[80%] w-full flex justify-start md-[24px] md:md-[32px] xl:md-[40px] pm-[20px]">
+        <div className="md:w-[80%] w-full flex justify-start md-[24px] md:md-[32px] xl:md-[40px] xl:pb-[40px] md:pb-[40px] pb-[24px]">
           <h2 className="font-wanted font-bold tracking-[-0.12px] xl:text-[28px] xl:leading-[38px] md:text-[28px] md:leading-[38px] text-[18px] leading-[26px] text-[#171717]">
             상상이 실체가 되는 순간.
           </h2>
@@ -85,7 +85,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
   const imageUrl = `${PROJECT_IMAGE_PATH}${project.fileName}${IMAGE_EXT}`;
 
   return (
-    <div className="relative w-[240px] xl:w-full md:w-[480px] xl:pt-[40px] md:pt-[40px] pt-[24px] rounded-[24px] overflow-hidden group transition-all duration-300">
+    <div className="relative w-[240px] xl:w-full md:w-[480px] rounded-[24px] overflow-hidden group transition-all duration-300">
       <div className="relative w-full aspect-[4/5]">
         <img 
           src={imageUrl} 
