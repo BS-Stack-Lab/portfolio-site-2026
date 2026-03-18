@@ -28,24 +28,24 @@ export default function AboutMe() {
       id: 1,
       highlight: "비전공자의 시선.", 
       desc: "일상의 불편함을 그냥 지나치지 않고 서비스의 기회로 포착하여 사소한 문제들이 창의적인 기획의 시작이 되는 유연함을 보여줍니다.", 
-      src: `${assetPath}about_01.png` 
+      src: `${assetPath}aboutMe1.png` 
     },
     { 
       id: 2,
       highlight: "디자인과 개발의 융합.", 
       desc: "상상을 현실로 만들기 위해 AI를 파트너로 활용하며 학습의 곡선을 넓히고, 아이디어를 실체화하는 속도를 혁신적으로 높입니다.", 
-      src: `${assetPath}about_02.png` 
+      src: `${assetPath}aboutMe2.png` 
     },
     { 
       id: 3,
       highlight: "풀스택 빌더를 향한 몰입.", 
       desc: "기초를 단단히 다져내며 더 큰 가치를 꿈꾸고 사용자에게 완벽한 경험을 선사하기 위해 멈추지 않고 내일로 나아갑니다.", 
-      src: `${assetPath}about_03.png` 
+      src: `${assetPath}aboutMe3.png` 
     }
   ];
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center transition-all duration-300 xl:h-[782px] xl:py-[80px] md:h-auto h-auto md:py-[60px] py-[40px] overflow-visible">
+    <section className="w-full bg-white flex flex-col items-center transition-all duration-300 xl:h-[782px] xl:py-[80px] md:h-auto h-auto md:py-[60px] py-[40px] overflow-visible">
       
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
