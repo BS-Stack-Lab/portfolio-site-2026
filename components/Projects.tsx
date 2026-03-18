@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react"; // 🛠 1. useState 추가
+import ProjectModal from "./ProjectModal";
 
 // 설정 관리
 const PROJECT_ICON_PATH = "/asset/icons/";
@@ -14,7 +15,8 @@ const PROJECTS_DATA = [
 ];
 
 export default function Projects() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 🛠 2. 모달 상태 정의
+  const scrollRef = useRef<HTMLDivElement>(null); // 🛠 3. scrollRef 정의 (누락 방지)
 
   return (
     <section className="relative w-full bg-white flex flex-col items-center xl:py-[140px] md:py-[100px] py-[80px] overflow-hidden">
@@ -28,18 +30,14 @@ export default function Projects() {
           </h2>
         </div>
 
-        {/* 🛠 가로 스크롤 컨테이너 🛠 */}
+        {/* 가로 스크롤 컨테이너 */}
         <div 
           ref={scrollRef}
           className="
             flex flex-row w-full 
-            /* 가로 스크롤 활성화 및 스크롤바 숨김 */
             overflow-x-auto scrollbar-hide 
-            /* 한 카드씩 넘어가게 하는 Snap 설정 */
             snap-x snap-mandatory 
-            /* 카드 사이 간격 */
             gap-[20px] xl:gap-[40px]
-            /* 데스크톱(xl)에서는 스크롤 없이 3열 고정 (원하실 경우) */
             xl:grid xl:grid-cols-3 xl:overflow-visible
           "
         >
@@ -47,9 +45,7 @@ export default function Projects() {
             <div 
               key={project.id} 
               className="
-                /* 모바일/태블릿에서 카드의 너비 결정 */
                 min-w-[calc(100vw-40px)] md:min-w-[calc(50%-10px)] xl:min-w-0
-                /* Snap 지점 설정 (시작점에 걸리도록) */
                 snap-start
               "
             >
@@ -60,7 +56,10 @@ export default function Projects() {
 
         {/* 하단 버튼 */}
         <div className="w-full flex justify-center mt-[60px] md:mt-[80px] xl:mt-[100px]">
-          <button className="group flex flex-row items-center justify-between pl-[24px] pr-[10px] w-[194px] h-[56px] bg-[#EEEEF2] rounded-full transition-all hover:bg-[#E5E5E5] active:scale-95">
+          <button 
+            onClick={() => setIsModalOpen(true)} // 🛠 4. 버튼 클릭 시 모달 열기
+            className="group flex flex-row items-center justify-between pl-[24px] pr-[10px] w-[194px] h-[56px] bg-[#EEEEF2] rounded-full transition-all hover:bg-[#E5E5E5] active:scale-95 shadow-sm hover:shadow-md"
+          >
             <span className="font-wanted font-bold text-[#171717] text-[16px]">
               프로젝트 더보기
             </span>
@@ -71,10 +70,17 @@ export default function Projects() {
         </div>
 
       </div>
+
+      {/* 🛠 5. 모달 컴포넌트 배치 및 props 연결 */}
+      <ProjectModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   );
 }
 
+// 개별 카드 컴포넌트
 function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
   const imageUrl = `${PROJECT_IMAGE_PATH}${project.fileName}${IMAGE_EXT}`;
 
