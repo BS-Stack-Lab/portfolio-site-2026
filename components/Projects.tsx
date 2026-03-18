@@ -37,7 +37,7 @@ export default function Projects() {
             flex flex-row w-full 
             overflow-x-auto scrollbar-hide 
             snap-x snap-mandatory 
-            gap-[20px] xl:gap-[24px]
+            gap-[20px] mb:gap-[20px] xl:gap-[24px]
             xl:grid xl:grid-cols-3 xl:overflow-visible
           "
         >
