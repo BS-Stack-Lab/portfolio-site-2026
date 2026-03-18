@@ -76,7 +76,7 @@ export default function ValueFooter() {
         </div>
 
         {/* 하단 카피라이트 */}
-        <div className="w-full border-t border-[#EBEBEB] xl:pt-[200px] mb:pt-[100px] pt-[80px] flex justify-center">
+        <div className="w-full xl:pt-[200px] mb:pt-[100px] pt-[80px] flex justify-center">
           <p className="font-wanted font-semibold text-[12px] md:text-[14px] leading-relaxed text-[#A1A1A1] tracking-[0.145px] text-center break-keep opacity-80">
             이 사이트는 포트폴리오 전용으로 제작되었으며, 상업적 목적이 없는 비영리 사이트임을 명시합니다.
           </p>
