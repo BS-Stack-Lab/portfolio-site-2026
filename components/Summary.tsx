@@ -7,7 +7,7 @@ export default function Summary() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
 
-  // 🛠 설정값: 전체 이동을 완료할 목표 시간 (ms)
+  // 설정값: 전체 이동을 완료할 목표 시간 (ms)
   const TOTAL_ANIMATION_TIME = 600; 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Summary() {
       },
       {
         root: scrollRef.current,
-        threshold: 0.6,
+        threshold: 0.6, // 카드가 60% 이상 보일 때 활성화
       }
     );
 
@@ -34,7 +34,6 @@ export default function Summary() {
     return () => observer.disconnect();
   }, []);
 
-  // 🛠 핵심 수정: 물리적 스크롤은 한 번에, 상태값은 순차적으로 업데이트 🛠
   const animateToTarget = async (targetIndex: number) => {
     if (!scrollRef.current || isAnimating.current || targetIndex === activeIndex) return;
 
@@ -48,7 +47,7 @@ export default function Summary() {
       return;
     }
 
-    // 1. 물리적 스크롤: 최종 목적지까지 한 번에 부드럽게 이동 (끊김 없음)
+    // 1. 물리적 스크롤: 최종 목적지까지 한 번에 부드럽게 이동
     const containerRect = container.getBoundingClientRect();
     const targetRect = targetCard.getBoundingClientRect();
 
@@ -75,7 +74,6 @@ export default function Summary() {
       setActiveIndex(currentIndex);
     }
 
-    // 스크롤 애니메이션이 완전히 끝날 때까지 약간 더 대기
     setTimeout(() => {
       isAnimating.current = false;
     }, 200);
@@ -89,7 +87,8 @@ export default function Summary() {
   ];
 
   return (
-    <section className="w-full bg-[#F5F5F7] flex flex-col items-center transition-all duration-300 xl:py-[154px] md:py-[100px] py-[60px] overflow-visible">
+    // 🛠 1. 최외곽 섹션: w-full 유지 🛠
+    <section className="relative w-full bg-[#F5F5F7] flex flex-col items-center xl:h-[782px] xl:py-[154px] md:h-auto h-auto md:py-[100px] py-[60px] overflow-hidden">
       
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -101,33 +100,55 @@ export default function Summary() {
         }
       `}</style>
 
-      <div className="w-full max-w-[1600px] flex flex-col gap-[56px] xl:gap-[64px] overflow-visible">
-        <div className="w-full px-[20px] md:px-[32px] xl:px-[80px]">
-          <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">일단 핵심부터.</h2>
+      {/* 🛠 2. 메인 가이드 컨테이너: 타이틀 정렬을 위한 1600px 중앙 고정 및 패딩 80px 🛠 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px] overflow-visible flex flex-col xl:items-end items-center gap-[64px]">
+        
+        {/* 타이틀 영역 */}
+        <div className="w-full flex justify-start">
+          <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">
+            일단 핵심부터.
+          </h2>
         </div>
+      </div>
 
-        <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container no-scroll-pc">
-          <div className="flex flex-row gap-[20px] px-[16px] md:px-[32px] xl:px-[80px] pb-10 min-w-max">
-            {cardData.map((card, index) => (
-              <div 
-                key={index}
-                data-index={index}
-                onClick={() => animateToTarget(index)}
-                className={`summary-card snap-item relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden xl:w-[1080px] xl:h-[508px] md:w-[640px] md:h-[509px] w-[280px] h-[360px] ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}`}
-              >
-                <div className={`absolute top-[30px] z-20 px-[30px] w-full left-1/2 -translate-x-1/2 text-center px-[14px] md:left-0 md:translate-x-0 ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
-                  <p className="font-wanted font-bold text-[#171717] xl:text-[18px] text-[16px] leading-[1.4] whitespace-pre-wrap">{card.title}</p>
-                </div>
-                {card.images.map((img, imgIdx) => (
-                  <img key={imgIdx} src={img.src} alt="" className={`absolute pointer-events-none ${img.style}`} />
-                ))}
+      {/* 🛠 3. 스크롤 영역: 부모의 1600px 제한을 무시하고 전체 너비(w-full) 사용 🛠 */}
+      <div 
+        ref={scrollRef} 
+        className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible no-scroll-pc"
+      >
+        {/* 🛠 핵심 수정: 카드 트랙의 우측 패딩을 우측 마진으로 변경 🛠 */}
+        <div className="flex flex-row gap-[20px] pb-10 min-w-max px-[20px] md:px-[40px] xl:pl-[80px] xl:pr-0 xl:mr-[80px]">
+          {cardData.map((card, index) => (
+            <div 
+              key={index}
+              data-index={index}
+              onClick={() => animateToTarget(index)}
+              className={`summary-card snap-item relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden 
+                xl:w-[1080px] xl:h-[508px] 
+                md:w-[640px] md:h-[509px] 
+                w-[280px] h-[360px] 
+                ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}
+              `}
+            >
+              <div className={`absolute top-[30px] z-20 px-[30px] w-full left-1/2 -translate-x-1/2 text-center px-[14px] md:left-0 md:translate-x-0 
+                ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
+                <p className="font-wanted font-bold text-[#171717] xl:text-[18px] text-[16px] leading-[1.4] whitespace-pre-wrap">
+                  {card.title}
+                </p>
               </div>
-            ))}
-            <div className="w-[1px] md:w-[20px] xl:w-[80px] flex-shrink-0" />
-          </div>
-        </div>
 
-        {/* 인디케이터 */}
+              {card.images.map((img, imgIdx) => (
+                <img key={imgIdx} src={img.src} alt="" className={`absolute pointer-events-none ${img.style}`} />
+              ))}
+            </div>
+          ))}
+          {/* 🛠 마지막 여백용 div: snap-align end 효과를 위해 사용 🛠 */}
+          <div className="w-[1px] md:w-[20px] xl:w-[80px] flex-shrink-0" />
+        </div>
+      </div>
+
+      {/* 🛠 4. 인디케이터 영역: 다시 중앙 가이드 안으로 배치 🛠 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
         <div className="flex justify-center items-center">
           <div className="bg-[#EBEBF0] px-[26px] py-[10px] rounded-full flex items-center gap-[16px] h-[56px]">
             {[0, 1, 2].map((i) => (
