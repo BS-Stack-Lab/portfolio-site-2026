@@ -7,10 +7,9 @@ export default function Summary() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
 
-  // 설정값: 전체 이동을 완료할 목표 시간 (ms)
+  // 🛠 설정값: 전체 이동을 완료할 목표 시간 (ms)
   const TOTAL_ANIMATION_TIME = 600; 
 
-  // Intersection Observer: 모바일 스크롤 시 인디케이터 연동
   useEffect(() => {
     if (isAnimating.current) return;
 
@@ -35,6 +34,7 @@ export default function Summary() {
     return () => observer.disconnect();
   }, []);
 
+  // 🛠 핵심 수정: 물리적 스크롤은 한 번에, 상태값은 순차적으로 업데이트 🛠
   const animateToTarget = async (targetIndex: number) => {
     if (!scrollRef.current || isAnimating.current || targetIndex === activeIndex) return;
 
@@ -48,7 +48,7 @@ export default function Summary() {
       return;
     }
 
-    // 물리적 스크롤: 최종 목적지까지 한 번에 부드럽게 이동
+    // 1. 물리적 스크롤: 최종 목적지까지 한 번에 부드럽게 이동 (끊김 없음)
     const containerRect = container.getBoundingClientRect();
     const targetRect = targetCard.getBoundingClientRect();
 
@@ -63,7 +63,7 @@ export default function Summary() {
       behavior: "smooth",
     });
 
-    // 인디케이터 애니메이션: 논리적으로 중간 단계를 거쳐가도록 함
+    // 2. 인디케이터 애니메이션: 논리적으로 중간 단계를 거쳐가도록 함
     const distance = Math.abs(targetIndex - activeIndex);
     const stepDuration = TOTAL_ANIMATION_TIME / distance;
     const direction = targetIndex > activeIndex ? 1 : -1;
@@ -75,6 +75,7 @@ export default function Summary() {
       setActiveIndex(currentIndex);
     }
 
+    // 스크롤 애니메이션이 완전히 끝날 때까지 약간 더 대기
     setTimeout(() => {
       isAnimating.current = false;
     }, 200);
@@ -88,7 +89,7 @@ export default function Summary() {
   ];
 
   return (
-    <section className="relative w-full bg-[#F5F5F7] flex flex-col items-center xl:h-[782px] xl:py-[154px] md:h-auto h-auto md:py-[100px] py-[60px] overflow-hidden">
+    <section className="w-full bg-[#F5F5F7] flex flex-col items-center transition-all duration-300 xl:py-[154px] md:py-[100px] py-[60px] overflow-visible">
       
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -100,53 +101,33 @@ export default function Summary() {
         }
       `}</style>
 
-      {/* 1. 타이틀 영역: 1600px 중앙 정렬 가이드 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px] overflow-visible">
-        <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">
-          일단 핵심부터.
-        </h2>
-      </div>
-
-      {/* 🛠 2. 핵심 수정: 스크롤 영역을 max-w 제한 밖으로 꺼내서 전체 너비(w-full) 사용 🛠 */}
-      <div 
-        ref={scrollRef} 
-        className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible no-scroll-pc"
-      >
-        {/* 🛠 트랙 내부의 왼쪽 패딩을 통해 타이틀과 왼쪽 라인을 맞춤 (xl:pl-[80px]) 🛠
-           마지막 카드 오른쪽 정렬을 위해 pr-0과 mr-[80px] 조합 사용
-        */}
-        <div className="flex flex-row gap-[20px] pb-10 min-w-max px-[20px] md:px-[40px] xl:pl-[80px] xl:pr-0 xl:mr-[80px] overflow-visible">
-          {cardData.map((card, index) => (
-            <div 
-              key={index}
-              data-index={index}
-              onClick={() => animateToTarget(index)}
-              className={`summary-card snap-item relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden 
-                xl:w-[1080px] xl:h-[508px] 
-                md:w-[640px] md:h-[509px] 
-                w-[280px] h-[360px] 
-                ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}
-              `}
-            >
-              <div className={`absolute top-[30px] z-20 px-[30px] w-full left-1/2 -translate-x-1/2 text-center px-[14px] md:left-0 md:translate-x-0 
-                ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
-                <p className="font-wanted font-bold text-[#171717] xl:text-[18px] text-[16px] leading-[1.4] whitespace-pre-wrap">
-                  {card.title}
-                </p>
-              </div>
-
-              {card.images.map((img, imgIdx) => (
-                <img key={imgIdx} src={img.src} alt="" className={`absolute pointer-events-none ${img.style}`} />
-              ))}
-            </div>
-          ))}
-          {/* 마지막 여백 div: snap end 효과 확보 */}
-          <div className="w-[1px] md:w-[20px] xl:w-[80px] flex-shrink-0" />
+      <div className="w-full max-w-[1600px] flex flex-col gap-[56px] xl:gap-[64px] overflow-visible">
+        <div className="w-full px-[20px] md:px-[32px] xl:px-[80px]">
+          <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">일단 핵심부터.</h2>
         </div>
-      </div>
 
-      {/* 3. 인디케이터 영역: 다시 중앙 가이드 안으로 배치 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
+        <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container no-scroll-pc">
+          <div className="flex flex-row gap-[20px] px-[16px] md:px-[32px] xl:px-[80px] pb-10 min-w-max">
+            {cardData.map((card, index) => (
+              <div 
+                key={index}
+                data-index={index}
+                onClick={() => animateToTarget(index)}
+                className={`summary-card snap-item relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden xl:w-[1080px] xl:h-[508px] md:w-[640px] md:h-[509px] w-[280px] h-[360px] ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}`}
+              >
+                <div className={`absolute top-[30px] z-20 px-[30px] w-full left-1/2 -translate-x-1/2 text-center px-[14px] md:left-0 md:translate-x-0 ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
+                  <p className="font-wanted font-bold text-[#171717] xl:text-[18px] text-[16px] leading-[1.4] whitespace-pre-wrap">{card.title}</p>
+                </div>
+                {card.images.map((img, imgIdx) => (
+                  <img key={imgIdx} src={img.src} alt="" className={`absolute pointer-events-none ${img.style}`} />
+                ))}
+              </div>
+            ))}
+            <div className="w-[1px] md:w-[20px] xl:w-[80px] flex-shrink-0" />
+          </div>
+        </div>
+
+        {/* 인디케이터 */}
         <div className="flex justify-center items-center">
           <div className="bg-[#EBEBF0] px-[26px] py-[10px] rounded-full flex items-center gap-[16px] h-[56px]">
             {[0, 1, 2].map((i) => (
