@@ -55,7 +55,7 @@ export default function AboutMe() {
         <div className="w-full overflow-visible">
           <div 
             ref={scrollRef} 
-            className="w-full overflow-x-auto scrollbar-hide scroll-smooth snap-container overflow-y-visible"
+            className="w-full overflow-x-auto overflow-y-visible scrollbar-hide scroll-smooth snap-container"
           >
             {/* gap을 제거하고 min-w-max 설정 */}
             <div className="flex flex-row pb-10 min-w-max overflow-visible">
