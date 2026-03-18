@@ -107,7 +107,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
             <img 
               src="/asset/icons/operation.svg" 
               alt="close icon" 
-              className="w-[32px] h-[32px] transition-transform duration-500 ease-in-out group-hover/close:rotate-90" 
+              className="w-[32px] h-[32px] transition-transform duration-300 ease-in-out group-hover/close:rotate-90" 
             />
           </button>
         </div>
