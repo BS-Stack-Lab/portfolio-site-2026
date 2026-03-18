@@ -69,7 +69,17 @@ export default function AboutMe() {
         }
       `}</style>
 
-          {/* 카드 스크롤 영역 */}
+      <div className="relative w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col gap-[64px] overflow-visible">
+        
+        <div className="w-full flex flex-col xl:items-end items-center gap-[40px] overflow-visible">
+          
+          <div className="w-full flex justify-start">
+            <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
+              배우고 또 배우고. 만들고 또 만들고.
+            </h2>
+          </div>
+
+          {/* 1. 컨테이너에 snap-container 추가 */}
           <div 
             ref={scrollRef} 
             className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container"
@@ -99,7 +109,7 @@ export default function AboutMe() {
           </div>
         </div>
 
-        {/* 네비게이션 버튼 영역: 위쪽 콘텐츠와 정렬을 맞추기 위해 상위 div와 동일한 너비 유지 */}
+        {/* 네비게이션 버튼 영역 동일 */}
         <div className="w-full flex justify-end xl:justify-end md:justify-center justify-center">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button onClick={() => scrollToCard(0)} className="relative w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all">
