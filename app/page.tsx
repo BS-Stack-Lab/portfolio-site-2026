@@ -5,6 +5,7 @@ import InfoBanner from "@/components/InfoBanner";
 import AboutMe from "@/components/AboutMe";
 import TechStack from "@/components/TechStack";
 import ProjectBanner from "@/components/ProjectBanner";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
           <AboutMe />
           <TechStack />
           <ProjectBanner />
+          <Projects />
         </section>
       </main>
     </div>
