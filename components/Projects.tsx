@@ -85,7 +85,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
   const imageUrl = `${PROJECT_IMAGE_PATH}${project.fileName}${IMAGE_EXT}`;
 
   return (
-    <div className="relative xl:w-full mb:w-full w-[240px] rounded-[24px] overflow-hidden group transition-all duration-300">
+    <div className="relative w-[240px] xl:w-full mb:w-full rounded-[24px] overflow-hidden group transition-all duration-300">
       <div className="relative w-full aspect-[4/5]">
         <img 
           src={imageUrl} 
