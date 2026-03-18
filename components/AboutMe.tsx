@@ -73,15 +73,15 @@ export default function AboutMe() {
   const cardData = [
     { 
       title: "비전공자의 시선. 일상의 불편함을 그냥 지나치지 않고 서비스의 기회로 포착하여 사소한 문제들이 창의적인 기획의 시작이 되는 유연함을 보여줍니다.",
-      src: `${assetPath}aboutMe1.jpg`
+      src: `${assetPath}aboutMe1.png`
     },
     { 
       title: "디자인과 개발의 융합. 상상을 현실로 만들기 위해 AI를 파트너로 활용하며 학습의 곡선을 넓히고, 아이디어를 실체화하는 속도를 혁신적으로 높입니다.",
-      src: `${assetPath}aboutMe2.jpg`
+      src: `${assetPath}aboutMe2.png`
     },
     { 
       title: "풀스택 빌더를 향한 몰입. 기초를 단단히 다져내며 더 큰 가치를 꿈꾸고 사용자에게 완벽한 경험을 선사하기 위해 멈추지 않고 내일로 나아갑니다.",
-      src: `${assetPath}aboutMe3.jpg`
+      src: `${assetPath}aboutMe3.png`
     }
   ];
 
