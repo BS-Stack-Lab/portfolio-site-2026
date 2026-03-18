@@ -123,7 +123,7 @@ export default function Summary() {
                 ))}
               </div>
             ))}
-            <div className="w-[1px] md:w-[20px] xl:w-[80px] flex-shrink-0" />
+            <div className="w-[0px] md:w-[200px] xl:w-[0px] flex-shrink-0" />
           </div>
         </div>
 
