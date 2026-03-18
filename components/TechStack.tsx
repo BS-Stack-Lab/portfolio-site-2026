@@ -30,7 +30,7 @@ export default function TechStack() {
         </div>
 
         {/* 3. 하단 콘텐츠 영역 */}
-        <div className="w-full flex flex-col items-center gap-[60px] md:gap-[80px]">
+        <div className="w-full flex flex-col items-start gap-[60px] md:gap-[80px]">
           
           {/* 🛠 하단 텍스트 컨테이너: 타이틀과 동일한 md:w-[80%] 🛠 */}
           <div className="md:w-[80%] w-full flex flex-col md:flex-row justify-between items-start gap-[40px] md:gap-[60px] xl:gap-[88px]">
