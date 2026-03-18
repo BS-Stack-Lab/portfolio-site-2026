@@ -87,13 +87,14 @@ export default function AboutMe() {
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button 
               onClick={() => handleScroll("left")} 
-              className="w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all"
+              className="w-[44px] h-[44px] bg-[#F5F5F7] hover:bg-[#E5E5E5] rounded-full flex items-center justify-center active:scale-95 transition-all duration-300 transition-colors"
             >
               <img src="/asset/aboutMe/leftArrow.svg" alt="prev" className="w-[28px] h-[28px]" />
             </button>
+
             <button 
               onClick={() => handleScroll("right")} 
-              className="w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all"
+              className="w-[44px] h-[44px] bg-[#F5F5F7] hover:bg-[#E5E5E5] rounded-full flex items-center justify-center active:scale-95 transition-all duration-300 transition-colors"
             >
               <img src="/asset/aboutMe/rightArrow.svg" alt="next" className="w-[28px] h-[28px]" />
             </button>
