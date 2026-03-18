@@ -7,7 +7,7 @@ export default function Summary() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isAnimating = useRef(false);
 
-  // 🛠 설정값: 어떤 버튼을 누르든 전체 이동을 완료할 목표 시간 (ms)
+  // 🛠 설정값: 전체 이동을 완료할 목표 시간 (ms)
   const TOTAL_ANIMATION_TIME = 600; 
 
   useEffect(() => {
@@ -34,51 +34,51 @@ export default function Summary() {
     return () => observer.disconnect();
   }, []);
 
-  // 🛠 핵심 수정: 이동 거리에 따라 속도를 계산하는 애니메이션 함수 🛠
+  // 🛠 핵심 수정: 물리적 스크롤은 한 번에, 상태값은 순차적으로 업데이트 🛠
   const animateToTarget = async (targetIndex: number) => {
     if (!scrollRef.current || isAnimating.current || targetIndex === activeIndex) return;
 
     isAnimating.current = true;
     const container = scrollRef.current;
     const cards = container.getElementsByClassName("summary-card");
+    const targetCard = cards[targetIndex] as HTMLElement;
 
-    // 1. 이동해야 할 총 칸 수 계산 (1칸 혹은 2칸)
-    const distance = Math.abs(targetIndex - activeIndex);
-    
-    // 2. 한 칸당 할당할 시간 계산 (전체 시간을 칸 수로 나눔)
-    // 1칸 이동 시: 600ms, 2칸 이동 시: 각 칸당 300ms
-    const stepDuration = TOTAL_ANIMATION_TIME / distance;
-
-    const direction = targetIndex > activeIndex ? 1 : -1;
-    let nextIndex = activeIndex;
-
-    while (nextIndex !== targetIndex) {
-      nextIndex += direction;
-      const targetCard = cards[nextIndex] as HTMLElement;
-      if (!targetCard) break;
-
-      const containerRect = container.getBoundingClientRect();
-      const targetRect = targetCard.getBoundingClientRect();
-
-      const scrollTo = 
-        container.scrollLeft + 
-        (targetRect.left - containerRect.left) - 
-        (containerRect.width / 2) + 
-        (targetRect.width / 2);
-
-      // 스크롤 실행
-      container.scrollTo({
-        left: scrollTo,
-        behavior: "smooth",
-      });
-
-      // 🛠 계산된 stepDuration만큼 대기 (거리가 멀수록 대기 시간이 짧아짐)
-      await new Promise(resolve => setTimeout(resolve, stepDuration)); 
-
-      setActiveIndex(nextIndex);
+    if (!targetCard) {
+      isAnimating.current = false;
+      return;
     }
 
-    isAnimating.current = false;
+    // 1. 물리적 스크롤: 최종 목적지까지 한 번에 부드럽게 이동 (끊김 없음)
+    const containerRect = container.getBoundingClientRect();
+    const targetRect = targetCard.getBoundingClientRect();
+
+    const scrollTo = 
+      container.scrollLeft + 
+      (targetRect.left - containerRect.left) - 
+      (containerRect.width / 2) + 
+      (targetRect.width / 2);
+
+    container.scrollTo({
+      left: scrollTo,
+      behavior: "smooth",
+    });
+
+    // 2. 인디케이터 애니메이션: 논리적으로 중간 단계를 거쳐가도록 함
+    const distance = Math.abs(targetIndex - activeIndex);
+    const stepDuration = TOTAL_ANIMATION_TIME / distance;
+    const direction = targetIndex > activeIndex ? 1 : -1;
+
+    let currentIndex = activeIndex;
+    for (let i = 0; i < distance; i++) {
+      await new Promise(resolve => setTimeout(resolve, stepDuration));
+      currentIndex += direction;
+      setActiveIndex(currentIndex);
+    }
+
+    // 스크롤 애니메이션이 완전히 끝날 때까지 약간 더 대기
+    setTimeout(() => {
+      isAnimating.current = false;
+    }, 200);
   };
 
   const assetPath = "/asset/summary/";
