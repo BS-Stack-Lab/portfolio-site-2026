@@ -10,8 +10,10 @@ interface TechModalProps {
 export default function TechModal({ isOpen, onClose }: TechModalProps) {
   if (!isOpen) return null;
 
-  // 🛠 데이터 설계 변경: 모든 경로는 public 폴더를 기준으로 '/'부터 시작하는 절대 경로로 작성합니다.
-  // 사용님이 확인하신 파일명(소문자 등)을 그대로 유지했습니다.
+  // 🛠 1. 데이터 구조 최적화: 
+  // public 폴더를 기준으로 한 '절대 경로' 문자열을 직접 주입합니다.
+  // 사용님이 확인하신 파일명(java.png, ps.png 등)을 그대로 유지했습니다.
+  
   const mainStacks = [
     { id: "java", name: "Java", desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.", icon: "/asset/techModal/java.png" },
     { id: "intellij", name: "Intelije IDE", desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.", icon: "/asset/techModal/intelije.png" },
@@ -46,23 +48,26 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex-1 overflow-y-auto scrollbar-hide px-[20px] md:px-[60px] xl:px-[80px] py-[64px]">
-          {/* 상단 섹션 */}
+          
           <div className="flex flex-col items-center gap-[48px] mb-[120px]">
             <h2 className="font-wanted font-bold text-[24px] text-[#171717] text-center">
               상상을 실체로.<br />아이디어를 실체로 만드는 기술적 역량.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] w-full">
-              {mainStacks.map((s) => <StackCard key={s.id} stack={s} />)}
+              {mainStacks.map((s) => (
+                <StackCard key={s.id} stack={s} />
+              ))}
             </div>
           </div>
 
-          {/* 하단 섹션 */}
           <div className="flex flex-col items-center gap-[48px] pb-[100px]">
             <h2 className="font-wanted font-bold text-[24px] text-[#171717] text-center">
               멈추지 않는 배움.<br />더 많은 상상을 빌딩하기 위해 배울 리스트입니다.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] w-full">
-              {learningStacks.map((s) => <StackCard key={s.id} stack={s} />)}
+              {learningStacks.map((s) => (
+                <StackCard key={s.id} stack={s} />
+              ))}
             </div>
           </div>
         </div>
@@ -71,7 +76,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
         <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-20">
           <button 
             onClick={onClose}
-            className="group w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
+            className="group w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300"
           >
             <img 
               src="/asset/icons/operation.svg" 
@@ -85,23 +90,29 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
   );
 }
 
+// 🛠 StackCard 완전 재설계 (이미지 로드 안정성 확보)
 function StackCard({ stack }: { stack: any }) {
   return (
-    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full transition-all">
-      {/* 아이콘 컨테이너 */}
-      <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB] shadow-sm flex items-center justify-center overflow-hidden mx-auto md:mx-0">
+    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full">
+      
+      {/* 2. 아이콘 컨테이너: 배경색과 로고가 겹쳐 안 보이는 문제 해결을 위해 
+             z-index와 배경색(white)을 명시적으로 재설정 */}
+      <div className="relative w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB] shadow-sm flex items-center justify-center overflow-hidden mx-auto md:mx-0 z-10">
         <img 
           src={stack.icon} 
           alt={stack.name} 
-          // 🛠 안정성 강화 클래스: object-contain과 고정 너비 강제
-          className="block w-full h-full object-contain p-2"
-          // 디버깅용: 로드 실패 시 콘솔에 에러 출력
-          onError={(e) => console.error(`Image load failed: ${stack.icon}`)}
+          // 3. 이미지 스타일: object-contain으로 로고 형태 보존 + 패딩 추가
+          className="w-full h-full object-contain p-2 block"
+          // 브라우저가 경로를 정확히 찾지 못할 때 콘솔에 경로를 찍어줍니다.
+          onError={(e) => {
+            console.error("이미지 로드 실패:", stack.icon);
+          }}
         />
       </div>
+
       <div className="flex flex-col gap-[12px] w-full">
-        <h3 className="font-wanted font-bold text-[20px] text-[#171717]">{stack.name}</h3>
-        <p className="font-wanted text-[16px] text-[#737373] break-keep">{stack.desc}</p>
+        <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717]">{stack.name}</h3>
+        <p className="font-wanted font-normal text-[16px] leading-[24px] text-[#737373] break-keep">{stack.desc}</p>
       </div>
     </div>
   );
