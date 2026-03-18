@@ -28,7 +28,7 @@ export default function ProjectBanner() {
           <h2 className="font-wanted font-bold tracking-[0.23px] break-keep
             xl:text-[80px] xl:leading-[94px] md:text-[56px] md:leading-[68px] text-[36px] leading-[44px]
             bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent">
-            상상의 실체. <br className="md:hidden" />
+            상상의 실체. <br />
             프로젝트 하이라이트.
           </h2>
         </div>
