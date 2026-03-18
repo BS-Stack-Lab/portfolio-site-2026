@@ -83,7 +83,7 @@ export default function AboutMe() {
         </div>
 
         {/* 버튼 영역: 상위 컨테이너의 패딩 안에서 오른쪽 정렬 */}
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-end pb-[56px]">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button 
               onClick={() => handleScroll("left")} 
