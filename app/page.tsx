@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Summary from "@/components/Summary";
 import InfoBanner from "@/components/InfoBanner";
+import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           <Hero />
           <Summary />
           <InfoBanner />
+          <AboutMe />
         </section>
       </main>
     </div>
