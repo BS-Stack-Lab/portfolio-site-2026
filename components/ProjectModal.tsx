@@ -54,7 +54,7 @@ export default function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
       >
         {/* 상단 헤더 */}
         <header className="absolute top-0 left-0 right-0 z-30 h-[144px] flex items-center justify-center bg-gradient-to-b from-white via-white/90 to-transparent pt-[48px] pb-[32px]">
-          <h2 className="font-wanted font-bold text-[24px] leading-[32px] text-[#171717] text-center whitespace-pre-wrap">
+          <h2 className="font-wanted font-bold xl:text-[24px] xl:leading-[32px] mb:text-[24px] mb:leading-[32px] text-[18px] leading-[26px] text-[#171717] text-center whitespace-pre-wrap">
             실체가 된 프로젝트.<br />아이디어가 구현되는 순간을 만나보세요.
           </h2>
         </header>
@@ -72,12 +72,12 @@ export default function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
         <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-40">
           <button 
             onClick={onClose}
-            className="group/close w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
+            className="group/close w-[56px] h-[56px] bg-[#E6E6E6]/50 backdrop-blur-[10px] rounded-full flex items-center justify-center hover:scale-105 transition-all duration-300 active:scale-95"
           >
             <img 
               src="/asset/icons/operation.svg" 
               alt="close" 
-              className="w-[32px] h-[32px] transition-transform duration-500 ease-in-out group-hover/close:rotate-90" 
+              className="w-[32px] h-[32px] transition-transform duration-300 ease-in-out group-hover/close:rotate-90" 
             />
           </button>
         </div>
@@ -140,12 +140,12 @@ function ProjectDetailCard({ project }: { project: any }) {
       `}>
         
         <div className="flex flex-col gap-[12px] w-full">
-          <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717] tracking-[-0.12px] mb-[4px]">
+          <h3 className="font-wanted font-bold xl:text-[20px] xl:leading-[28px] mb:text-[18px] mb:leading-[26px] text-[18px] leading-[26px] text-[#171717] tracking-[-0.12px] mb-[4px]">
             상세 내용.
           </h3>
           <ul className="flex flex-col gap-[8px]">
             {project.details?.map((detail: string, index: number) => (
-              <li key={index} className="font-wanted font-medium text-[14px] leading-[20px] text-[#737373] tracking-[0.145px]">
+              <li key={index} className="font-wanted font-medium xl:text-[16px] xl:leading-[24px] mb:text-[14px] mb:leading-[20px] text-[14px] leading-[20px] text-[#737373] tracking-[0.145px]">
                 {detail}
               </li>
             ))}
