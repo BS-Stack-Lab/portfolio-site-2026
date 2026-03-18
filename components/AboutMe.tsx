@@ -53,63 +53,57 @@ export default function AboutMe() {
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* 스크롤 스냅 스타일 추가 */
-        .snap-container {
-          scroll-snap-type: x mandatory; /* 가로 방향으로 강제 스냅 */
-        }
-        .snap-item {
-          scroll-snap-align: center; /* 카드가 컨테이너의 중앙에 스냅됨 */
-        }
-        
-        /* 1600px 이상에서 중앙 정렬 시 첫/마지막 카드 스냅 보정 */
+        .snap-container { scroll-snap-type: x mandatory; }
+        .snap-item { scroll-snap-align: center; }
         @media (min-width: 1280px) {
+          /* 첫 번째 카드가 컨테이너의 시작점(패딩 고려)에 맞게 스냅되도록 조정 */
           .snap-item:first-child { scroll-snap-align: start; }
           .snap-item:last-child { scroll-snap-align: end; }
         }
       `}</style>
-
-      <div className="relative w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col gap-[64px] overflow-visible">
-        
-        <div className="w-full flex flex-col xl:items-end items-center gap-[40px] overflow-visible">
-          
-          <div className="w-full flex justify-start">
-            <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
-              배우고 또 배우고. 만들고 또 만들고.
-            </h2>
-          </div>
-
-          {/* 1. 컨테이너에 snap-container 추가 */}
-          <div 
-            ref={scrollRef} 
-            className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container"
-          >
-            <div className="flex flex-row gap-[20px] pb-10 min-w-max">
-              {cardData.map((card, index) => (
-                <div 
-                  key={index}
-                  onClick={() => scrollToCard(index)}
-                  /* 2. 각 카드에 snap-item 추가 */
-                  className={`summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[10px] md:gap-[20px] cursor-pointer 
-                    xl:w-[640px] xl:h-[436px] md:w-[500px] w-[calc(100vw-40px)]`}
-                >
-                  <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px]">
-                    <img src={card.src} alt="" className="w-full h-full object-cover" />
-                  </div>
-                  
-                  <div className="w-full flex items-start xl:pl-[16px] xl:pr-[128px] xl:py-[4px] md:px-[12px] px-0 h-auto min-h-[56px] md:h-[56px]">
-                    <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep md:text-[16px] md:leading-[24px] text-[14px] leading-[20px]">
-                      <span className="text-[#171717] font-bold">{card.highlight}</span>{" "}
-                      {card.title.replace(card.highlight, "").trim()}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+  
+      {/* 1. 타이틀 영역: 1600px 제한 + 중앙 정렬 + 패딩 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mb-[40px]">
+        <div className="w-full flex justify-start">
+          <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
+            배우고 또 배우고. 만들고 또 만들고.
+          </h2>
         </div>
-
-        {/* 네비게이션 버튼 영역 동일 */}
+      </div>
+  
+      {/* 2. 스크롤 영역: 부모의 1600px 제한을 벗어나 브라우저 끝까지 확장(w-full) */}
+      <div 
+        ref={scrollRef} 
+        className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container"
+      >
+        {/* 카드들을 감싸는 wrapper에 패딩을 주어 
+          첫 번째 카드가 1600px 라인에 맞춰 시작되게 함 (xl:pl-[80px]) 
+        */}
+        <div className="flex flex-row gap-[20px] pb-10 min-w-max px-[20px] md:px-[40px] xl:px-[80px]">
+          {cardData.map((card, index) => (
+            <div 
+              key={index}
+              onClick={() => scrollToCard(index)}
+              className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[10px] md:gap-[20px] cursor-pointer 
+                xl:w-[640px] xl:h-[436px] md:w-[500px] w-[calc(100vw-40px)]"
+            >
+              <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
+                <img src={card.src} alt="" className="w-full h-full object-cover" />
+              </div>
+              
+              <div className="w-full flex items-start xl:pl-[16px] xl:pr-[128px] xl:py-[4px] md:px-[12px] px-0 h-auto min-h-[56px] md:h-[56px]">
+                <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep md:text-[16px] md:leading-[24px] text-[14px] leading-[20px]">
+                  <span className="text-[#171717] font-bold">{card.highlight}</span>{" "}
+                  {card.title.replace(card.highlight, "").trim()}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+  
+      {/* 3. 버튼 영역: 다시 1600px 제한 안으로 배치 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] mt-[24px]">
         <div className="w-full flex justify-end xl:justify-end md:justify-center justify-center">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button onClick={() => scrollToCard(0)} className="relative w-[44px] h-[44px] bg-[#EEEEF2] rounded-full flex items-center justify-center active:scale-95 transition-all">
