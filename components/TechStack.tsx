@@ -14,7 +14,7 @@ export default function TechStack() {
         
         {/* 🛠 1. 상단 타이틀: 하단과 동일하게 md:w-[80%]를 주어 왼쪽 라인을 맞춤 🛠 */}
         <div className="md:w-[80%] w-full flex justify-start">
-          <h2 className="font-wanted font-bold tracking-[0.23px] xl:text-[64px] xl:leading-[78px] md:text-[48px] md:leading-[60px] text-[32px] leading-[42px] max-w-[603px]
+          <h2 className="font-wanted font-bold tracking-[0.23px] xl:text-[64px] xl:leading-[78px] md:text-[48px] md:leading-[60px] text-[28px] leading-[38px] max-w-[603px]
             bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent">
             디자인과 로직의 조화. <br />
             감각적인 기획에 개발의 <br />
@@ -36,7 +36,7 @@ export default function TechStack() {
           <div className="md:w-[80%] w-full flex flex-col md:flex-row justify-between items-start gap-[40px] md:gap-[60px] xl:gap-[88px]">
             
             {/* 왼쪽 본문 */}
-            <p className="font-wanted font-semibold text-[#737373] tracking-[-0.12px] xl:text-[20px] xl:leading-[28px] md:text-[18px] md:leading-[26px] text-[15px] leading-[1.6] md:flex-1 break-keep">
+            <p className="font-wanted font-semibold text-[#737373] tracking-[-0.12px] xl:text-[20px] xl:leading-[28px] md:text-[18px] md:leading-[26px] text-[16px] leading-[24px] md:flex-1 break-keep">
               내가 상상하는 모든 것을 실체로 만드는 원동력, 저의 풀스택 툴킷입니다. 
               AI를 효율적인 파트너로 삼아 작업의 효율을 극대화하는 것은 물론, 
               보이지 않는 로직부터 사용자에게 닿는 감각적인 부분까지 모든 과정을 단단하게 빌딩하죠. 
@@ -48,8 +48,8 @@ export default function TechStack() {
             {/* 오른쪽 강조 텍스트 */}
             <div className="flex flex-col gap-[4px] md:w-auto xl:w-[343px]">
               <span className="font-wanted font-semibold text-[#A1A1A1] text-[14px] leading-[20px] tracking-[0.145px]">최대</span>
-              <h3 className="font-wanted font-bold tracking-[0.23px] xl:text-[40px] xl:leading-[52px] md:text-[32px] md:leading-[42px] text-[24px]
-                bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent">
+              <h3 className="font-wanted font-bold tracking-[0.23px] xl:text-[40px] xl:leading-[52px] md:text-[28px] md:leading-[38px] text-[24px] 
+                leading-[32px] bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent">
                 상상을 실체로 만드는 <br /> 압도적 가속도.
               </h3>
               <span className="font-wanted font-semibold text-[#A1A1A1] text-[14px] leading-[20px] tracking-[0.145px]">
