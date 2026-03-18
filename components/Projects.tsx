@@ -24,8 +24,8 @@ export default function Projects() {
       <div className="w-full max-w-[1600px] flex flex-col px-[20px] md:px-[40px] xl:px-[80px]">
         
         {/* 섹션 타이틀 */}
-        <div className="md:w-[80%] w-full flex justify-start mb-[48px] md:mb-[60px] xl:mb-[80px]">
-          <h2 className="font-wanted font-bold tracking-[-0.12px] xl:text-[40px] xl:leading-[52px] md:text-[32px] md:leading-[42px] text-[24px] text-[#171717]">
+        <div className="md:w-[80%] w-full flex justify-start mb-[24px] md:mb-[32px] xl:mb-[40px]">
+          <h2 className="font-wanted font-bold tracking-[-0.12px] xl:text-[28px] xl:leading-[38px] md:text-[28px] md:leading-[38px] text-[18px] leading-[26px] text-[#171717]">
             상상이 실체가 되는 순간.
           </h2>
         </div>
@@ -37,7 +37,7 @@ export default function Projects() {
             flex flex-row w-full 
             overflow-x-auto scrollbar-hide 
             snap-x snap-mandatory 
-            gap-[20px] xl:gap-[40px]
+            gap-[20px] xl:gap-[24px]
             xl:grid xl:grid-cols-3 xl:overflow-visible
           "
         >
@@ -85,8 +85,8 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
   const imageUrl = `${PROJECT_IMAGE_PATH}${project.fileName}${IMAGE_EXT}`;
 
   return (
-    <div className="relative w-full rounded-[24px] overflow-hidden group border border-[#EEEEF2] transition-all duration-500">
-      <div className="relative w-full aspect-[4/5] md:aspect-[3/4] xl:aspect-[10/13]">
+    <div className="relative xl:w-full mb:w-[480px] w-[240px] rounded-[24px] overflow-hidden group transition-all duration-300">
+      <div className="relative w-full aspect-[4/5]">
         <img 
           src={imageUrl} 
           alt={project.title} 
@@ -96,10 +96,10 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
       </div>
 
       <div className="absolute bottom-0 left-0 w-full p-[24px] md:p-[32px] flex flex-col gap-[12px] text-white">
-        <h3 className="font-wanted font-bold text-[18px] md:text-[22px] xl:text-[24px] leading-tight tracking-tight">
+        <h3 className="font-wanted font-bold text-[16px] leading-tight tracking-tight">
           {project.title}
         </h3>
-        <p className="font-wanted font-normal text-[#D1D1D6] text-[13px] md:text-[15px] xl:text-[16px] leading-relaxed break-keep line-clamp-2">
+        <p className="font-wanted font-normal text-[#D1D1D6] text-[16px] leading-relaxed break-keep line-clamp-2">
           {project.desc}
         </p>
       </div>
