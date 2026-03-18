@@ -45,7 +45,7 @@ export default function Projects() {
             <div 
               key={project.id} 
               className="
-                min-w-[240px] mb:min-w-[480px] xl:min-w-0
+                min-w-[240px] mb:min-w-0 xl:min-w-0
                 snap-start
               "
             >
@@ -85,7 +85,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
   const imageUrl = `${PROJECT_IMAGE_PATH}${project.fileName}${IMAGE_EXT}`;
 
   return (
-    <div className="relative xl:w-full mb:w-[480px] w-[240px] rounded-[24px] overflow-hidden group transition-all duration-300">
+    <div className="relative xl:w-full mb:w-full w-[240px] rounded-[24px] overflow-hidden group transition-all duration-300">
       <div className="relative w-full aspect-[4/5]">
         <img 
           src={imageUrl} 
