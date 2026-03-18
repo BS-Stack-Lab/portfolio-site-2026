@@ -45,7 +45,7 @@ export default function AboutMe() {
   ];
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center transition-all duration-300 xl:h-[782px] xl:py-[80px] md:h-auto h-auto md:py-[60px] py-[40px] overflow-hidden">
+    <section className="relative w-full bg-white flex flex-col items-center transition-all duration-300 xl:h-[782px] xl:py-[80px] md:h-auto h-auto md:py-[60px] py-[40px]">
       
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
