@@ -5,9 +5,14 @@ import React, { useState, useRef, useEffect } from "react";
 export default function Summary() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  // 현재 애니메이션이 실행 중인지 확인하는 플래그
+  const isAnimating = useRef(false);
 
-  // 스크롤 시 현재 어떤 카드가 중앙에 있는지 감지 (인디케이터 연동)
+  // Intersection Observer를 사용하여 스크롤 위치 감지 (인디케이터 연동)
   useEffect(() => {
+    // 애니메이션 중일 때는 Observer를 통한 상태 업데이트를 막습니다.
+    if (isAnimating.current) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,30 +34,52 @@ export default function Summary() {
     return () => observer.disconnect();
   }, []);
 
-  const handleCardClick = (index: number) => {
-    setActiveIndex(index);
-    
-    if (scrollRef.current) {
-      const container = scrollRef.current;
-      const cards = container.getElementsByClassName("summary-card");
-      const targetCard = cards[index] as HTMLElement;
+  // 🛠 핵심 수정: 단계별 스크롤 애니메이션 함수 🛠
+  const animateToTarget = async (targetIndex: number) => {
+    if (!scrollRef.current || isAnimating.current || targetIndex === activeIndex) return;
 
-      if (targetCard) {
-        const containerRect = container.getBoundingClientRect();
-        const targetRect = targetCard.getBoundingClientRect();
+    isAnimating.current = true; // 애니메이션 시작
+    const container = scrollRef.current;
+    const cards = container.getElementsByClassName("summary-card");
 
-        const scrollTo = 
-          container.scrollLeft + 
-          (targetRect.left - containerRect.left) - 
-          (containerRect.width / 2) + 
-          (targetRect.width / 2);
+    // 이동 방향 결정 (방향을 따라 1씩 증가/감소하며 이동)
+    const direction = targetIndex > activeIndex ? 1 : -1;
+    let nextIndex = activeIndex + direction;
 
-        container.scrollTo({
-          left: scrollTo,
-          behavior: "smooth",
-        });
-      }
+    // 타겟 인덱스까지 도달할 때까지 반복
+    while (true) {
+      const targetCard = cards[nextIndex] as HTMLElement;
+      if (!targetCard) break;
+
+      // 해당 카드로 부드럽게 스크롤 이동
+      const containerRect = container.getBoundingClientRect();
+      const targetRect = targetCard.getBoundingClientRect();
+
+      const scrollTo = 
+        container.scrollLeft + 
+        (targetRect.left - containerRect.left) - 
+        (containerRect.width / 2) + 
+        (targetRect.width / 2);
+
+      // 브라우저의 scrollTo smooth behavior를 사용합니다.
+      container.scrollTo({
+        left: scrollTo,
+        behavior: "smooth",
+      });
+
+      // 현재 타겟 카드가 중앙에 올 때까지 대기합니다. (약 600ms)
+      // 이 대기 시간은 smooth behavior 속도와 맞춘 값입니다.
+      await new Promise(resolve => setTimeout(resolve, 600)); 
+
+      // 상태 업데이트 (중간 단계를 거쳐감을 보여줌)
+      setActiveIndex(nextIndex);
+
+      // 목표 달성 시 루프 종료
+      if (nextIndex === targetIndex) break;
+      nextIndex += direction; // 다음 단계로 이동
     }
+
+    isAnimating.current = false; // 애니메이션 종료
   };
 
   const assetPath = "/asset/summary/";
@@ -69,7 +96,6 @@ export default function Summary() {
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* 🛠 한 칸씩 스크롤되는 스냅 설정 */
         .snap-container {
           scroll-snap-type: x mandatory;
         }
@@ -77,7 +103,6 @@ export default function Summary() {
           scroll-snap-align: center;
         }
 
-        /* 🛠 데스크톱(1280px 이상)에서만 스크롤 막기 */
         @media (min-width: 1280px) {
           .no-scroll-pc {
             overflow-x: hidden !important;
@@ -94,7 +119,6 @@ export default function Summary() {
           </h2>
         </div>
 
-        {/* 🛠 no-scroll-pc와 snap-container 클래스 추가 */}
         <div 
           ref={scrollRef} 
           className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container no-scroll-pc"
@@ -104,7 +128,8 @@ export default function Summary() {
               <div 
                 key={index}
                 data-index={index}
-                onClick={() => handleCardClick(index)}
+                // 카드 클릭 시에도 단계별 이동 적용
+                onClick={() => animateToTarget(index)}
                 className={`summary-card snap-item relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden
                   xl:w-[1080px] xl:h-[508px] 
                   md:w-[640px] md:h-[509px] 
@@ -124,17 +149,18 @@ export default function Summary() {
                 ))}
               </div>
             ))}
-            {/* 우측 끝 여백 확보용 (snap-align end 효과) */}
             <div className="w-[1px] md:w-[20px] xl:w-[80px] flex-shrink-0" />
           </div>
         </div>
 
+        {/* 인디케이터 */}
         <div className="flex justify-center items-center">
           <div className="bg-[#EBEBF0] px-[26px] py-[10px] rounded-full flex items-center gap-[16px] h-[56px]">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
-                onClick={() => handleCardClick(i)}
+                // 인디케이터 클릭 시 단계별 이동 적용
+                onClick={() => animateToTarget(i)}
                 className={`cursor-pointer rounded-full transition-all duration-500 ease-in-out
                   ${activeIndex === i 
                     ? "w-[60px] h-[10px] bg-[#737373]" 
