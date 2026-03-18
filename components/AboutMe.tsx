@@ -93,7 +93,7 @@ export default function AboutMe() {
                   className={`summary-card snap-item relative flex-shrink-0 flex flex-col items-start gap-[10px] md:gap-[20px] cursor-pointer 
                     xl:w-[640px] xl:h-[436px] md:w-[500px] w-[calc(100vw-40px)]`}
                 >
-                  <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
+                  <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px]">
                     <img src={card.src} alt="" className="w-full h-full object-cover" />
                   </div>
                   
