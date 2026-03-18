@@ -37,8 +37,8 @@ function StackCard({ stack }: { stack: typeof MAIN_STACKS_DATA[0] }) {
   const imageUrl = `${ICON_BASE_PATH}${stack.fileName}${FILE_EXT}`;
 
   return (
-    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full transition-all hover:shadow-md cursor-pointer group/card">
-      <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB] hover:shadow-[0px_0px_16px_0px_rgba(0,0,0,0.15)] hover:-translate-y-1 flex items-center justify-center overflow-hidden shrink-0">
+    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full transition-all hover:shadow-[0px_0px_16px_0px_rgba(0,0,0,0.15)] hover:-translate-y-1 cursor-pointer group/card">
+      <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB]  flex items-center justify-center overflow-hidden shrink-0">
         <img 
           src={imageUrl} 
           alt={stack.name} 
