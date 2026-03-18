@@ -50,7 +50,7 @@ export default function ValueFooter() {
               key={card.id}
               // h-[346px] 대신 h-auto를 사용해 내용물에 따라 늘어나게 합니다.
               // items-stretch 덕분에 같은 줄의 카드는 가장 긴 카드 높이에 맞춰집니다.
-              className="flex flex-col items-start p-[32px] md:p-[40px] xl:p-[40px] gap-[24px] w-full h-auto bg-white rounded-[24px] group-hover:scale-110 transition-all duration-300"
+              className="flex flex-col items-start p-[32px] md:p-[40px] xl:p-[40px] gap-[24px] w-full h-auto bg-white rounded-[24px] hover:scale-110 transition-all duration-300"
             >
               {/* 아이콘 이미지 */}
               <div className="xl:w-[56px] xl:h-[56px] mb:w-[48px] mb:h-[48px] w-[40px] h-[40px] flex items-center justify-center shrink-0">
