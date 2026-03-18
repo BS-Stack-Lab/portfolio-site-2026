@@ -10,10 +10,8 @@ interface TechModalProps {
 export default function TechModal({ isOpen, onClose }: TechModalProps) {
   if (!isOpen) return null;
 
-  // 🛠 1. 데이터 구조 최적화: 
-  // public 폴더를 기준으로 한 '절대 경로' 문자열을 직접 주입합니다.
-  // 사용님이 확인하신 파일명(java.png, ps.png 등)을 그대로 유지했습니다.
-  
+  // 🛠 데이터 정의: 경로 해석 오류를 방지하기 위해 '/'로 시작하는 절대 경로를 사용합니다.
+  // 사용님이 확인하신 소문자 파일명을 그대로 유지했습니다.
   const mainStacks = [
     { id: "java", name: "Java", desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.", icon: "/asset/techModal/java.png" },
     { id: "intellij", name: "Intelije IDE", desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.", icon: "/asset/techModal/intelije.png" },
@@ -72,16 +70,16 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
           </div>
         </div>
 
-        {/* 닫기 버튼 */}
+        {/* 🛠 닫기 버튼: operation.svg 적용 및 호버 시 90도 회전 */}
         <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-20">
           <button 
             onClick={onClose}
-            className="group w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300"
+            className="group w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
           >
             <img 
               src="/asset/icons/operation.svg" 
               alt="close" 
-              className="w-[32px] h-[32px] transition-transform duration-500 group-hover:rotate-90" 
+              className="w-[32px] h-[32px] transition-transform duration-500 ease-in-out group-hover:rotate-90" 
             />
           </button>
         </div>
@@ -90,29 +88,25 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
   );
 }
 
-// 🛠 StackCard 완전 재설계 (이미지 로드 안정성 확보)
 function StackCard({ stack }: { stack: any }) {
   return (
     <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full">
-      
-      {/* 2. 아이콘 컨테이너: 배경색과 로고가 겹쳐 안 보이는 문제 해결을 위해 
-             z-index와 배경색(white)을 명시적으로 재설정 */}
-      <div className="relative w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB] shadow-sm flex items-center justify-center overflow-hidden mx-auto md:mx-0 z-10">
+      {/* 아이콘 컨테이너: 배경 흰색 및 중앙 정렬 */}
+      <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB] shadow-sm flex items-center justify-center overflow-hidden mx-auto md:mx-0">
         <img 
           src={stack.icon} 
           alt={stack.name} 
-          // 3. 이미지 스타일: object-contain으로 로고 형태 보존 + 패딩 추가
+          // object-contain으로 로고 모양 보존 및 여백(p-2) 추가
           className="w-full h-full object-contain p-2 block"
-          // 브라우저가 경로를 정확히 찾지 못할 때 콘솔에 경로를 찍어줍니다.
           onError={(e) => {
-            console.error("이미지 로드 실패:", stack.icon);
+            // 이미지 로드 실패 시 콘솔에 로그를 남깁니다 (디버깅용)
+            console.log(`${stack.name} 이미지 로드 실패: ${stack.icon}`);
           }}
         />
       </div>
-
       <div className="flex flex-col gap-[12px] w-full">
-        <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717]">{stack.name}</h3>
-        <p className="font-wanted font-normal text-[16px] leading-[24px] text-[#737373] break-keep">{stack.desc}</p>
+        <h3 className="font-wanted font-bold text-[20px] text-[#171717]">{stack.name}</h3>
+        <p className="font-wanted text-[16px] text-[#737373] break-keep">{stack.desc}</p>
       </div>
     </div>
   );
