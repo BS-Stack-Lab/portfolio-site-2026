@@ -59,7 +59,7 @@ export default function AboutMe() {
       `}</style>
 
       {/* 1600px 중앙 정렬 컨테이너 */}
-      <div className="relative w-full max-w-[1600px] mx-auto flex flex-col gap-[64px] px-[20px] md:px-[40px] xl:px-[80px]">
+      <div className="relative w-full max-w-[1600px] mx-auto flex flex-col gap-[64px] px-[20px] md:px-[40px] xl:px-[80px] overflow-visible">
         
         {/* 타이틀 영역 */}
         <div className="w-full flex justify-start">
