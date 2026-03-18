@@ -19,13 +19,13 @@ export default function Projects() {
   const scrollRef = useRef<HTMLDivElement>(null); // scrollRef 정의 (누락 방지)
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center xl:py-[140px] mb:py-[100px] py-[80px] overflow-hidden">
+    <section className="relative w-full bg-white flex flex-col items-center xl:py-[140px] md:py-[100px] py-[80px] overflow-hidden">
       
-      <div className="w-full max-w-[1600px] flex flex-col px-[20px] mb:px-[40px] xl:px-[80px]">
+      <div className="w-full max-w-[1600px] flex flex-col px-[20px] md:px-[40px] xl:px-[80px]">
         
         {/* 섹션 타이틀 */}
-        <div className="mb:w-[80%] w-full flex justify-start mb-[24px] mb:mb-[32px] xl:mb-[40px]">
-          <h2 className="font-wanted font-bold tracking-[-0.12px] xl:text-[28px] xl:leading-[38px] mb:text-[28px] mb:leading-[38px] text-[18px] leading-[26px] text-[#171717]">
+        <div className="md:w-[80%] w-full flex justify-start md-[24px] md:md-[32px] xl:md-[40px]">
+          <h2 className="font-wanted font-bold tracking-[-0.12px] xl:text-[28px] xl:leading-[38px] md:text-[28px] md:leading-[38px] text-[18px] leading-[26px] text-[#171717]">
             상상이 실체가 되는 순간.
           </h2>
         </div>
@@ -37,7 +37,7 @@ export default function Projects() {
             flex flex-row w-full 
             overflow-x-auto scrollbar-hide 
             snap-x snap-mandatory 
-            gap-[20px] mb:gap-[20px] xl:gap-[24px]
+            gap-[20px] md:gap-[20px] xl:gap-[24px]
             xl:grid xl:grid-cols-3 xl:overflow-visible
           "
         >
@@ -45,7 +45,7 @@ export default function Projects() {
             <div 
               key={project.id} 
               className="
-                min-w-[240px] mb:min-w-0 xl:min-w-0
+                min-w-[240px] md:min-w-0 xl:min-w-0
                 snap-start
               "
             >
@@ -55,7 +55,7 @@ export default function Projects() {
         </div>
 
         {/* 하단 버튼 */}
-        <div className="w-full flex justify-center mt-[60px] mb:mt-[80px] xl:mt-[100px]">
+        <div className="w-full flex justify-center mt-[60px] md:mt-[80px] xl:mt-[100px]">
           <button 
             onClick={() => setIsModalOpen(true)} // 🛠 4. 버튼 클릭 시 모달 열기
             className="group flex flex-row items-center justify-between pl-[24px] pr-[10px] w-[194px] h-[56px] bg-[#EEEEF2] rounded-full transition-all hover:bg-[#E5E5E5] active:scale-95"
@@ -85,7 +85,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
   const imageUrl = `${PROJECT_IMAGE_PATH}${project.fileName}${IMAGE_EXT}`;
 
   return (
-    <div className="relative w-[240px] xl:w-full mb:w-full rounded-[24px] overflow-hidden group transition-all duration-300">
+    <div className="relative w-[240px] xl:w-full md:w-full rounded-[24px] overflow-hidden group transition-all duration-300">
       <div className="relative w-full aspect-[4/5]">
         <img 
           src={imageUrl} 
@@ -95,7 +95,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full p-[24px] mb:p-[32px] flex flex-col gap-[12px] text-white">
+      <div className="absolute bottom-0 left-0 w-full p-[24px] md:p-[32px] flex flex-col gap-[12px] text-white">
         <h3 className="font-wanted font-bold text-[16px] leading-tight tracking-tight">
           {project.title}
         </h3>
