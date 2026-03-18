@@ -6,6 +6,7 @@ import AboutMe from "@/components/AboutMe";
 import TechStack from "@/components/TechStack";
 import ProjectBanner from "@/components/ProjectBanner";
 import Projects from "@/components/Projects";
+import ValueFooter from "@/components/ValueFooter";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <TechStack />
           <ProjectBanner />
           <Projects />
+          <ValueFooter />
         </section>
       </main>
     </div>
