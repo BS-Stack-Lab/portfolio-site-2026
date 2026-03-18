@@ -37,7 +37,7 @@ function StackCard({ stack }: { stack: typeof MAIN_STACKS_DATA[0] }) {
   const imageUrl = `${ICON_BASE_PATH}${stack.fileName}${FILE_EXT}`;
 
   return (
-    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[240px] w-full transition-all hover:shadow-[0px_0px_20px_0px_rgba(0,0,0,0.10)] hover:-translate-y-1 cursor-pointer group/card">
+    <div className="flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] xl:h-[240px] md:h-[240px] h-[230px] w-full transition-all hover:shadow-[0px_0px_20px_0px_rgba(0,0,0,0.10)] hover:-translate-y-1 cursor-pointer group/card">
       <div className="w-[68px] h-[68px] bg-white rounded-[17px] border border-[#EBEBEB]  flex items-center justify-center overflow-hidden shrink-0">
         <img 
           src={imageUrl} 
@@ -76,7 +76,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
         <div className="flex-1 overflow-y-auto scrollbar-hide px-[20px] md:px-[60px] xl:px-[80px] py-[64px]">
           
           <section className="flex flex-col items-center gap-[48px] mb-[120px]">
-            <h2 className="font-wanted font-bold text-[24px] text-[#171717] text-center whitespace-pre-wrap">
+            <h2 className="font-wanted font-bold xl:text-[24px] xl:leading-[32px] md:text-[24px] md:leading-[32px] text-[18px] leading-[26px] text-[#171717] text-center whitespace-pre-wrap">
               상상을 실체로.<br />아이디어를 실체로 만드는 기술적 역량.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] w-full">
@@ -87,7 +87,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
           </section>
 
           <section className="flex flex-col items-center gap-[48px] pb-[100px]">
-            <h2 className="font-wanted font-bold text-[24px] text-[#171717] text-center whitespace-pre-wrap">
+            <h2 className="font-wanted font-bold xl:text-[24px] xl:leading-[32px] md:text-[24px] md:leading-[32px] text-[18px] leading-[26px] text-[#171717] text-center whitespace-pre-wrap">
               멈추지 않는 배움.<br />더 많은 상상을 빌딩하기 위해 배울 리스트입니다.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[20px] w-full">
@@ -102,7 +102,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
         <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-20">
           <button 
             onClick={onClose}
-            className="group/close w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
+            className="group/close w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 hover:shadow-[0px_0px_20px_0px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 active:scale-95"
           >
             <img 
               src="/asset/icons/operation.svg" 
