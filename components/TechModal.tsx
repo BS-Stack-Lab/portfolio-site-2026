@@ -102,7 +102,7 @@ export default function TechModal({ isOpen, onClose }: TechModalProps) {
         <div className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-20">
           <button 
             onClick={onClose}
-            className="group/close w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 hover:shadow-[0px_0px_20px_0px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 active:scale-95"
+            className="group/close w-[56px] h-[56px] bg-white/50 backdrop-blur-[10px] rounded-full flex items-center justify-center border border-white/20 shadow-[0px_0px_20px_0px_rgba(0,0,0,0.5)] hover:shadow-[0px_0px_20px_0px_rgba(0,0,0,0.5)] hover:scale-110 transition-all duration-300 active:scale-95"
           >
             <img 
               src="/asset/icons/operation.svg" 
