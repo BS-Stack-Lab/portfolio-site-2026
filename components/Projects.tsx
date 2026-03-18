@@ -45,7 +45,7 @@ export default function Projects() {
             <div 
               key={project.id} 
               className="
-                min-w-[240px] md:min-w-[480px] xl:min-w-0
+                min-w-[240px] mb:min-w-[480px] xl:min-w-0
                 snap-start
               "
             >
@@ -99,7 +99,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
         <h3 className="font-wanted font-bold text-[16px] leading-tight tracking-tight">
           {project.title}
         </h3>
-        <p className="font-wanted font-normal text-[#D1D1D6] text-[16px] leading-relaxed break-keep line-clamp-2">
+        <p className="font-wanted font-normal text-[#D1D1D6] text-[16px] leading-[24px] break-keep line-clamp-2">
           {project.desc}
         </p>
       </div>
