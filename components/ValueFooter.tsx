@@ -50,10 +50,10 @@ export default function ValueFooter() {
               key={card.id}
               // h-[346px] 대신 h-auto를 사용해 내용물에 따라 늘어나게 합니다.
               // items-stretch 덕분에 같은 줄의 카드는 가장 긴 카드 높이에 맞춰집니다.
-              className="flex flex-col items-start p-[32px] md:p-[40px] xl:p-[40px] gap-[24px] w-full h-auto bg-white rounded-[24px] shadow-sm hover:shadow-md transition-all duration-300"
+              className="flex flex-col items-start p-[32px] md:p-[40px] xl:p-[40px] gap-[24px] w-full h-auto bg-white rounded-[24px] group-hover:scale-110 transition-all duration-300"
             >
               {/* 아이콘 이미지 */}
-              <div className="w-[56px] h-[56px] flex items-center justify-center shrink-0">
+              <div className="xl:w-[56px] xl:h-[56px] mb:w-[48px] mb:h-[48px] w-[40px] h-[40px] flex items-center justify-center shrink-0">
                 <img 
                   src={`${ICON_BASE_PATH}${card.iconName}`} 
                   alt={card.title} 
@@ -63,11 +63,11 @@ export default function ValueFooter() {
 
               {/* 텍스트 영역 */}
               <div className="flex flex-col gap-[16px] md:gap-[20px] w-full">
-                <h3 className="font-wanted font-bold text-[24px] md:text-[28px] leading-tight text-[#171717] tracking-[0.23px] break-keep">
+                <h3 className="font-wanted font-bold xl:text-[28px] md:text-[28px] text-[18px] leading-tight text-[#171717] tracking-[0.23px] break-keep">
                   {card.title}
                 </h3>
                 {/* desc의 높이가 변하면 부모 div와 카드 전체 높이가 함께 변합니다. */}
-                <p className="font-wanted font-semibold text-[15px] md:text-[16px] leading-[1.6] text-[#737373] tracking-[0.057px] break-keep">
+                <p className="font-wanted font-semibold xl:text-[16px] md:text-[16px] text-[14px] leading-[1.6] text-[#737373] tracking-[0.057px] break-keep">
                   {card.desc}
                 </p>
               </div>
@@ -76,7 +76,7 @@ export default function ValueFooter() {
         </div>
 
         {/* 하단 카피라이트 */}
-        <div className="w-full border-t border-[#EBEBEB] pt-[40px] flex justify-center">
+        <div className="w-full border-t border-[#EBEBEB] xl:pt-[200px] mb:pt-[100px] pt-[80px] flex justify-center">
           <p className="font-wanted font-semibold text-[12px] md:text-[14px] leading-relaxed text-[#A1A1A1] tracking-[0.145px] text-center break-keep opacity-80">
             이 사이트는 포트폴리오 전용으로 제작되었으며, 상업적 목적이 없는 비영리 사이트임을 명시합니다.
           </p>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react"; // 🛠 1. useState 추가
+import React, { useRef, useState } from "react";
 import ProjectModal from "./ProjectModal";
 
 // 설정 관리
@@ -15,8 +15,8 @@ const PROJECTS_DATA = [
 ];
 
 export default function Projects() {
-  const [isModalOpen, setIsModalOpen] = useState(false); // 🛠 2. 모달 상태 정의
-  const scrollRef = useRef<HTMLDivElement>(null); // 🛠 3. scrollRef 정의 (누락 방지)
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 정의
+  const scrollRef = useRef<HTMLDivElement>(null); // scrollRef 정의 (누락 방지)
 
   return (
     <section className="relative w-full bg-white flex flex-col items-center xl:py-[140px] md:py-[100px] py-[80px] overflow-hidden">
@@ -58,7 +58,7 @@ export default function Projects() {
         <div className="w-full flex justify-center mt-[60px] md:mt-[80px] xl:mt-[100px]">
           <button 
             onClick={() => setIsModalOpen(true)} // 🛠 4. 버튼 클릭 시 모달 열기
-            className="group flex flex-row items-center justify-between pl-[24px] pr-[10px] w-[194px] h-[56px] bg-[#EEEEF2] rounded-full transition-all hover:bg-[#E5E5E5] active:scale-95 shadow-sm hover:shadow-md"
+            className="group flex flex-row items-center justify-between pl-[24px] pr-[10px] w-[194px] h-[56px] bg-[#EEEEF2] rounded-full transition-all hover:bg-[#E5E5E5] active:scale-95"
           >
             <span className="font-wanted font-bold text-[#171717] text-[16px]">
               프로젝트 더보기
@@ -71,7 +71,7 @@ export default function Projects() {
 
       </div>
 
-      {/* 🛠 5. 모달 컴포넌트 배치 및 props 연결 */}
+      {/* 모달 컴포넌트 배치 및 props 연결 */}
       <ProjectModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
@@ -85,7 +85,7 @@ function ProjectCard({ project }: { project: typeof PROJECTS_DATA[0] }) {
   const imageUrl = `${PROJECT_IMAGE_PATH}${project.fileName}${IMAGE_EXT}`;
 
   return (
-    <div className="relative w-full rounded-[24px] overflow-hidden group border border-[#EEEEF2] transition-all duration-500 hover:shadow-xl">
+    <div className="relative w-full rounded-[24px] overflow-hidden group border border-[#EEEEF2] transition-all duration-500">
       <div className="relative w-full aspect-[4/5] md:aspect-[3/4] xl:aspect-[10/13]">
         <img 
           src={imageUrl} 
