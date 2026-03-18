@@ -125,26 +125,54 @@ export default function ProjectModal({ isOpen, onClose }: ProjectModalProps) {
 // 🛠 3. 개별 카드 컴포넌트 (호버 효과 적용)
 function ProjectDetailCard({ project }: { project: any }) {
   return (
-    <div className="group relative flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[300px] w-full overflow-hidden transition-all duration-300">
+    // 1. 부모 컨테이너: overflow-hidden으로 내부 레이어가 밖으로 나가지 않게 설정
+    <div className="group relative flex flex-col justify-between items-start p-[32px] md:p-[24px] xl:p-[32px] bg-[#F5F5F7] rounded-[24px] h-[260px] w-full overflow-hidden transition-all duration-300">
       
-      {/* 기본 텍스트 영역 (평상시 노출) */}
-      <div className="flex flex-col gap-[12px] w-full transition-opacity duration-300 group-hover:opacity-0">
-        <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717] tracking-[-0.12px]">
-          {project.title}
-        </h3>
-        <p className="font-wanted font-normal text-[16px] leading-[24px] text-[#737373] tracking-[0.057px]">
-          {project.desc}
-        </p>
+      {/* --- [A] 기본 노출 영역 --- */}
+      <div className="flex flex-col gap-[12px] w-full h-full justify-between">
+        {/* 타이틀 및 요약 설명 */}
+        <div className="flex flex-col gap-[12px] w-full">
+          <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717] tracking-[-0.12px]">
+            {project.title}
+          </h3>
+          <p className="font-wanted font-normal text-[16px] leading-[24px] text-[#737373] tracking-[0.057px]">
+            {project.desc}
+          </p>
+        </div>
+
+        {/* 하단 메타 데이터 (아이콘, 정보) - 평상시에도 보임 */}
+        <div className="flex flex-col gap-[12px] w-full">
+          <div className="flex flex-row items-center gap-[8px]">
+            {project.techs.map((icon: string, idx: number) => (
+              <img 
+                key={idx} 
+                src={`/asset/projectModal/${icon}`} 
+                className="w-[20px] h-[20px] object-contain" 
+                alt="tech icon" 
+              />
+            ))}
+          </div>
+          <div className="flex flex-row justify-between items-center w-full">
+            <span className="font-wanted font-normal text-[14px] text-[#737373] tracking-[0.145px]">
+              {project.type}
+            </span>
+            <span className="font-wanted font-normal text-[14px] text-[#737373] tracking-[0.145px] text-right">
+              {project.period}
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* 호버 시 나타나는 상세 내용 영역 */}
+      {/* --- [B] 호버 시 나타나는 상세 레이어 (Overlay) --- */}
+      {/* 피그마 명세 반영: absolute, rgba(255, 255, 255, 0.6), blur(6px) */}
       <div className="absolute inset-0 z-10 flex flex-col items-start p-[32px] md:p-[24px] xl:p-[32px] 
         bg-white/60 backdrop-blur-[6px] 
-        opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+        opacity-0 group-hover:opacity-100 transition-opacity duration-300
+        pointer-events-none group-hover:pointer-events-auto">
         
-        <div className="flex flex-col gap-[12px] w-full h-full">
+        <div className="flex flex-col gap-[12px] w-full">
           <h3 className="font-wanted font-bold text-[20px] leading-[28px] text-[#171717] tracking-[-0.12px] mb-[4px]">
-            {project.title}
+            상세 내용.
           </h3>
           <ul className="flex flex-col gap-[8px]">
             {project.details?.map((detail: string, index: number) => (
@@ -154,28 +182,18 @@ function ProjectDetailCard({ project }: { project: any }) {
             ))}
           </ul>
         </div>
-      </div>
-
-      {/* 하단 메타 데이터 (아이콘, 날짜) */}
-      <div className="relative z-20 flex flex-col gap-[12px] w-full">
-        <div className="flex flex-row items-center gap-[8px]">
-          {project.techs.map((icon: string, idx: number) => (
-            <img 
-              key={idx} 
-              src={`/asset/projectModal/${icon}`} 
-              className="w-[20px] h-[20px] object-contain" 
-              alt="tech icon" 
-            />
-          ))}
-        </div>
-
-        <div className="flex flex-row justify-between items-center w-full">
-          <span className="font-wanted font-normal text-[14px] text-[#737373] tracking-[0.145px]">
-            {project.type}
-          </span>
-          <span className="font-wanted font-normal text-[14px] text-[#737373] tracking-[0.145px] text-right">
-            {project.period}
-          </span>
+        
+        {/* 하단 부분도 상세 레이어 위에서 똑같이 보여주어 일체감을 줍니다 */}
+        <div className="mt-auto flex flex-col gap-[12px] w-full">
+          <div className="flex flex-row items-center gap-[8px]">
+            {project.techs.map((icon: string, idx: number) => (
+              <img key={idx} src={`/asset/projectModal/${icon}`} className="w-[20px] h-[20px] object-contain opacity-40" alt="tech icon" />
+            ))}
+          </div>
+          <div className="flex flex-row justify-between items-center w-full">
+            <span className="font-wanted font-normal text-[14px] text-[#737373]/50 tracking-[0.145px]">{project.type}</span>
+            <span className="font-wanted font-normal text-[14px] text-[#737373]/50 tracking-[0.145px] text-right">{project.period}</span>
+          </div>
         </div>
       </div>
     </div>
