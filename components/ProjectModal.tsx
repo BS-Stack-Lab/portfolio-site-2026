@@ -13,7 +13,58 @@ const PROJECTS_LIST = [
       "2. 파이어베이스를 활용한 서버",
       "3. 피그마를 활용한 UI 디자인"
     ],
-    techs: ["react.png", "vscode.png", "jemini.png", "figma.png", "lottie.png"],
+    techs: ["react.png", "vscode.png", "vercel.png", "jemini.png", "figma.png", "lottie.png"],
+    type: "개인 프로젝트",
+    period: "26.03.12 ~ 03.18"
+  },
+  {
+    id: 2,
+    title: "포트폴리오 사이트 개발.",
+    desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.",
+    details: [
+      "1. 제미나이를 활용한 코드 작성",
+      "2. 파이어베이스를 활용한 서버",
+      "3. 피그마를 활용한 UI 디자인"
+    ],
+    techs: ["react.png", "vscode.png", "vercel.png", "jemini.png", "figma.png", "lottie.png"],
+    type: "개인 프로젝트",
+    period: "26.03.12 ~ 03.18"
+  },
+  {
+    id: 3,
+    title: "포트폴리오 사이트 개발.",
+    desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.",
+    details: [
+      "1. 제미나이를 활용한 코드 작성",
+      "2. 파이어베이스를 활용한 서버",
+      "3. 피그마를 활용한 UI 디자인"
+    ],
+    techs: ["react.png", "vscode.png", "vercel.png", "jemini.png", "figma.png", "lottie.png"],
+    type: "개인 프로젝트",
+    period: "26.03.12 ~ 03.18"
+  },
+  {
+    id: 4,
+    title: "포트폴리오 사이트 개발.",
+    desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.",
+    details: [
+      "1. 제미나이를 활용한 코드 작성",
+      "2. 파이어베이스를 활용한 서버",
+      "3. 피그마를 활용한 UI 디자인"
+    ],
+    techs: ["react.png", "vscode.png", "vercel.png", "jemini.png", "figma.png", "lottie.png"],
+    type: "개인 프로젝트",
+    period: "26.03.12 ~ 03.18"
+  },{
+    id: 5,
+    title: "포트폴리오 사이트 개발.",
+    desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.",
+    details: [
+      "1. 제미나이를 활용한 코드 작성",
+      "2. 파이어베이스를 활용한 서버",
+      "3. 피그마를 활용한 UI 디자인"
+    ],
+    techs: ["react.png", "vscode.png", "vercel.png", "jemini.png", "figma.png", "lottie.png"],
     type: "개인 프로젝트",
     period: "26.03.12 ~ 03.18"
   },
