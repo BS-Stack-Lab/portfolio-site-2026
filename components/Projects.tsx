@@ -45,7 +45,7 @@ export default function Projects() {
             <div 
               key={project.id} 
               className="
-                min-w-[calc(100vw-40px)] md:min-w-[calc(50%-10px)] xl:min-w-0
+                min-w-[240px] md:min-w-[480px] xl:min-w-0
                 snap-start
               "
             >
