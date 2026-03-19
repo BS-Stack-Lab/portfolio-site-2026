@@ -28,7 +28,7 @@ export default function AboutMe() {
   ];
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center xl:h-[782px] xl:py-[80px] md:h-auto h-auto md:py-[60px] py-[40px] overflow-visible">
+    <section className="relative w-full bg-white flex flex-col items-center xl:h-[782px] xl:py-[80px] md:h-auto h-auto md:py-[60px] py-[24px] overflow-visible">
       
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -42,7 +42,7 @@ export default function AboutMe() {
       `}</style>
 
       {/* 🛠 1. 상위 컨테이너: 패딩 80px과 1600px 제한을 여기서 한 번에 관리 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col gap-[64px] overflow-visible">
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col xl:mb-[24px] md:mb-[18px] mb-[24px] xl:gap-[40px] md:gap-[32px] gap-[24px] overflow-visible">
         
         {/* 타이틀 영역: 상위 컨테이너의 패딩을 따라 자동으로 왼쪽 정렬 */}
         <div className="w-full flex justify-start">
