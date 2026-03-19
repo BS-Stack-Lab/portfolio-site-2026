@@ -125,7 +125,7 @@ export default function Header() {
       </header>
 
         {/* --- 2. 모바일/태블릿 하단 탭바 (1280px 미만) --- */}
-        <div className="fixed bottom-0 left-0 right-0 z-[100] xl:hidden flex justify-center items-end pb-[24px] pointer-events-none">
+        <div className="fixed bottom-0 left-0 right-0 z-[100] xl:hidden flex justify-center items-end pb-[12px] pointer-events-none">
           <nav 
             className="flex flex-row items-center h-[52px] px-[24px] gap-[12px] bg-[#E6E6E6]/50 backdrop-blur-[4px] rounded-[100px] shadow-black/10 pointer-events-auto"
             style={{ width: 'fit-content' }}
