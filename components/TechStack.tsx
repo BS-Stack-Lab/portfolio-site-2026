@@ -21,7 +21,7 @@ export default function TechStack() {
 
   return (
     <section className="relative w-full bg-white flex flex-col items-center xl:py-[140px] md:py-[100px] py-[80px] overflow-hidden">
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col items-center xl:gap-[100px] md:gap-[80px] gap-[40px]">
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col items-center xl:gap-[100px] md:gap-[68px] gap-[40px]">
         
         {/* 타이틀 영역 */}
         <div className="md:w-[80%] w-full flex justify-start">
@@ -35,7 +35,7 @@ export default function TechStack() {
 
         {/* 이미지 영역 */}
         <div className="w-full flex justify-center">
-          <div className="w-[80%] max-w-[1124px]">
+          <div className="xl:w-[80%] md:w-[80%] w-[90%] max-w-[1124px]">
             <img src={`${assetPath}techStack.png`} alt="Tech Stack" className="w-full h-auto object-contain" />
           </div>
         </div>
