@@ -58,13 +58,13 @@ export default function AboutMe() {
             className="w-full overflow-x-auto  scrollbar-hide scroll-smooth snap-container"
           >
             {/* gap을 제거하고 min-w-max 설정 */}
-            <div className="flex flex-row pb-10 min-w-max overflow-visible">
+            <div className="flex flex-row pb-10 gap-[20px] overflow-visible">
               {cardData.map((card) => (
                 <div 
                   key={card.id}
                   /* 🛠 3. 카드 자체에 오른쪽 패딩 20px 부여 (gap 대용) */
                   // 오른쪽 패딩 있음
-                  className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start cursor-pointer xl:w-[660px] md:w-[480px] w-[280px] gap-[20px]"
+                  className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start cursor-pointer xl:w-[660px] md:w-[480px] w-[280px]"
                 >
                   {/* 이미지 영역 (PNG) */}
                   <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
