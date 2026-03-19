@@ -43,7 +43,7 @@ export default function AboutMe() {
       `}</style>
 
       {/* 상위 컨테이너 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col xl:my-[80px] md:my-[60px] my-[40px] xl:gap-[40px] md:gap-[32px] gap-[24px] overflow-visible">
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col xl:mb-[24px] md:mb-[18px] mb-[24px] xl:gap-[40px] md:gap-[32px] gap-[24px] overflow-visible">
         
         {/* 타이틀 영역 */}
         <div className="w-full flex justify-start">
@@ -66,7 +66,7 @@ export default function AboutMe() {
                   className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start cursor-pointer xl:w-[660px] md:w-[480px] w-[280px]"
                 >
                   {/* 이미지 영역 */}
-                  <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
+                  <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden">
                     <img src={card.src} alt="" className="w-full h-full object-cover" />
                   </div>
                   

@@ -46,7 +46,7 @@ export default function InfoBanner() {
           </p>
         </div>
 
-        {/* 설명 문구(c)와 폰 목업 사이의 간격 48px 적용 */}
+        {/* 폰 목업 이미지 */}
         <div className="xl:mt-[48px] mb:mt-[48px] mt-[40px] w-full max-w-[905px] flex justify-center">
           <div className="relative w-full aspect-[905/946]">
             <img 
