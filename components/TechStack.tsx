@@ -49,7 +49,7 @@ export default function TechStack() {
 
             <div className="flex flex-col gap-[4px] md:w-auto xl:w-[343px]">
               <span className="font-wanted font-semibold text-[#A1A1A1] text-[14px]">최대</span>
-              <h3 className="font-wanted font-bold xl:text-[40px] xl:leading-[52px] md:text-[32px] md:leading-[42px] text-[24px] leading-[34px]
+              <h3 className="font-wanted font-bold xl:text-[40px] xl:leading-[52px] md:text-[32px] md:leading-[42px] text-[28px] leading-[38px]
                 bg-gradient-to-r from-[#449EFF] via-[#A4D0FF] to-[#BDDDFF] bg-clip-text text-transparent">
                 상상을 실체로 만드는 <br /> 압도적 가속도.
               </h3>
