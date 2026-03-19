@@ -20,7 +20,7 @@ export default function TechStack() {
   const iconPath = "/asset/icons/";
 
   return (
-    <section className="relative w-full bg-white flex flex-col items-center xl:py-[140px] md:py-[100px] py-[80px] overflow-hidden">
+    <section className="relative w-full bg-white flex flex-col items-center pt-[40px] pb-[80px] xl:py-[140px] md:py-[100px] overflow-hidden">
       <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col items-center xl:gap-[100px] md:gap-[68px] gap-[40px]">
         
         {/* 타이틀 영역 */}
