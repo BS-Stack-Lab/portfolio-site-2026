@@ -101,11 +101,13 @@ export default function Summary() {
         }
       `}</style>
 
+      {/* 타이틀 */}
       <div className="w-full max-w-[1600px] flex flex-col gap-[56px] xl:gap-[64px] overflow-visible">
         <div className="w-full px-[20px] md:px-[32px] xl:px-[80px]">
           <h2 className="font-wanted font-bold text-[#000000] xl:text-[52px] md:text-[40px] text-[28px] tracking-[0.23px]">일단 핵심부터.</h2>
         </div>
 
+        {/* 카드 컴포넌트 */}
         <div ref={scrollRef} className="w-full overflow-x-auto scrollbar-hide scroll-smooth overflow-y-visible snap-container no-scroll-pc">
           <div className="flex flex-row gap-[20px] px-[16px] md:px-[32px] xl:px-[80px] xl:pb-10 md:pb-4 pb-2 min-w-max">
             {cardData.map((card, index) => (
@@ -116,7 +118,7 @@ export default function Summary() {
                 className={`summary-card snap-item relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden xl:w-[1080px] xl:h-[508px] md:w-[640px] md:h-[509px] w-[280px] h-[360px] ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}`}
               >
                 <div className={`absolute top-[30px] z-20 px-[30px] w-full left-1/2 -translate-x-1/2 text-center px-[14px] md:left-0 md:translate-x-0 ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
-                  <p className="font-wanted font-bold text-[#171717] xl:text-[18px] text-[16px] leading-[1.4] whitespace-pre-wrap">{card.title}</p>
+                  <p className="font-wanted font-bold text-[#171717] xl:text-[18px] xl:text-[18px] text-[14px] leading-[1.4] whitespace-pre-wrap">{card.title}</p>
                 </div>
                 {card.images.map((img, imgIdx) => (
                   <img key={imgIdx} src={img.src} alt="" className={`absolute pointer-events-none ${img.style}`} />
