@@ -117,7 +117,7 @@ export default function Summary() {
                 onClick={() => animateToTarget(index)}
                 className={`summary-card snap-item relative flex-shrink-0 bg-white rounded-[18px] cursor-pointer transition-all duration-500 overflow-hidden xl:w-[1080px] xl:h-[508px] md:w-[640px] md:h-[509px] w-[280px] h-[360px] ${activeIndex === index ? "opacity-100" : "opacity-80 scale-[0.98]"}`}
               >
-                <div className={`absolute top-[30px] z-20 px-[30px] w-full left-1/2 -translate-x-1/2 text-center px-[14px] md:left-0 md:translate-x-0 ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
+                <div className={`absolute top-[30px] z-20 xl:px-[30px] md:px-[30px] px-[20px] w-full left-1/2 -translate-x-1/2 text-center px-[14px] md:left-0 md:translate-x-0 ${index === 1 ? "md:text-center" : index === 2 ? "md:text-right" : "md:text-left"}`}>
                   <p className="font-wanted font-bold text-[#171717] xl:text-[18px] xl:text-[18px] text-[14px] leading-[1.4] whitespace-pre-wrap">{card.title}</p>
                 </div>
                 {card.images.map((img, imgIdx) => (
