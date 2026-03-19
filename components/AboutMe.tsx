@@ -20,6 +20,7 @@ export default function AboutMe() {
     }
   };
 
+  {/* 카드 내용 */}
   const assetPath = "/asset/aboutMe/";
   const cardData = [
     { id: 1, highlight: "비전공자의 시선.", desc: "일상의 불편함을 그냥 지나치지 않고 서비스의 기회로 포착하여 사소한 문제들이 창의적인 기획의 시작이 되는 유연함을 보여줍니다.", src: `${assetPath}aboutMe1.png` },
@@ -41,37 +42,35 @@ export default function AboutMe() {
         }
       `}</style>
 
-      {/* 🛠 1. 상위 컨테이너: 패딩 80px과 1600px 제한을 여기서 한 번에 관리 */}
-      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col xl:mb-[24px] md:mb-[18px] mb-[24px] xl:gap-[40px] md:gap-[32px] gap-[24px] overflow-visible">
+      {/* 상위 컨테이너 */}
+      <div className="w-full max-w-[1600px] mx-auto px-[20px] md:px-[40px] xl:px-[80px] flex flex-col xl:my-[80px] md:my-[60px] my-[40px] xl:gap-[40px] md:gap-[32px] gap-[24px] overflow-visible">
         
-        {/* 타이틀 영역: 상위 컨테이너의 패딩을 따라 자동으로 왼쪽 정렬 */}
+        {/* 타이틀 영역 */}
         <div className="w-full flex justify-start">
           <h2 className="font-wanted font-bold text-[#000000] tracking-[0.23px] xl:text-[28px] xl:leading-[38px] md:text-[24px] text-[20px]">
             배우고 또 배우고. 만들고 또 만들고.
           </h2>
         </div>
 
-        {/* 🛠 2. 카드 영역: 상위 컨테이너의 너비 안에서 작동하되 오른쪽은 overflow-visible로 노출 */}
+        {/* 카드 영역 */}
         <div className="w-full overflow-visible">
           <div 
             ref={scrollRef} 
             className="w-full overflow-x-auto  scrollbar-hide scroll-smooth snap-container"
           >
-            {/* gap을 제거하고 min-w-max 설정 */}
+            {/* 카드 컴포넌트 */}
             <div className="flex flex-row pb-10 gap-[20px] overflow-visible">
               {cardData.map((card) => (
                 <div 
                   key={card.id}
-                  /* 🛠 3. 카드 자체에 오른쪽 패딩 20px 부여 (gap 대용) */
-                  // 오른쪽 패딩 있음
                   className="summary-card snap-item relative flex-shrink-0 flex flex-col items-start cursor-pointer xl:w-[660px] md:w-[480px] w-[280px]"
                 >
-                  {/* 이미지 영역 (PNG) */}
+                  {/* 이미지 영역 */}
                   <div className="w-full aspect-[16/9] bg-[#F5F5F7] rounded-[24px] overflow-hidden shadow-sm">
                     <img src={card.src} alt="" className="w-full h-full object-cover" />
                   </div>
                   
-                  {/* 설명 문구: 이미지 너비에 맞춰 정렬 */}
+                  {/* 설명 문구 */}
                   <div className="w-full flex flex-col items-start mt-[20px] xl:pl-[16px] xl:pr-[128px] gap-[4px]">
                     <p className="font-wanted font-semibold text-[#737373] tracking-[0.057px] break-keep xl:text-[16px] xl:leading-[24px] text-[14px]">
                       <span className="text-[#171717] font-bold">{card.highlight}</span> {card.desc}
@@ -83,8 +82,8 @@ export default function AboutMe() {
           </div>
         </div>
 
-        {/* 버튼 영역: 상위 컨테이너의 패딩 안에서 오른쪽 정렬 */}
-        <div className="w-full flex justify-end pb-[56px]">
+        {/* 버튼 영역 */}
+        <div className="w-full flex justify-end">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button 
               onClick={() => handleScroll("left")} 
