@@ -83,7 +83,7 @@ export default function AboutMe() {
         </div>
 
         {/* 버튼 영역 */}
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-end pb-[24px]">
           <div className="flex flex-row items-center gap-[20px] w-[108px] h-[44px]">
             <button 
               onClick={() => handleScroll("left")} 
