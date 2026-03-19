@@ -11,7 +11,7 @@ export default function Hero() {
         3. 데스크톱: xl(1280px~) h-[930px], max-w-[1600px], px-[80px], mx-auto (중앙정렬)
       */}
       <div className="w-full max-w-[1600px] mx-auto flex flex-col items-center relative transition-all duration-300
-        h-[680px] px-[16px] pt-[48px] pb-[32px] mt-[48px]
+        h-[560px] px-[16px] pt-[48px] pb-[32px] mt-[100px]
         md:h-[910px] md:px-[32px] md:pt-[24px] md:pb-[60px] md:mt-[28px]
         xl:h-[930px] xl:px-[80px]
       ">
