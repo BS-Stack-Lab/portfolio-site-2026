@@ -29,7 +29,7 @@ const PROJECTS_LIST = [
     ],
     techs: ["vscode.png", "jemini.png", "figma.png"],
     type: "개인 프로젝트",
-    period: "26.03.12 ~ 03.18"
+    period: "25.11.03 ~ 11.05"
   },
   {
     id: 3,
@@ -41,8 +41,8 @@ const PROJECTS_LIST = [
       "3. 픽플리를 활용한 설문조사"
     ],
     techs: ["jemini.png", "figma.png"],
-    type: "개인 프로젝트",
-    period: "26.03.12 ~ 03.18"
+    type: "팀 프로젝트",
+    period: "25.12.29 ~ 26.01.12"
   },
 ];
 
