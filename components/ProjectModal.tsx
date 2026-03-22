@@ -19,20 +19,31 @@ const PROJECTS_LIST = [
     type: "개인 프로젝트",
     period: "26.03.12 ~ 03.18"
   },
-  // 동일한 구조의 데이터들...
-  ...Array(5).fill(null).map((_, i) => ({
-    id: i + 2,
-    title: "포트폴리오 사이트 개발.",
-    desc: "애플스토어의 UI 스타일을 카피해서 포트폴리오 사이트 제작.",
+  {
+    id: 2,
+    title: "YOU'ZA 프로모션 사이트",
+    desc: "YOU'ZA 브랜드 캐릭터를 활용해서 프로모션 사이트 제작",
     details: [
       "1. 제미나이를 활용한 코드 작성",
-      "2. 파이어베이스를 활용한 서버",
-      "3. 피그마를 활용한 UI 디자인"
+      "2. 피그마를 활용한 디자인"
     ],
-    techs: ["react.png", "vscode.png", "vercel.png", "jemini.png", "figma.png", "lottie.png"],
+    techs: ["vscode.png", "jemini.png", "figma.png"],
     type: "개인 프로젝트",
     period: "26.03.12 ~ 03.18"
-  })),
+  },
+  {
+    id: 3,
+    title: "워크체크",
+    desc: "알바생들을 위한 대타 구인 서비스",
+    details: [
+      "1. 서비스 기획",
+      "2. 피그마를 활용한 디자인",
+      "3. 픽플리를 활용한 설문조사"
+    ],
+    techs: ["jemini.png", "figma.png"],
+    type: "개인 프로젝트",
+    period: "26.03.12 ~ 03.18"
+  },
 ];
 
 interface ProjectModalProps {

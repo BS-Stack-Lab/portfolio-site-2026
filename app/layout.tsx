@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "범서 포트폴리오",
     images: [
       {
-        url: "/asset/og-image.png", // public 폴더에 있는 이미지 경로
+        url: "/asset/og-image-main.png", // public 폴더에 있는 이미지 경로
         width: 1200,
         height: 630,
         alt: "범서 포트폴리오 메인 이미지",
