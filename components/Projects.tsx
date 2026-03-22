@@ -9,9 +9,9 @@ const PROJECT_IMAGE_PATH = "/asset/projects/";
 const IMAGE_EXT = ".png";
 
 const PROJECTS_DATA = [
-  { id: 1, fileName: "project1", title: "감각을 깨우는 학습.", desc: "직관적인 퀴즈 인터페이스를 통해 복잡한 UX 디자인 원칙을 재미있게 습득하도록 돕습니다.", link: "#" },
-  { id: 2, fileName: "project2", title: "텍스트로 빌딩하는 세계.", desc: "화려한 그래픽 대신 견고한 로직과 몰입감 넘치는 서사로 사용자만의 시나리오를 만들어냅니다.", link: "#" },
-  { id: 3, fileName: "project3", title: "상상이 현실이 되는 공간.", desc: "가상 환경에서의 상호작용을 통해 아이디어를 실체화하고 검증할 수 있는 플랫폼을 구축합니다.", link: "#" },
+  { id: 1, fileName: "project1", title: "상상이 현실이 되는 공간.", desc: "애플의 미니멀리즘 철학을 코드로 투영하여, 머릿속의 아이디어를 가장 정교하고 리드미컬한 인터랙션으로 구현해냅니다.", link: "#" },
+  { id: 2, fileName: "project2", title: "효율의 새로운 기준.", desc: "복잡한 워크플로우를 단순한 시각 언어로 재정의하여, 비즈니스의 모든 순간이 물 흐르듯 유연하게 연결되는 경험을 선사합니다.", link: "#" },
+  { id: 3, fileName: "project3", title: "오감을 깨우는 몰입.", desc: "유자의 싱그러움을 시각적 디테일과 감각적인 모션에 담아, 사용자가 브랜드의 향기에 깊이 빠져드는 찰나의 순간을 설계합니다.", link: "#" },
 ];
 
 export default function Projects() {
